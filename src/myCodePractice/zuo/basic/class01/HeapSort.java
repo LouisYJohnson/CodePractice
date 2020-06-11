@@ -1,15 +1,18 @@
-package com.newcoder.zuo3.basic;
+package myCodePractice.zuo.basic.class01;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
-public class Class_02_HeapSort {
-    //大根堆
+public class HeapSort {
+    //小根堆
     public static void heapSort(int[] arr) {
-        if (arr == null || arr.length < 2) return;
+        if (arr == null || arr.length == 1) return;
+
         int heapSize = arr.length;
-        for (int i = 0; i < heapSize; i++) {
+        for (int i = 0; i < arr.length; i++) {
             heapInsert(arr, i);
         }
+
         while (heapSize > 0) {
             swap(arr, 0, heapSize - 1);
             heapSize--;
@@ -17,48 +20,50 @@ public class Class_02_HeapSort {
         }
     }
 
-    //向堆中加入一个节点num,并将该节点调整为大根堆,在一个数组内完成操作,index为原堆大小+1
-    public static void heapInsert(int[] arr, int index) {
-        while (arr[index] > arr[(index - 1) / 2]) {
-            swap(arr, index, (index - 1) / 2);
-            index = (index - 1) / 2;
+    //将arr中i位置的元素插入到小根堆中
+    //向上
+    public static void heapInsert(int[] arr, int i) {
+        while (arr[i] < arr[(i - 1) / 2]) {
+            swap(arr, i, (i - 1) / 2);
+            i = (i - 1) / 2;
         }
     }
 
-    //heapify操作,假设堆顶值发生变化了,让他重新调整为大根堆,并且那个改变的元素小于左右子中的一个,
-    //应该和左右最大的换,而不是只要有一个比他大的就换
+    //heapify操作
+    //向下
     public static void heapify(int[] arr, int heapSize) {
         int index = 0;
-        int largest = arr[index];
-        while (index < heapSize) {
-            int left = index * 2 + 1;
-            int right = left + 1;
-            //分为左右都有,或只有左边有,或者没有(index = heapSize-1)
-            if (left < heapSize && right < heapSize && arr[left] > arr[right]) {
-                //左右都有,子中左边最大
-                largest = arr[left];
-                //父小于左子,交换数字与更新父坐标,父大于左子,跳出循环
-                if (arr[index] < largest) {
-                    swap(arr, index, left);
-                    index = left;
-                } else break;
-            } else if (left < heapSize && right < heapSize && arr[left] < arr[right]) {
-                //左右都有,右子最大
-                largest = arr[right];
-                //父小于右子,交换数字与更新父坐标,父大于右子,跳出循环
-                if (arr[index] < largest) {
-                    swap(arr, index, right);
-                    index = right;
-                } else break;
-            } else if (left < heapSize) {
-                //只有左边有,左子比父大
-                if (arr[left] > arr[index]) {
-                    largest = arr[left];
-                    swap(arr, index, left);
-                    index = left;
-                } else break;
-            } else break;//左右都没有,跳出循环
 
+        while (index < heapSize) {
+            int leftSon = index * 2 + 1;
+            int rightSon = leftSon + 1;
+            int small = arr[index];
+
+            //因为是完全二叉树,所以分为左右子都有,只有左子
+            if (rightSon < heapSize && arr[leftSon] < arr[rightSon]) { //左右子都有,并且左子在二者中更小
+                if (arr[leftSon] < small) { //左子为三者中最小,将左子升上来作为头
+                    swap(arr, index, leftSon);
+                    index = leftSon;
+                } else {    //头最小,不变
+                    break;
+                }
+            } else if (rightSon < heapSize && arr[rightSon] < arr[leftSon]) {   //左右子都有,右子在二者中更小
+                if (arr[rightSon] < small) {
+                    swap(arr, index, rightSon);
+                    index = rightSon;
+                } else {
+                    break;
+                }
+            } else if (leftSon < heapSize) {   //只有左子
+                if (arr[leftSon] < small) {
+                    swap(arr, index, leftSon);
+                    index = leftSon;
+                } else {
+                    break;
+                }
+            } else {    //左右子都没有,跳出循环
+                break;
+            }
         }
     }
 
@@ -69,8 +74,14 @@ public class Class_02_HeapSort {
     }
 
     // for test
-    public static void comparator(int[] arr) {
-        Arrays.sort(arr);
+    public static void comparator(Integer[] arr) {
+        Arrays.sort(arr, new Comparator<Integer>(
+        ) {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
     }
 
     // for test
@@ -95,7 +106,7 @@ public class Class_02_HeapSort {
     }
 
     // for test
-    public static boolean isEqual(int[] arr1, int[] arr2) {
+    public static boolean isEqual(Integer[] arr1, Integer[] arr2) {
         if ((arr1 == null && arr2 != null) || (arr1 != null && arr2 == null)) {
             return false;
         }
@@ -134,8 +145,19 @@ public class Class_02_HeapSort {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
             int[] arr2 = copyArray(arr1);
             heapSort(arr1);
-            comparator(arr2);
-            if (!isEqual(arr1, arr2)) {
+
+            Integer[] arr3 = new Integer[arr2.length];
+            for (int j = 0; j < arr3.length; j++) {
+                arr3[j] = arr2[j];
+            }
+            comparator(arr3);
+            Integer[] arr4 = new Integer[arr2.length];
+            for (int j = 0; j < arr3.length; j++) {
+                arr4[j] = arr1[j];
+            }
+
+
+            if (!isEqual(arr3, arr4)) {
                 succeed = false;
                 break;
             }

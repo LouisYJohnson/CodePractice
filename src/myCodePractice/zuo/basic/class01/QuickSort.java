@@ -1,48 +1,37 @@
-package com.newcoder.zuo3.basic;
+package myCodePractice.zuo.basic.class01;
 
 import java.util.Arrays;
 
-public class Class01_QuickSort {
-    //快速排序(从小到大)
-    //思路:每次从数组中取出最后一个数作为筛选的标准,以该数为标准,左边为小于该数的数,右边为大于该数的数,中间为等于该数的数
-    //递归实现,先将当前数组按照选取的数值分成两半,然后再把左右两半分别传入子过程中
+public class QuickSort {
     public static void quickSort(int[] arr) {
         if (arr == null || arr.length < 2) return;
         quickSort(arr, 0, arr.length - 1);
-
     }
 
-    //该方法将数组排序后返回等于数组中最后一个数的一段区域的下标用于下一次迭代
-    public static void quickSort(int[] arr, int min, int max) {
-        if (min < max) {
-            int[] p = partion(arr, min, max);
-            quickSort(arr, min, p[0] - 1);
-            quickSort(arr, p[1] + 1, max);
+    //快排
+    public static void quickSort(int[] arr, int l, int r) {
+        if (l < r) {
+            int[] p = partion(arr, l, r);
+            quickSort(arr, l, p[0] - 1);
+            quickSort(arr, p[1] + 1, r);
         }
     }
 
-    //本方法用于实现排序,并返回数组下标
-	//将最后一个元素作为数组分割的标准,将数组排列成左边是小于该元素右边大于该元素
-	//中间等于该元素
-	//并返回等于该元素那段区域的下标
-	//过程就是,左边的小于区域右边cur的左边只有可能是等于的,不可能是大于的
-    public static int[] partion(int[] arr, int min, int max) {
-        int l = min - 1;
-        int r = max;
-        int cur = min;
-        while (cur < r) {
-            if (arr[cur] < arr[max]) {
-                swap(arr, cur++, ++l);
-            } else if (arr[cur] == arr[max]) {
-                cur++;
+    public static int[] partion(int[] arr, int l, int r) {
+        int minArea = l - 1;
+        int maxArea = r;
+        int cur = l;
+        while (cur < maxArea) {
+            if (arr[cur] < arr[r]) {
+                swap(arr, ++minArea, cur++);
+            } else if (arr[cur] > arr[r]) {
+                swap(arr, cur, --maxArea);
             } else {
-                swap(arr, cur, --r);
+                cur++;
             }
         }
-        //因为右边区域都是大于该元素的,但是最后一个元素仍然是该元素而不是大于该元素的数字,所以换过来
-		//换过来之后比该元素大的区域的第一个,是等于该元素的
-        swap(arr, r, max);
-        return new int[]{l + 1, r};
+        swap(arr, r, maxArea);
+        return new int[]{minArea + 1, maxArea};
     }
 
     public static void swap(int[] arr, int i, int j) {
@@ -134,5 +123,3 @@ public class Class01_QuickSort {
 
     }
 }
-
-
