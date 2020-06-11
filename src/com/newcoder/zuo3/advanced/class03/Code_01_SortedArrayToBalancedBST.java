@@ -1,0 +1,96 @@
+package com.newcoder.zuo3.advanced.class03;
+
+public class Code_01_SortedArrayToBalancedBST {
+    //通过有序数组生成平衡搜索二叉树
+    //【题目】
+    //给定一个有序数组sortArr， 已知其中没有重复值， 用这个有序
+    //数组生成一棵平衡搜索二叉树， 并且该搜索二叉树中序遍历的
+    //结果与sortArr一致。
+    //使用递归来做:找有序数组的中间点,左边形成搜索二叉树,右边形成搜索二叉树,并返回形成搜索二叉树的节点
+    public static class Node {
+        public int value;
+        public Node left;
+        public Node right;
+
+        public Node(int data) {
+            this.value = data;
+        }
+    }
+    //递归函数:给数组的左边界和右边界,返回这个数组变成搜索二叉树后的头节点
+    public static Node generateTree(int[] sortArr) {
+        if (sortArr == null) {
+            return null;
+        }
+        return process1(sortArr,0,sortArr.length - 1);
+    }
+
+    public static Node process1(int[] arr, int l,int r) {
+        //base case
+        if (l > r) return null;
+
+        int mid = l + (r - l) / 2;
+        Node head = new Node(arr[mid]);
+        //递归函数:给数组的左边界和右边界,返回这个数组变成搜索二叉树后的头节点,确定了功能之后直接按照确定的功能去用,一定没错!
+        head.left = process1(arr,l,mid - 1);
+        head.right = process1(arr,mid + 1,r);
+        return head;
+    }
+
+
+    //implement bu zuo
+    public static Node generateTree1(int[] sortArr) {
+        if (sortArr == null) {
+            return null;
+        }
+        return generate(sortArr, 0, sortArr.length - 1);
+    }
+
+    public static Node generate(int[] sortArr, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        int mid = (start + end) / 2;
+        Node head = new Node(sortArr[mid]);
+        head.left = generate(sortArr, start, mid - 1);
+        head.right = generate(sortArr, mid + 1, end);
+        return head;
+    }
+
+    // for test -- print tree
+    public static void printTree(Node head) {
+        System.out.println("Binary Tree:");
+        printInOrder(head, 0, "H", 17);
+        System.out.println();
+    }
+
+    public static void printInOrder(Node head, int height, String to, int len) {
+        if (head == null) {
+            return;
+        }
+        printInOrder(head.right, height + 1, "v", len);
+        String val = to + head.value + to;
+        int lenM = val.length();
+        int lenL = (len - lenM) / 2;
+        int lenR = len - lenM - lenL;
+        val = getSpace(lenL) + val + getSpace(lenR);
+        System.out.println(getSpace(height * len) + val);
+        printInOrder(head.left, height + 1, "^", len);
+    }
+
+    public static String getSpace(int num) {
+        String space = " ";
+        StringBuffer buf = new StringBuffer("");
+        for (int i = 0; i < num; i++) {
+            buf.append(space);
+        }
+        return buf.toString();
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        printTree(generateTree(arr));
+        printTree(generateTree1(arr));
+
+
+    }
+}
