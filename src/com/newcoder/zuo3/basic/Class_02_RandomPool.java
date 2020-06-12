@@ -29,6 +29,7 @@ public class Class_02_RandomPool {
         //删除一个key后将两个列表中最后一个key移动到被移除key对应的坑上
         public void delete(K key) {
             //在删除的时候要先--才能指向有效区的最后一个位置
+            //因为有效区的最后一个位置才是真正要移动的位置
             index--;
             int toBeDeleteIndex = keyIndexMap.get(key);
             keyIndexMap.remove(key);

@@ -28,8 +28,10 @@ public class Class_02_CopyListWithRandom {
         helpHead = head;
         //2
         while (helpHead != null) {
-            hm.get(helpHead).next = helpHead.next;
-            hm.get(helpHead).rand = helpHead.rand;
+            //hm.get(key)得到的是value
+            //value就是被复制的节点
+            hm.get(helpHead).next = hm.get(helpHead.next);
+            hm.get(helpHead).rand = hm.get(helpHead.rand);
             helpHead = helpHead.next;
         }
         return hm.get(head);
