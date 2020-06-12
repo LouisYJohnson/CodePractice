@@ -41,6 +41,7 @@ public class Class_02_Array_To_Stack_Queue {
 	
 	//队列,功能:poll,push,peek
 	//start,end分别代表要出队的数在哪里,和要入队的数应该放在哪里
+	//引入一个size变量来制约start和end,只有start和end的话,程序不好写
 	public static class ArrayQueue {
 		private int start = 0;
 		private int end = 0;
@@ -55,14 +56,14 @@ public class Class_02_Array_To_Stack_Queue {
 		}
 		//push
 		public void push(int num) {
-			if(size > queueSize) throw new IndexOutOfBoundsException("queue is full");
+			if(size >= queueSize) throw new IndexOutOfBoundsException("queue is full");
 			arr[end++] = num;
 			size++;
 			end = end > queueSize - 1 ? 0:end ;
 		}
 		//poll
 		public int poll() {
-			if(size < 1) throw new IndexOutOfBoundsException("queue is empty");
+			if(size <= 0) throw new IndexOutOfBoundsException("queue is empty");
 			int temp = arr[start++];
 			start = start > queueSize-1 ? 0 : start;
 			size--;
