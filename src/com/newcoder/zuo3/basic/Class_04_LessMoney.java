@@ -13,11 +13,7 @@ public class Class_04_LessMoney {
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>(100, new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {//小根堆
-                if (o1 < o2) {
-                    return -1;
-                }else if (o1 > o2) {
-                    return 1;
-                }else return 0;
+                return o1 - o2;
             }
         });
         //将数组构成一个小根堆

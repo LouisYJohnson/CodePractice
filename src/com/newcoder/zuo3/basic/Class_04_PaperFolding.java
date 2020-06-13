@@ -11,6 +11,9 @@ public class Class_04_PaperFolding {
     //down
     //down
     //up
+
+    //二叉树的中序遍历
+    //头节点为下,没颗左子树的头节点为下,右子树的头节点为上
     public static void printAllFolds(int N) {
         if (N == 0) return;
         printProcess(N,0,false);

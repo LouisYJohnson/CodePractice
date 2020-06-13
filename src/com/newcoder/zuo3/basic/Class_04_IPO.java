@@ -6,9 +6,13 @@ import java.util.PriorityQueue;
 public class Class_04_IPO {
     //输出：
     //你最后获得的最大钱数
-    //仍然是贪心算法,每次都选择能投资项目中的利益最高的即可,所以使用大根堆与小根堆
+    //仍然是贪心算法,每次都选择能投资项目中的利益最高的即可,
+    //所以使用大根堆装能做的项目(花费小于等于手上钱的项目)与小根堆装不能做的项目(花费大于手上钱的项目)
+    //小根堆只是为了方便确定哪些项目能做(小根堆方便取东西,因为堆顶是最小),大根堆才是真正的确定哪些项目被做
     //小根堆中存放的是不能做的项目(按照成本排序),大根堆中放的是可以做的项目(按照利润排序)
-    //在限制k个项目内,每次在小根堆中弹到小于等于手上资金的所有项目,并将项目放入大根堆中,再将大根堆顶peek作为要做的项目,再将手上的钱+利润
+    //在限制k个项目内,每次在小根堆(不能做的项目堆)将小于等于手上资金的所有项目,
+    //并将项目放入大根堆(能够做的项目堆)中,再将大根堆顶peek作为要做的项目,再将手上的钱+扣除花费后的利润
+    //扣除花费后的利润表达的意思就是手上的钱不用减,直接加利润即可
     public static class Node {
         public int p;
         public int c;
@@ -36,21 +40,13 @@ public class Class_04_IPO {
         PriorityQueue<Node> maxHeap = new PriorityQueue<Node>(100, new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                if (o1.p > o2.p) {
-                    return -1;
-                }else if (o1.p < o2.p) {
-                    return 1;
-                }else return 0;
+                return o2.c - o1.c;
             }
         });
         PriorityQueue<Node> minHeap = new PriorityQueue<Node>(100, new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                if (o1.c < o2.c) {
-                    return -1;
-                }else if (o1.c > o2.c) {
-                    return 1;
-                }else return 0;
+                return o1.c - o2.c;
             }
         });
         //将所有项目放入小根堆中
@@ -59,18 +55,17 @@ public class Class_04_IPO {
         }
         //在k个项目中进行操作
         for (int i = 0; i < k;i++) {
-            //将所有投入小于等于W的项目都拿出来(在小根堆项目堆不为空的情况下)
-            while (!minHeap.isEmpty()) {
-                if (minHeap.peek().c <= W) {
-                    maxHeap.add(minHeap.poll());
-                }
+            //将所有能够做的项目都放到待做的堆中
+            while (!minHeap.isEmpty() && minHeap.peek().c <= W) {
+                maxHeap.add(minHeap.poll());
             }
-            //以大堆中堆顶的元素作为本次投资项目
-            while (!maxHeap.isEmpty()) {
-                W += maxHeap.peek().p;
+            //如果加完了要做的项目堆中没有项目了,直接返回目前有的资金
+            if (maxHeap.isEmpty()) {
+                return W;
             }
+            //如果能做的项目堆中还有项目,每次做一个,按照for循环的次数来
+            W += maxHeap.poll().p;
         }
         return W;
-
     }
 }
