@@ -81,11 +81,7 @@ public class Class_05_Kruskal {
     public static class EdgeComparator implements Comparator<Edge> {
         @Override
         public int compare(Edge o1, Edge o2) {
-            if (o1.weight < o2.weight) {
-                return -1;
-            }else if (o1.weight > o2.weight) {
-                return 1;
-            }else return 0;
+            return o1.weight - o2.weight;
         }
     }
 

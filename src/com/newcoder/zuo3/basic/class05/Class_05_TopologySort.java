@@ -15,13 +15,14 @@ public class Class_05_TopologySort {
                 zeroInQueue.add(node);
             }
         }
+
         List<Node> result = new ArrayList<>();
         while (zeroInQueue.size() != 0) {
             Node cur = zeroInQueue.poll();
             result.add(cur);
-            for (Node next : cur.nexts) {//遍历这个入度为0所有的子节点,并将入度--
+            for (Node next : cur.nexts) {//遍历这个入度为0所有的子节点,并将子节点的入度-1
                 //next.in--;这里不能这么写是因为不能改变原图的结构,所以要加入inMap辅助记录原图中每个节点的入度 !!
-                inMap.put(next,next.in-1);//不能改变原图结构,所以此处不能写--  !!
+                inMap.put(next,inMap.get(next) - 1);//不能改变原图结构,所以此处不能写--  !!
                 if (inMap.get(next) == 0) {
                     zeroInQueue.add(next);
                 }

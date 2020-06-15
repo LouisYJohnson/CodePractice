@@ -106,8 +106,11 @@ public class Class_05_TrieTree {
             int num = 0;
             for (int i = 0; i < preCharArr.length; i++) {
                 index = preCharArr[i] - 'a';
-                //
-                //if (node.map[index].path != 0) {//不能这么写,因为下一个连接的节点有可能为null,这么写是因为因为是查找前缀,所以只要下一个节点有字符串通过就好了,所以只看path,但是实际上不能拿一个可能为null的东西来取成员变量的,会报错
+                //if (node.map[index].path != 0) {
+                // 不能这么写,因为下一个连接的节点有可能为null,我这么写的原因是查找前缀,
+                // 所以只要下一个节点有字符串通过就好了,所以我想只看path,
+                // 但是不能拿一个可能为null的东西来取成员变量的,会报错
+                //而且如果path为0的话,这个节点是根本不会存在的,所以我这个条件判断写的完全是多余又错误
                 if (node.map[index] == null) {
                     return 0;
                 }
