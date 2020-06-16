@@ -21,7 +21,7 @@ public class MorrisTraversal {
             cur2 = cur1.left;
             if (cur2 != null) {
                 //找到cur1左子树的最右节点
-                while (cur2.right != null) {
+                while (cur2.right != null && cur2.right != cur1) {
                     cur2 = cur2.right;
                 }
                 //most right的右孩子为null,则most right右孩子指向cur1,然后cur向左移动
@@ -51,13 +51,14 @@ public class MorrisTraversal {
         while (cur1 != null) {
             cur2 = cur1.left;
             if (cur2 != null) {
-                while (cur2.right != null) {
+                while (cur2.right != null && cur2.right != cur1) {
                     cur2 = cur2.right;
                 }
                 if (cur2.right == null) {
                     System.out.println(cur1.value + " ");
                     cur2.right = cur1;
                     cur1 = cur1.left;
+                    continue;
                 }else {
                     cur2.right = null;
                 }
