@@ -27,7 +27,7 @@ public class Cow {
     }
 
     public static void main(String[] args) {
-        int n = 20;
+        int n = 4;
         System.out.println(cowNumber1(n));
         System.out.println(cowNumber2(n));
     }

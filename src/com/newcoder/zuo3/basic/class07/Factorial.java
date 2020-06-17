@@ -23,14 +23,14 @@ public class Factorial {
         int[] dp = new int[n+1];
         dp[0] = 0;
         dp[1] = 1;
-        dp[2] = 2;
-        for (int i = 3; i < dp.length; i++) {
+//        dp[2] = 2;
+        for (int i = 2; i < dp.length; i++) {
             dp[i] = i * dp[i-1];
         }
         return dp[n];
     }
     public static void main(String[] args) {
-        int n = 2;
+        int n = 3;
         System.out.println(getFactorial1(n));
         System.out.println(getFactorial2(n));
     }
