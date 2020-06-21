@@ -20,15 +20,15 @@ public class BestArrange {
         }
     }
 
-    public static class MyCompatator implements Comparator<Program>{
+    public static class MyCompatator implements Comparator<Program> {
         @Override
         public int compare(Program o1, Program o2) {
-            return o1.end-o2.end;
+            return o1.end - o2.end;
         }
     }
 
     public static int bestArrange(Program[] programs, int start) {
-        Arrays.sort(programs,new MyCompatator());
+        Arrays.sort(programs, new MyCompatator());
         int result = 0;
         for (int i = 0; i < programs.length; i++) {
             //如果开始时间在规定的开始时间之后,这个项目才能进行,并且star变为这个进行的项目的结束时间
@@ -43,9 +43,6 @@ public class BestArrange {
     public static void main(String[] args) {
 
     }
-
-
-
 
 
 }

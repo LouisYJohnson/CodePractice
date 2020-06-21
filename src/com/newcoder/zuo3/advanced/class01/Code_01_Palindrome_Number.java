@@ -6,7 +6,7 @@ public class Code_01_Palindrome_Number {
         int help = 1;
         int num = n;
         //找到一个和n一样长的以1开头后面全是0的整数
-        while (num/10 != 0) {
+        while (num / 10 != 0) {
             help *= 10;
             num /= 10;
         }

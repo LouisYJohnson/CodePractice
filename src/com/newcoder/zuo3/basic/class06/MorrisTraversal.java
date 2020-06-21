@@ -10,6 +10,7 @@ public class MorrisTraversal {
             this.value = data;
         }
     }
+
     //morris遍历的实质为在树中对于任意一个有左子树的节点,会访问自己两次,
     // 对于任意一个没有左子树的节点,会访问自己一次
     public static void morrisIn(Node head) {
@@ -59,7 +60,7 @@ public class MorrisTraversal {
                     cur2.right = cur1;
                     cur1 = cur1.left;
                     continue;
-                }else {
+                } else {
                     cur2.right = null;
                 }
             }

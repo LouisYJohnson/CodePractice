@@ -5,89 +5,89 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Code_03_StackAndQueueConvert {
-	//ÈçºÎ½öÓÃ¶ÓÁÐ½á¹¹ÊµÏÖÕ»½á¹¹£¿
-	//ÈçºÎ½öÓÃÕ»½á¹¹ÊµÏÖ¶ÓÁÐ½á¹¹£¿
+    //ï¿½ï¿½Î½ï¿½ï¿½Ã¶ï¿½ï¿½Ð½á¹¹Êµï¿½ï¿½Õ»ï¿½á¹¹ï¿½ï¿½
+    //ï¿½ï¿½Î½ï¿½ï¿½ï¿½Õ»ï¿½á¹¹Êµï¿½Ö¶ï¿½ï¿½Ð½á¹¹ï¿½ï¿½
 
-	public static class TwoStacksQueue {
-		private Stack<Integer> stackPush;
-		private Stack<Integer> stackPop;
+    public static class TwoStacksQueue {
+        private Stack<Integer> stackPush;
+        private Stack<Integer> stackPop;
 
-		public TwoStacksQueue() {
-			stackPush = new Stack<Integer>();
-			stackPop = new Stack<Integer>();
-		}
+        public TwoStacksQueue() {
+            stackPush = new Stack<Integer>();
+            stackPop = new Stack<Integer>();
+        }
 
-		public void push(int pushInt) {
-			stackPush.push(pushInt);
-		}
+        public void push(int pushInt) {
+            stackPush.push(pushInt);
+        }
 
-		public int poll() {
-			if (stackPop.empty() && stackPush.empty()) {
-				throw new RuntimeException("Queue is empty!");
-			} else if (stackPop.empty()) {
-				while (!stackPush.empty()) {
-					stackPop.push(stackPush.pop());
-				}
-			}
-			return stackPop.pop();
-		}
+        public int poll() {
+            if (stackPop.empty() && stackPush.empty()) {
+                throw new RuntimeException("Queue is empty!");
+            } else if (stackPop.empty()) {
+                while (!stackPush.empty()) {
+                    stackPop.push(stackPush.pop());
+                }
+            }
+            return stackPop.pop();
+        }
 
-		public int peek() {
-			if (stackPop.empty() && stackPush.empty()) {
-				throw new RuntimeException("Queue is empty!");
-			} else if (stackPop.empty()) {
-				while (!stackPush.empty()) {
-					stackPop.push(stackPush.pop());
-				}
-			}
-			return stackPop.peek();
-		}
-	}
+        public int peek() {
+            if (stackPop.empty() && stackPush.empty()) {
+                throw new RuntimeException("Queue is empty!");
+            } else if (stackPop.empty()) {
+                while (!stackPush.empty()) {
+                    stackPop.push(stackPush.pop());
+                }
+            }
+            return stackPop.peek();
+        }
+    }
 
-	public static class TwoQueuesStack {
-		private Queue<Integer> queue;
-		private Queue<Integer> help;
+    public static class TwoQueuesStack {
+        private Queue<Integer> queue;
+        private Queue<Integer> help;
 
-		public TwoQueuesStack() {
-			queue = new LinkedList<Integer>();
-			help = new LinkedList<Integer>();
-		}
+        public TwoQueuesStack() {
+            queue = new LinkedList<Integer>();
+            help = new LinkedList<Integer>();
+        }
 
-		public void push(int pushInt) {
-			queue.add(pushInt);
-		}
+        public void push(int pushInt) {
+            queue.add(pushInt);
+        }
 
-		public int peek() {
-			if (queue.isEmpty()) {
-				throw new RuntimeException("Stack is empty!");
-			}
-			while (queue.size() != 1) {
-				help.add(queue.poll());
-			}
-			int res = queue.poll();
-			help.add(res);
-			swap();
-			return res;
-		}
+        public int peek() {
+            if (queue.isEmpty()) {
+                throw new RuntimeException("Stack is empty!");
+            }
+            while (queue.size() != 1) {
+                help.add(queue.poll());
+            }
+            int res = queue.poll();
+            help.add(res);
+            swap();
+            return res;
+        }
 
-		public int pop() {
-			if (queue.isEmpty()) {
-				throw new RuntimeException("Stack is empty!");
-			}
-			while (queue.size() != 1) {
-				help.add(queue.poll());
-			}
-			int res = queue.poll();
-			swap();
-			return res;
-		}
+        public int pop() {
+            if (queue.isEmpty()) {
+                throw new RuntimeException("Stack is empty!");
+            }
+            while (queue.size() != 1) {
+                help.add(queue.poll());
+            }
+            int res = queue.poll();
+            swap();
+            return res;
+        }
 
-		private void swap() {
-			Queue<Integer> tmp = help;
-			help = queue;
-			queue = tmp;
-		}
+        private void swap() {
+            Queue<Integer> tmp = help;
+            help = queue;
+            queue = tmp;
+        }
 
-	}
+    }
 
 }

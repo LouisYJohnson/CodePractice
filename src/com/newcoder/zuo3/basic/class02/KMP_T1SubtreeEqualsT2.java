@@ -16,7 +16,7 @@ public class KMP_T1SubtreeEqualsT2 {
     public static boolean isSubtree(Node t1, Node t2) {
         String t1Str = serialByPre(t1);
         String t2Str = serialByPre(t2);
-        return getIndexOf(t1Str,t2Str) != -1;
+        return getIndexOf(t1Str, t2Str) != -1;
     }
 
     public static String serialByPre(Node head) {
@@ -43,29 +43,30 @@ public class KMP_T1SubtreeEqualsT2 {
             if (ss[index] == ms[mi]) {
                 index++;
                 mi++;
-            }else if (nextArr[mi] == -1) {
+            } else if (nextArr[mi] == -1) {
                 index++;
-            }else {
+            } else {
                 mi = nextArr[mi];
             }
         }
         //如果相等,会再++的,所以如果走完,会==m.length()
         return mi == m.length() ? index - mi : -1;
     }
+
     //next数组的计算
     public static int[] getNextArray(char[] ms) {
-        if (ms.length == 1) return new int[] {-1};
+        if (ms.length == 1) return new int[]{-1};
         int[] next = new int[ms.length];
         int pos = 2;
         next[0] = -1;
         next[1] = 0;
         int cn = 0;
         while (pos < ms.length) {
-            if (ms[pos-1] == ms[cn]) {
+            if (ms[pos - 1] == ms[cn]) {
                 next[pos++] = ++cn;
-            }else if (cn > 0) {
+            } else if (cn > 0) {
                 cn = next[cn];
-            }else {
+            } else {
                 next[pos++] = 0;
             }
         }

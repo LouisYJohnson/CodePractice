@@ -1,20 +1,20 @@
 package com.newcoder.zuo3.advanced.class04;
 
 public class Code_01_AddMinusMultiDivideByBit {
-    //ж╩сцн╩тккЦ╡╩сцкЦйУтккЦй╣ожуШйЩ╣д╪с╪УЁкЁЩтккЦ
-    //║╬лБд©║©
-    //╦Ь╤╗а╫╦Ж32н╩уШйЩa╨мbё╛ ©иуЩ║╒ ©и╦╨║╒ ©и0║ё ╡╩дэй╧сцкЦйУтккЦ
-    //╥Шё╛ ╥ж╠Пй╣ожa╨мb╣д╪с╪УЁкЁЩтккЦ║ё
-    //║╬р╙гС║©
-    //хГ╧Ш╦Ь╤╗╣дa╨мbж╢пп╪с╪УЁкЁЩ╣ддЁп╘╫А╧Ш╠╬ю╢╬м╩А╣╪жбйЩ╬щ╣д
-    //рГЁЖё╛ дгц╢дЦй╣ож╣д╨╞йЩ╡╩╠ь╤тдгп╘╫А╧Ш╦╨тП
+    //ж╩О©╫О©╫н╩О©╫О©╫О©╫Ц╡╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫й╣О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╪с╪О©╫О©╫кЁО©╫О©╫О©╫О©╫О©╫
+    //О©╫О©╫О©╫О©╫д©О©╫О©╫
+    //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫32н╩О©╫О©╫О©╫О©╫aО©╫О©╫bО©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫и╦О©╫О©╫О©╫ О©╫О©╫0О©╫О©╫ О©╫О©╫О©╫О©╫й╧О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+    //О©╫О©╫О©╫О©╫ О©╫ж╠О©╫й╣О©╫О©╫aО©╫О©╫bО©╫д╪с╪О©╫О©╫кЁО©╫О©╫О©╫О©╫Ц║ё
+    //О©╫О©╫р╙О©╫О©╫
+    //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫aО©╫О©╫bж╢О©╫п╪с╪О©╫О©╫кЁО©╫О©╫О©╫дЁп╘О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫м╩А╣╪О©╫О©╫О©╫О©╫О©╫щ╣О©╫
+    //О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ц╢О©╫О©╫й╣О©╫ж╣д╨О©╫О©╫О©╫О©╫О©╫О©╫ь╤О©╫О©╫О©╫п╘О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-    //╪с
+    //О©╫О©╫
     public static int add(int a, int b) {
-        int forwardInfo = a & b;    //╫Ьн╩пео╒
-        int noForwardInfo = a ^ b;  //нч╫Ьн╩пео╒
+        int forwardInfo = a & b;    //О©╫О©╫н╩О©╫О©╫о╒
+        int noForwardInfo = a ^ b;  //О©╫ч╫О©╫н╩О©╫О©╫о╒
         while (forwardInfo != 0) {
-            //╫Ьн╩пео╒вСрфр╩н╩
+            //О©╫О©╫н╩О©╫О©╫о╒О©╫О©╫О©╫О©╫р╩н╩
             forwardInfo = forwardInfo << 1;
             int help = forwardInfo;
             forwardInfo = forwardInfo & noForwardInfo;
@@ -22,44 +22,48 @@ public class Code_01_AddMinusMultiDivideByBit {
         }
         return noForwardInfo;
     }
-    //╪У,╬мйг╪соЮ╥╢йЩ
-    public static int minus(int a,int b) {
-        return add(a,negNum(b));
+
+    //О©╫О©╫,О©╫О©╫О©╫г╪О©╫О©╫Ю╥╢О©╫О©╫
+    public static int minus(int a, int b) {
+        return add(a, negNum(b));
     }
-    //╩Я╣цоЮ╥╢йЩ(╟╢н╩х║╥╢╪с1)
+
+    //О©╫О©╫О©╫О©╫Ю╥╢О©╫О©╫(О©╫О©╫н╩х║О©╫О©╫О©╫О©╫1)
     public static int negNum(int num) {
-        return add(~num,1);
+        return add(~num, 1);
     }
-    //Ёк
+
+    //О©╫О©╫
     public static int multi(int a, int b) {
         int res = 0;
         int count = 0;
         while (b != 0) {
             if ((b & 1) == 1) {
-                res = add(res,a << count);
+                res = add(res, a << count);
             }
-            b = b >>> 1;//нч╥Ш╨есррф,рРн╙╥Ш╨ен╩йг╡╩дэ╡нсКтккЦ╣д
+            b = b >>> 1;//О©╫ч╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫,О©╫О©╫н╙О©╫О©╫О©╫О©╫н╩О©╫г╡О©╫О©╫э╡О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
             count++;
         }
         return res;
     }
-    //ЁЩ:сц2╣дn╢нцщйт,йт╣╫уЩ╨ц╪УмЙн╙ж╧,йт╣дй╠╨Р,╫╚a,b╤╪╠ДЁиуЩйЩйт,уБяЫ╥╫╠Ц
-    public static int div(int a,int b) {
+
+    //О©╫О©╫:О©╫О©╫2О©╫О©╫nО©╫О©╫О©╫О©╫О©╫О©╫,О©╫т╣О©╫О©╫О©╫О©╫ц╪О©╫О©╫О©╫н╙ж╧,О©╫т╣О©╫й╠О©╫О©╫,О©╫О©╫a,bО©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫,О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+    public static int div(int a, int b) {
         int helpA = a < 0 ? negNum(a) : a;
         int helpB = b < 0 ? negNum(b) : b;
 
         int help = 1 << 30;
         int res = 0;
-        while (minus(helpA,multi(helpB,help)) != 0) {
-            if (minus(helpA,multi(helpB,help)) < 0) {
+        while (minus(helpA, multi(helpB, help)) != 0) {
+            if (minus(helpA, multi(helpB, help)) < 0) {
                 help = help >> 1;
-            }else {
-                res = add(res,help);
-                helpA = minus(helpA,multi(helpB,help));
+            } else {
+                res = add(res, help);
+                helpA = minus(helpA, multi(helpB, help));
                 help = help >> 1;
             }
         }
-        res = add(res,help);
+        res = add(res, help);
         return res = (a < 0) ^ (b < 0) ? negNum(res) : res;
     }
 
@@ -71,7 +75,7 @@ public class Code_01_AddMinusMultiDivideByBit {
             return 1;
         } else if (b == Integer.MIN_VALUE) {
             return 0;
-        } else if (a == Integer.MIN_VALUE) {//хГ╧ШaйгвНп║ж╣,дгц╢2
+        } else if (a == Integer.MIN_VALUE) {//О©╫О©╫О©╫aО©╫О©╫О©╫О©╫п║ж╣,О©╫О©╫ц╢2
             int res = div(add(a, 1), b);
             return add(res, div(minus(a, multi(res, b)), b));
         } else {
@@ -81,10 +85,10 @@ public class Code_01_AddMinusMultiDivideByBit {
 
     //for test
     public static void main(String[] args) {
-        System.out.println(add(10,29));
-        System.out.println(minus(-10,1));
-        System.out.println(multi(-10,-100));
-        System.out.println(div(Integer.MIN_VALUE,2));
+        System.out.println(add(10, 29));
+        System.out.println(minus(-10, 1));
+        System.out.println(multi(-10, -100));
+        System.out.println(div(Integer.MIN_VALUE, 2));
         System.out.println(Integer.MIN_VALUE / 2);
     }
 

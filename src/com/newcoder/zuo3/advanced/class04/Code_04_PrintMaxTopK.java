@@ -3,25 +3,25 @@ package com.newcoder.zuo3.advanced.class04;
 import java.util.Arrays;
 
 public class Code_04_PrintMaxTopK {
-    //´òÓ¡N¸öÊý×éÕûÌå×î´óµÄTop K
-    //¡¾ÌâÄ¿¡¿
-    //ÓÐN¸ö³¤¶È²»Ò»µÄÊý×é£¬ ËùÓÐµÄÊý×é¶¼ÊÇÓÐÐòµÄ£¬ Çë´Ó´óµ½Ð¡´ò
-    //Ó¡ÕâN¸öÊý×éÕûÌå×î´óµÄÇ°K¸öÊý¡£
-    //ÀýÈç£¬ ÊäÈëº¬ÓÐNÐÐÔªËØµÄ¶þÎ¬Êý×é¿ÉÒÔ´ú±íN¸öÒ»Î¬Êý×é¡£
+    //ï¿½ï¿½Ó¡Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Top K
+    //ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½
+    //ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½È²ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½é£¬ ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½é¶¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ ï¿½ï¿½Ó´ï¿½Ð¡ï¿½ï¿½
+    //Ó¡ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ç£¬ ï¿½ï¿½ï¿½ëº¬ï¿½ï¿½Nï¿½ï¿½Ôªï¿½ØµÄ¶ï¿½Î¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½Nï¿½ï¿½Ò»Î¬ï¿½ï¿½ï¿½é¡£
     //219,405,538,845,971
     //148,558
     //52,99,348,691
-    //ÔÙÊäÈëÕûÊýk=5£¬ Ôò´òÓ¡£º
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½k=5ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½
     //Top 5: 971,845,691,558,538
-    //¡¾ÒªÇó¡¿
-    //1£® Èç¹ûËùÓÐÊý×éµÄÔªËØ¸öÊýÐ¡ÓÚK£¬ Ôò´Ó´óµ½Ð¡´òÓ¡ËùÓÐµÄÊý¡£
-    //2£® ÒªÇóÊ±¼ä¸´ÔÓ¶ÈÎªO(KlogN)¡£
+    //ï¿½ï¿½Òªï¿½ï¿½
+    //1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Kï¿½ï¿½ ï¿½ï¿½Ó´ï¿½Ð¡ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
+    //2ï¿½ï¿½ Òªï¿½ï¿½Ê±ï¿½ä¸´ï¿½Ó¶ï¿½ÎªO(KlogN)ï¿½ï¿½
     public static class HeapNode {
-        private int value;  //½ÚµãÊýÖµ
-        private int arrNum; //½ÚµãËùÊôÓÚµÄÊý×é±êºÅ
-        private int index;  //½ÚµãÔÚ±êºÅ¶ÔÓ¦Êý×éÖÐµÄË÷ÒýÖµ
+        private int value;  //ï¿½Úµï¿½ï¿½ï¿½Öµ
+        private int arrNum; //ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        private int index;  //ï¿½Úµï¿½ï¿½Ú±ï¿½Å¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 
-        public HeapNode(int value,int arrNum,int index) {
+        public HeapNode(int value, int arrNum, int index) {
             this.value = value;
             this.arrNum = arrNum;
             this.index = index;
@@ -31,46 +31,47 @@ public class Code_04_PrintMaxTopK {
     public static void printTopK(int[][] matrix, int topK) {
         int heapSize = matrix.length;
         HeapNode[] heapNodes = new HeapNode[heapSize];
-        //È¡µ½¸÷¸öÒ»Î¬Êý×éµÄ×î´óÖµ²¢·ÅÈëheapÖÐ
+        //È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Î¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½heapï¿½ï¿½
         for (int i = 0; i < heapSize; i++) {
-            heapNodes[i] = new HeapNode(matrix[i][matrix[i].length - 1],i,matrix[i].length - 1);
-            heapInsert(heapNodes,i);
+            heapNodes[i] = new HeapNode(matrix[i][matrix[i].length - 1], i, matrix[i].length - 1);
+            heapInsert(heapNodes, i);
         }
-        //È¡Ç°topKµÄÊý,Ã¿´Îµ¯³ö¶Ñ¶¥(¶Ñ¶¥½ÚµãÄÚ²¿¸üÐÂ(½á¹¹¸´ÓÃ)È»ºóheapify),
-        //Èç¹ûÃ»ÓÐË÷Òý¸üÐ¡µÄÊý,Ö±½ÓswapÊý×é×îÇ°ÃæÓë×îºóÃæµÄÊýÈ»ºóheapify²¢heapSize--
+        //È¡Ç°topKï¿½ï¿½ï¿½ï¿½,Ã¿ï¿½Îµï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½(ï¿½Ñ¶ï¿½ï¿½Úµï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½á¹¹ï¿½ï¿½ï¿½ï¿½)È»ï¿½ï¿½heapify),
+        //ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½,Ö±ï¿½ï¿½swapï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È»ï¿½ï¿½heapifyï¿½ï¿½heapSize--
         while (heapSize != 0) {
             System.out.print(heapNodes[0].value + " ");
             if (heapNodes[0].index != 0) {
                 heapNodes[0].value =
                         matrix[heapNodes[0].arrNum][--heapNodes[0].index];
-                heapify(heapNodes,0,heapSize);
-            }else {
-                swap(heapNodes,0,heapSize - 1);
-                heapify(heapNodes,0,--heapSize);
+                heapify(heapNodes, 0, heapSize);
+            } else {
+                swap(heapNodes, 0, heapSize - 1);
+                heapify(heapNodes, 0, --heapSize);
             }
         }
     }
 
-    //´ó¸ù¶Ñ
-    //ÊµÏÖheapÖÐµÄheapInsertÓëheapify¹¦ÄÜ,ÒòÎªÏµÍ³Ìá¹©¸øÎÒÃÇµÄ¶Ñ²»ÄÜÔÚÈÎÒâ½ÚµãÉÏ¸ÄÖµ,Ö»ÄÜ¼Ó»òÕß¼õ,ËùÒÔÎÒÃÇÒª×Ô¼ºÊµÏÖ
-    public static void heapInsert(HeapNode[] heapNodes,int index) {
+    //ï¿½ï¿½ï¿½ï¿½ï¿½
+    //Êµï¿½ï¿½heapï¿½Ðµï¿½heapInsertï¿½ï¿½heapifyï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ÎªÏµÍ³ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½ÇµÄ¶Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½Ï¸ï¿½Öµ,Ö»ï¿½Ü¼Ó»ï¿½ï¿½ß¼ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ô¼ï¿½Êµï¿½ï¿½
+    public static void heapInsert(HeapNode[] heapNodes, int index) {
         while (index != 0) {
             if (heapNodes[index].value > heapNodes[(index - 1) / 2].value) {
-                swap(heapNodes,index,(index - 1) / 2);
+                swap(heapNodes, index, (index - 1) / 2);
                 index = (index - 1) / 2;
-            }else {
+            } else {
                 break;
             }
         }
     }
+
     //heapify
-    public static void heapify(HeapNode[] heapNodes,int index,int heapSize) {
+    public static void heapify(HeapNode[] heapNodes, int index, int heapSize) {
         int leftIndex = index * 2 + 1;
         int rightIndex = leftIndex + 1;
         int largestIndex = index;
 
         while (leftIndex < heapSize) {
-            //´Ó×óÓÒÕÒ³ö×î´óÖµ,Èç¹û×î´óÖµ±ÈindexÉÏµÄvalue´ó,¾Í½»»»,·ñÔò²»»»
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½Öµ,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½indexï¿½Ïµï¿½valueï¿½ï¿½,ï¿½Í½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ò²»»ï¿½
             if (heapNodes[leftIndex].value > heapNodes[index].value) {
                 largestIndex = leftIndex;
             }
@@ -78,9 +79,9 @@ public class Code_04_PrintMaxTopK {
                 largestIndex = rightIndex;
             }
             if (largestIndex != index) {
-                swap(heapNodes,index,largestIndex);
+                swap(heapNodes, index, largestIndex);
                 index = largestIndex;
-            }else {
+            } else {
                 break;
             }
             leftIndex = index * 2 + 1;
@@ -88,11 +89,12 @@ public class Code_04_PrintMaxTopK {
         }
     }
 
-    public static void swap(HeapNode[] heapNodes,int i,int j) {
+    public static void swap(HeapNode[] heapNodes, int i, int j) {
         HeapNode help = heapNodes[i];
         heapNodes[i] = heapNodes[j];
         heapNodes[j] = help;
     }
+
     //for test
     public static int[][] generateRandomMatrix(int maxRow, int maxCol,
                                                int maxValue) {

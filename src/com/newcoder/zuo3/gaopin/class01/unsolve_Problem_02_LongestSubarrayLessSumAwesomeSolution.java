@@ -3,20 +3,20 @@ package com.newcoder.zuo3.gaopin.class01;
 import java.util.HashMap;
 
 public class unsolve_Problem_02_LongestSubarrayLessSumAwesomeSolution {
-    //3¡¢¸ø¶¨Ò»¸öÊı×é£¬Öµ¿ÉÒÔÎªÕı¡¢¸ººÍ0£¬Çë·µ»ØÀÛ¼ÓºÍĞ¡ÓÚµÈÓÚkµÄ×î³¤×ÓÊı×é³¤¶È¡£
+    //3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½é£¬Öµï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ë·µï¿½ï¿½ï¿½Û¼Óºï¿½Ğ¡ï¿½Úµï¿½ï¿½ï¿½kï¿½ï¿½ï¿½î³¤ï¿½ï¿½ï¿½ï¿½ï¿½é³¤ï¿½È¡ï¿½
 
     public static int maxLengthAwesome(int[] arr, int k) {
         if (arr == null || arr.length == 0) return 0;
-        HashMap<Integer, Integer> hashMap = new HashMap<>();//µãÏÂ±êÓëÏÂ±ê¶ÔÓ¦µÄ×îĞ¡ÀÛ¼ÓºÍ¶ÔÓ¦±ß½ç
-        int[] sums = new int[arr.length];   //±íÊ¾ÒÔÏÂ±êÎ»ÖÃ½áÎ²¶ÔÓ¦µÄ×îĞ¡ÀÛ¼ÓºÍ
+        HashMap<Integer, Integer> hashMap = new HashMap<>();//ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½Û¼ÓºÍ¶ï¿½Ó¦ï¿½ß½ï¿½
+        int[] sums = new int[arr.length];   //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Â±ï¿½Î»ï¿½Ã½ï¿½Î²ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½Û¼Óºï¿½
         sums[arr.length - 1] = arr[arr.length - 1];
         hashMap.put(arr.length - 1, arr.length - 1);
-        //´ÓÓÒµ½×ó,¼ÆËãÃ¿Ò»¸öÔªËØÎª¿ªÍ·µÄ×îĞ¡ÀÛ¼ÓºÍÓë×îĞ¡ÀÛ¼ÓºÍ¶ÔÓ¦µÄ±ß½ç
+        //ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ã¿Ò»ï¿½ï¿½Ôªï¿½ï¿½Îªï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½Û¼Óºï¿½ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½Û¼ÓºÍ¶ï¿½Ó¦ï¿½Ä±ß½ï¿½
         for (int i = arr.length - 2; i >= 0; i--) {
             if (sums[i + 1] < 0) {
                 sums[i] = arr[i] + sums[i + 1];
                 hashMap.put(i, hashMap.get(i + 1));
-            }else {
+            } else {
                 sums[i] = arr[i];
                 hashMap.put(i, i);
             }
@@ -24,7 +24,7 @@ public class unsolve_Problem_02_LongestSubarrayLessSumAwesomeSolution {
         int end = 0;
         int sum = 0;
         int res = 0;
-        //ÕÒÃ¿Ò»¸öÏÂ±ê¶ÔÓ¦µÄ×î´ó¿é
+        //ï¿½ï¿½Ã¿Ò»ï¿½ï¿½ï¿½Â±ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < arr.length; i++) {
             while (end < arr.length && sum + sums[end] <= k) {
                 sum += sums[end];

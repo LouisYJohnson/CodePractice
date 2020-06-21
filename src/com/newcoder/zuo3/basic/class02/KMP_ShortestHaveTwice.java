@@ -19,7 +19,7 @@ public class KMP_ShortestHaveTwice {
     public static String answer(String str) {
         if (str == null || str.length() == 0) return "";
         if (str.length() == 1) {
-            return str+str;
+            return str + str;
         }
         char[] chars = str.toCharArray();
 //        if (str.length() == 2) {
@@ -39,11 +39,11 @@ public class KMP_ShortestHaveTwice {
         int cn = 0;
 
         while (pos < next.length) {
-            if (chas[pos-1] == chas[cn]) {
+            if (chas[pos - 1] == chas[cn]) {
                 next[pos++] = ++cn;
-            }else if (cn > 0) {
+            } else if (cn > 0) {
                 cn = next[cn];
-            }else {
+            } else {
                 next[pos++] = 0;
             }
         }

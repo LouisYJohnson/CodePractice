@@ -7,7 +7,7 @@ public class Class_05_Kruskal {
     public static Set<Edge> kruskalMST(Graph graph) {
         UnionFind unionFind = new UnionFind();
         unionFind.makeSets(graph.nodes.values());
-        PriorityQueue<Edge> priorityQueue = new PriorityQueue<Edge>(100,new EdgeComparator());
+        PriorityQueue<Edge> priorityQueue = new PriorityQueue<Edge>(100, new EdgeComparator());
         //按照边长形成edge的小根堆
         for (Edge edge : graph.edges) {
             priorityQueue.add(edge);
@@ -18,8 +18,8 @@ public class Class_05_Kruskal {
         while (!priorityQueue.isEmpty()) {
             Edge edge = priorityQueue.peek();
             //如果是同个集合,这个边不要,否则留下这个边,并让两个集合变成一个集合
-            if (!unionFind.isSameSet(edge.from,edge.to)) {
-                unionFind.union(edge.from,edge.to);
+            if (!unionFind.isSameSet(edge.from, edge.to)) {
+                unionFind.union(edge.from, edge.to);
                 set.add(edge);
             }
         }

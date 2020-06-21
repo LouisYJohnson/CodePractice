@@ -24,7 +24,7 @@ public class SlidingWindowMaxArray {
     public static int[] getMaxWindow(int[] arr, int w) {
         //负责存储值对应的原始数组中的下标,可以通过下标找到原始数组中的值
         LinkedList<Integer> linkedList = new LinkedList<Integer>();
-        int[] res = new int[arr.length-w+1];
+        int[] res = new int[arr.length - w + 1];
         int index = 0;
         //只有i在动,根据i,w,原始数组下标的关系可以确定窗口的位置,
         //由linkedList中的队列首位得到当前窗口的最大值,长度为l的数组arr,用长度为w的窗口滚动,共有l-w+1个窗口
@@ -36,11 +36,11 @@ public class SlidingWindowMaxArray {
             }
             linkedList.addLast(i);
             //减操作
-            if (linkedList.peekFirst() == i-w) {//如果当前被减元素是队列的第一个元素且序号是原数组中被减的那一个,直接减
+            if (linkedList.peekFirst() == i - w) {//如果当前被减元素是队列的第一个元素且序号是原数组中被减的那一个,直接减
                 linkedList.pollFirst();
             }
             //到窗口成型后,向里面塞值
-            if (i >= w-1) {//这么做是直到成为大小为w的数组的时候,才开始将结果返回到res数组中
+            if (i >= w - 1) {//这么做是直到成为大小为w的数组的时候,才开始将结果返回到res数组中
                 res[index++] = arr[linkedList.peekFirst()];
             }
         }

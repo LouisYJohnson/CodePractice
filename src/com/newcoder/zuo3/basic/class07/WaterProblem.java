@@ -22,26 +22,26 @@ public class WaterProblem {
         int[] leftMax = new int[arr.length];
         int[] rightMax = new int[arr.length];
         leftMax[0] = arr[0];
-        rightMax[arr.length-1] = arr[arr.length-1];
+        rightMax[arr.length - 1] = arr[arr.length - 1];
 
         for (int i = 1; i < leftMax.length; i++) {
-            if (arr[i] > leftMax[i-1]) {
+            if (arr[i] > leftMax[i - 1]) {
                 leftMax[i] = arr[i];
-            }else {
-                leftMax[i] = leftMax[i-1];
+            } else {
+                leftMax[i] = leftMax[i - 1];
             }
         }
-        for (int i = arr.length-2; i >=0 ; i--) {
-            if (arr[i] > rightMax[i+1]) {
+        for (int i = arr.length - 2; i >= 0; i--) {
+            if (arr[i] > rightMax[i + 1]) {
                 rightMax[i] = arr[i];
-            }else {
-                rightMax[i] = rightMax[i+1];
+            } else {
+                rightMax[i] = rightMax[i + 1];
             }
         }
         int res = 0;
         //遍历数组的每一个点,得到当前点能够装的水量
         for (int i = 0; i < arr.length; i++) {
-            res += Math.max(Math.min(leftMax[i]-arr[i],rightMax[i]-arr[i]),0);
+            res += Math.max(Math.min(leftMax[i] - arr[i], rightMax[i] - arr[i]), 0);
         }
         return res;
     }

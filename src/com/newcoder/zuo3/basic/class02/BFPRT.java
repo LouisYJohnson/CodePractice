@@ -165,7 +165,7 @@ public class BFPRT {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 6, 9, 1, 3, 1, 2, 2, 5, 6, 1, 3, 5, 9, 7, 2, 5, 6, 1, 9 };
+        int[] arr = {6, 9, 1, 3, 1, 2, 2, 5, 6, 1, 3, 5, 9, 7, 2, 5, 6, 1, 9};
         // sorted : { 1, 1, 1, 1, 2, 2, 2, 3, 3, 5, 5, 5, 6, 6, 6, 7, 9, 9, 9 }
         printArray(getMinKNumsByHeap(arr, 10));
         printArray(getMinKNumsByBFPRT(arr, 10));

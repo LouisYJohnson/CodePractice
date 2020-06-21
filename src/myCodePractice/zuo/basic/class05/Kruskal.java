@@ -1,7 +1,5 @@
 package myCodePractice.zuo.basic.class05;
 
-import com.newcoder.zuo3.basic.class05.Edge;
-import com.newcoder.zuo3.basic.class05.Graph;
 
 import java.util.*;
 
@@ -43,12 +41,13 @@ public class Kruskal {
             edges = new HashSet<>();
         }
     }
-    //K算法
+
+    //K锟姐法
     public static Set<Edge> kruskalMST(Graph graph) {
         if (graph == null) return null;
         UnionFind unionFind = new UnionFind();
         unionFind.makeSets(graph.nodes.values());
-        //小根堆,放边用
+        //小锟斤拷锟斤拷,锟脚憋拷锟斤拷
         PriorityQueue<Edge> priorityQueue = new PriorityQueue<>(100, new Comparator<Edge>() {
             @Override
             public int compare(Edge o1, Edge o2) {
@@ -68,7 +67,7 @@ public class Kruskal {
         return res;
     }
 
-    //实现并查集
+    //实锟街诧拷锟介集
     public static class UnionFind {
         private HashMap<Node, Node> fatherMap;
         private HashMap<Node, Integer> sizeMap;
@@ -78,7 +77,7 @@ public class Kruskal {
             sizeMap = new HashMap<>();
         }
 
-        //将所有Node重置为一个set一个Node
+        //锟斤拷锟斤拷锟斤拷Node锟斤拷锟斤拷为一锟斤拷set一锟斤拷Node
         public void makeSets(Collection<Node> nodeCollection) {
             fatherMap.clear();
             sizeMap.clear();
@@ -88,7 +87,7 @@ public class Kruskal {
             }
         }
 
-        //查找集合的父,并将沿途的Node的father都设置为最终的father
+        //锟斤拷锟揭硷拷锟较的革拷,锟斤拷锟斤拷锟斤拷途锟斤拷Node锟斤拷father锟斤拷锟斤拷锟斤拷为锟斤拷锟秸碉拷father
         public Node findFather(Node node) {
             Node father = node;
             while (fatherMap.get(father) != father) {
@@ -103,7 +102,7 @@ public class Kruskal {
             return father;
         }
 
-        //集合的合并
+        //锟斤拷锟较的合诧拷
         public void union(Node node1, Node node2) {
             Node help1 = findFather(node1);
             Node help2 = findFather(node2);

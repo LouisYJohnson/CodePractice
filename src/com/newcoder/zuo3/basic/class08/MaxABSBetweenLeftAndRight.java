@@ -17,7 +17,7 @@ public class MaxABSBetweenLeftAndRight {
         if (arr.length == 0 || arr == null) return 0;
         //构建辅助数组,leftMax与rightMax,分别存储当前数的左边和右边最大的数(包括当前数)
         int lMax = arr[0];
-        int rMax = arr[arr.length-1];
+        int rMax = arr[arr.length - 1];
         int[] leftMax = new int[arr.length];
         int[] rightMax = new int[arr.length];
         //leftMax的构建
@@ -25,23 +25,22 @@ public class MaxABSBetweenLeftAndRight {
             if (lMax < arr[i]) {
                 leftMax[i] = arr[i];
                 lMax = arr[i];
-            }else {
+            } else {
                 leftMax[i] = lMax;
             }
         }
         //rightMax的构建
-        for (int i = arr.length-1; i >=0; i--) {
+        for (int i = arr.length - 1; i >= 0; i--) {
             if (rMax < arr[i]) {
                 rightMax[i] = arr[i];
                 rMax = arr[i];
-            }
-            else {
+            } else {
                 rightMax[i] = rMax;
             }
         }
         int res = Integer.MIN_VALUE;
         //从头开始遍历数组,leftMax取i,rightMax取i+1,i从0到arr.length-2
-        for (int i = 0; i < arr.length-1; i++) {
+        for (int i = 0; i < arr.length - 1; i++) {
             res = Math.max(res, Math.abs(leftMax[i] - rightMax[i + 1]));
         }
         return res;

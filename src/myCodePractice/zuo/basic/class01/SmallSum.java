@@ -1,7 +1,7 @@
 package myCodePractice.zuo.basic.class01;
 
 public class SmallSum {
-    //Ð¡ºÍÎÊÌâ,ÔÚmergeSortµÄÊ±ºòÒ»²¢½â¾ö
+    //Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½mergeSortï¿½ï¿½Ê±ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½
     public static int smallSum(int[] arr) {
         if (arr == null || arr.length <= 1) return 0;
 
@@ -42,6 +42,7 @@ public class SmallSum {
         }
         return result;
     }
+
     // for test
     public static int comparator(int[] arr) {
         if (arr == null || arr.length < 2) {

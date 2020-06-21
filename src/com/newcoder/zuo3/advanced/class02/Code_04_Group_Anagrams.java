@@ -6,36 +6,36 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Code_04_Group_Anagrams {
-//    Èç¹ûstr1ºÍstr2°üº¬µÄ×Ö·ûÖÖÀàÒ»Ñù£¬ ²¢ÇÒÃ¿ÖÖ×Ö·ûµÄ¸öÊýÒ²
-//    Ò»Ñù£¬ ÄÇÃ´str1ºÍstr2Ëã×÷±äÐÎ´Ê¡£
-//    ¸ø¶¨Ò»¸ö×Ö·ûÀàÐÍµÄÊý×é£¬ Çë°Ñ±äÐÎ´Ê·Ö×é¡£ ±ÈÈç
-//    ÊäÈë£º
+//    ï¿½ï¿½ï¿½str1ï¿½ï¿½str2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½Ò²
+//    Ò»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã´str1ï¿½ï¿½str2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´Ê¡ï¿½
+//    ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½é£¬ ï¿½ï¿½Ñ±ï¿½ï¿½Î´Ê·ï¿½ï¿½é¡£ ï¿½ï¿½ï¿½ï¿½
+//    ï¿½ï¿½ï¿½ë£º
 //            ["eat", "tea", "tan", "ate", "nat", "bat"]
-//    Êä³ö£º
+//    ï¿½ï¿½ï¿½ï¿½ï¿½
 //            [
 //            ["ate", "eat","tea"],
 //            ["nat","tan"],
 //            ["bat"]
 //            ]
-//    ×¢Òâ£º ËùÓÐµÄ×Ö·û¶¼ÊÇÐ¡Ð´¡£
-    //Á½ÖÖ·½·¨:
-    //1.×Ö·û´®°´ÕÕ×ÖµäÅÅÐòºó¶¼ÊÇÒ»ÑùµÄ,ÀûÓÃÕâ¸öÌØÐÔÀ´ÖÆ×÷Ò»¸ö×Öµä,Ê¹ÓÃÕâ¸ö×Öµä½øÐÐ·Ö×é
-    //2.×Ö·û´®°´ÕÕ×Ö·û³öÏÖ´ÎÊý´æ³ÉÒ»¸ö×Ö·û´®,Ã¿¸ö×Ö·û³öÏÖ´ÎÊýºóÃæ¼ÓÉÏÒ»¸ö_,
-    // ÓÃÕâ¸öÀ´µ±×÷×Öµä(ÓÃ_À´¸ô¿ªÔªËØ³öÏÖ´ÎÊý,Èç¹ûÃ»ÓÐ,Á½Î»ÊýºÍÒ»Î»ÊýÈýÎ»Êý¾Í²»ºÃÇø·Ö)
+//    ×¢ï¿½â£º ï¿½ï¿½ï¿½Ðµï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð´ï¿½ï¿½
+    //ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½:
+    //1.ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Öµï¿½,Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½
+    //2.ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½,Ã¿ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½_,
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½(ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø³ï¿½ï¿½Ö´ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ã»ï¿½ï¿½,ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Ò»Î»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 
-    //ÊµÏÖ·½·¨1:
-    public static List<List<String >> groupAnagrams1(String[] strs) {
-        HashMap<String,List<String>> hashMap = new HashMap<>();//ÓÃÀ´×°½á¹û
-        //ÄÃ³ö×Ö·û´®Êý×éÖÐµÄÃ¿Ò»¸ö×Ö·û´®ÅÅÐòºó¿´ÊÇ·ñÄÜ¹»·ÅÈëhashMapÖÐ,key¾ÍÊÇ°´×ÖµäÐòÅÅÐòºó,
-        // value¾ÍÊÇ´æ´¢×ÅºÍÕâ¸ökey×ÖµäÐòÅÅÐòºóÒ»Ä£Ò»ÑùµÄ×Ö·û´®ÃÇ
+    //Êµï¿½Ö·ï¿½ï¿½ï¿½1:
+    public static List<List<String>> groupAnagrams1(String[] strs) {
+        HashMap<String, List<String>> hashMap = new HashMap<>();//ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½
+        //ï¿½Ã³ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½Ã¿Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½hashMapï¿½ï¿½,keyï¿½ï¿½ï¿½Ç°ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,
+        // valueï¿½ï¿½ï¿½Ç´æ´¢ï¿½Åºï¿½ï¿½ï¿½ï¿½keyï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ä£Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
         for (String str : strs) {
             char[] chars = str.toCharArray();
             Arrays.sort(chars);
-            //Èç¹ûÒÑ¾­°üº¬ÁËÕâ¸ökey,ÔòÖ±½ÓÔÚvalueÖÐµÄlistÖÐ¼ÓÈëÕâ¸östr,Õâ¶Î´úÂëÐ´Íê·¢ÏÖ¿ÉÒÔ¼ò»¯,µ«ÊÇÎªÁË±ãÓÚÀí½â,¾ÍÕâÑùÁË
+            //ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½key,ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½valueï¿½Ðµï¿½listï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½str,ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ð´ï¿½ê·¢ï¿½Ö¿ï¿½ï¿½Ô¼ï¿½,ï¿½ï¿½ï¿½ï¿½Îªï¿½Ë±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (hashMap.containsKey(String.valueOf(chars))) {
                 hashMap.get(String.valueOf(chars)).add(str);
-            }else {//Èç¹û²»°üº¬Õâ¸ökey,Ôò¼ÓÈëÕâ¸ökey²¢ÔÚvalueÖÐµÄlistÖÐ¼ÓÈëÕâ¸östr
-                hashMap.put(String.valueOf(chars),new ArrayList<String>());
+            } else {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½key,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½keyï¿½ï¿½ï¿½ï¿½valueï¿½Ðµï¿½listï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½str
+                hashMap.put(String.valueOf(chars), new ArrayList<String>());
                 hashMap.get(String.valueOf(chars)).add(str);
             }
         }
@@ -46,7 +46,7 @@ public class Code_04_Group_Anagrams {
         return result;
     }
 
-    //ÊµÏÖ·½·¨2:
+    //Êµï¿½Ö·ï¿½ï¿½ï¿½2:
 
 
 }

@@ -1,99 +1,99 @@
 package com.newcoder.zuo3.basic;
 
 public class Code_15_ReverseList {
-	//·´×ªµ¥ÏòºÍË«ÏòÁ´±í
-	//¡¾ÌâÄ¿¡¿
-	//·Ö±ðÊµÏÖ·´×ªµ¥ÏòÁ´±íºÍ·´×ªË«ÏòÁ´±íµÄº¯Êý¡£
-	//¡¾ÒªÇó¡¿
-	//Èç¹ûÁ´±í³¤¶ÈÎªN£¬ Ê±¼ä¸´ÔÓ¶ÈÒªÇóÎªO(N)£¬ ¶îÍâ¿Õ¼ä¸´ÔÓ¶ÈÒªÇóÎªO(1)
+    //ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½
+    //ï¿½Ö±ï¿½Êµï¿½Ö·ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½×ªË«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äºï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½Òªï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªNï¿½ï¿½ Ê±ï¿½ä¸´ï¿½Ó¶ï¿½Òªï¿½ï¿½ÎªO(N)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Õ¼ä¸´ï¿½Ó¶ï¿½Òªï¿½ï¿½ÎªO(1)
 
-	public static class Node {
-		public int value;
-		public Node next;
+    public static class Node {
+        public int value;
+        public Node next;
 
-		public Node(int data) {
-			this.value = data;
-		}
-	}
+        public Node(int data) {
+            this.value = data;
+        }
+    }
 
-	public static Node reverseList(Node head) {
-		Node pre = null;
-		Node next = null;
-		while (head != null) {
-			next = head.next;
-			head.next = pre;
-			pre = head;
-			head = next;
-		}
-		return pre;
-	}
+    public static Node reverseList(Node head) {
+        Node pre = null;
+        Node next = null;
+        while (head != null) {
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
 
-	public static class DoubleNode {
-		public int value;
-		public DoubleNode last;
-		public DoubleNode next;
+    public static class DoubleNode {
+        public int value;
+        public DoubleNode last;
+        public DoubleNode next;
 
-		public DoubleNode(int data) {
-			this.value = data;
-		}
-	}
+        public DoubleNode(int data) {
+            this.value = data;
+        }
+    }
 
-	public static DoubleNode reverseList(DoubleNode head) {
-		DoubleNode pre = null;
-		DoubleNode next = null;
-		while (head != null) {
-			next = head.next;
-			head.next = pre;
-			head.last = next;
-			pre = head;
-			head = next;
-		}
-		return pre;
-	}
+    public static DoubleNode reverseList(DoubleNode head) {
+        DoubleNode pre = null;
+        DoubleNode next = null;
+        while (head != null) {
+            next = head.next;
+            head.next = pre;
+            head.last = next;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
 
-	public static void printLinkedList(Node head) {
-		System.out.print("Linked List: ");
-		while (head != null) {
-			System.out.print(head.value + " ");
-			head = head.next;
-		}
-		System.out.println();
-	}
+    public static void printLinkedList(Node head) {
+        System.out.print("Linked List: ");
+        while (head != null) {
+            System.out.print(head.value + " ");
+            head = head.next;
+        }
+        System.out.println();
+    }
 
-	public static void printDoubleLinkedList(DoubleNode head) {
-		System.out.print("Double Linked List: ");
-		DoubleNode end = null;
-		while (head != null) {
-			System.out.print(head.value + " ");
-			end = head;
-			head = head.next;
-		}
-		System.out.print("| ");
-		while (end != null) {
-			System.out.print(end.value + " ");
-			end = end.last;
-		}
-		System.out.println();
-	}
+    public static void printDoubleLinkedList(DoubleNode head) {
+        System.out.print("Double Linked List: ");
+        DoubleNode end = null;
+        while (head != null) {
+            System.out.print(head.value + " ");
+            end = head;
+            head = head.next;
+        }
+        System.out.print("| ");
+        while (end != null) {
+            System.out.print(end.value + " ");
+            end = end.last;
+        }
+        System.out.println();
+    }
 
-	public static void main(String[] args) {
-		Node head1 = new Node(1);
-		head1.next = new Node(2);
-		head1.next.next = new Node(3);
-		printLinkedList(head1);
-		head1 = reverseList(head1);
-		printLinkedList(head1);
+    public static void main(String[] args) {
+        Node head1 = new Node(1);
+        head1.next = new Node(2);
+        head1.next.next = new Node(3);
+        printLinkedList(head1);
+        head1 = reverseList(head1);
+        printLinkedList(head1);
 
-		DoubleNode head2 = new DoubleNode(1);
-		head2.next = new DoubleNode(2);
-		head2.next.last = head2;
-		head2.next.next = new DoubleNode(3);
-		head2.next.next.last = head2.next;
-		head2.next.next.next = new DoubleNode(4);
-		head2.next.next.next.last = head2.next.next;
-		printDoubleLinkedList(head2);
-		printDoubleLinkedList(reverseList(head2));
+        DoubleNode head2 = new DoubleNode(1);
+        head2.next = new DoubleNode(2);
+        head2.next.last = head2;
+        head2.next.next = new DoubleNode(3);
+        head2.next.next.last = head2.next;
+        head2.next.next.next = new DoubleNode(4);
+        head2.next.next.next.last = head2.next.next;
+        printDoubleLinkedList(head2);
+        printDoubleLinkedList(reverseList(head2));
 
-	}
+    }
 
 }

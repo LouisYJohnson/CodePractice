@@ -1,12 +1,12 @@
 package com.newcoder.zuo3.gaopin.class02;
 
 public class Problem_03_SubArrayMaxSum {
-    //¸ø¶¨Ò»¸öÊý×éarr£¬·µ»Ø×ÓÊý×éµÄ×î´óÀÛ¼ÓºÍ¡£
-    //ÀýÈç£¬a r r=[1£¬-2,3,5£¬-2,6£¬-1]£¬ËùÓÐµÄ×ÓÊý×éÖÐ£¬[3,5£¬-2,6]¿ÉÒÔ
-    //ÀÛ¼Ó³ö×î´óµÄºÍ12£¬ËùÒÔ·µ»Ø12¡£
+    //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½arrï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û¼ÓºÍ¡ï¿½
+    //ï¿½ï¿½ï¿½ç£¬a r r=[1ï¿½ï¿½-2,3,5ï¿½ï¿½-2,6ï¿½ï¿½-1]ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½[3,5ï¿½ï¿½-2,6]ï¿½ï¿½ï¿½ï¿½
+    //ï¿½Û¼Ó³ï¿½ï¿½ï¿½ï¿½Äºï¿½12ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½12ï¿½ï¿½
 
-    //¹Ø¼üÔÚÓÚÕÒµ½Ò»¸ö×î³¤µÄ¶øÇÒÀÛ¼ÓºÍ×î´óµÄ×ÓÊý×é
-    public static int subArrayMaxSum (int[] arr) {
+    //ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½Ò»ï¿½ï¿½ï¿½î³¤ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Û¼Óºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public static int subArrayMaxSum(int[] arr) {
         int cur = 0;
         int max = Integer.MIN_VALUE;
 
@@ -42,15 +42,15 @@ public class Problem_03_SubArrayMaxSum {
     }
 
     public static void main(String[] args) {
-        int[] arr1 = { -2, -3, -5, 40, -10, -10, 100, 1 };
+        int[] arr1 = {-2, -3, -5, 40, -10, -10, 100, 1};
         System.out.println(maxSum(arr1));
         System.out.println(subArrayMaxSum(arr1));
 
-        int[] arr2 = { -2, -3, -5, 0, 1, 2, -1 };
+        int[] arr2 = {-2, -3, -5, 0, 1, 2, -1};
         System.out.println(maxSum(arr2));
         System.out.println(subArrayMaxSum(arr2));
 
-        int[] arr3 = { -2, -3, -5, -1 };
+        int[] arr3 = {-2, -3, -5, -1};
         System.out.println(maxSum(arr3));
         System.out.println(subArrayMaxSum(arr3));
 

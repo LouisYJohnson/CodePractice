@@ -23,7 +23,9 @@ public class SubArrayMaxSum {
             cur += arr[i];
             if (cur > max) {
                 max = cur;
-            }else if (cur < 0) {
+            }
+
+            if (cur < 0) {
                 cur = 0;
             }
         }
@@ -38,13 +40,13 @@ public class SubArrayMaxSum {
     }
 
     public static void main(String[] args) {
-        int[] arr1 = { -2, -3, -5, 40, -10, -10, 100, 1 };
+        int[] arr1 = {-2, -3, -5, 40, -10, -10, 100, 1};
         System.out.println(maxSum(arr1));
 
-        int[] arr2 = { -2, -3, -5, 0, 1, 2, -1 };
+        int[] arr2 = {-2, -3, -5, 0, 1, 2, -1};
         System.out.println(maxSum(arr2));
 
-        int[] arr3 = { -2, -3, -5, -1 };
+        int[] arr3 = {-2, -3, -5, -1};
         System.out.println(maxSum(arr3));
 
     }

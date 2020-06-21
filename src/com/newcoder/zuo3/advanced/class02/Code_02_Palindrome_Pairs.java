@@ -5,61 +5,62 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Code_02_Palindrome_Pairs {
-    //½ø½×µÚ¶þÕÂ1 2:00
-//    Á´±íwordsÖÐ¶¼ÊÇ²»Í¬µÄ´Ê£¬ Èç¹ûÆäÖÐstr1¼Óstr2Ö®ºóÊÇ»ØÎÄ´®£¬
-//    Ôòstr1µÄÎ»ÖÃºÍstr2µÄÎ»ÖÃÎÒÃÇÐèÒªÊÕ¼¯¡£
-//    ±ÈÈç
+    //ï¿½ï¿½ï¿½×µÚ¶ï¿½ï¿½ï¿½1 2:00
+//    ï¿½ï¿½ï¿½ï¿½wordsï¿½Ð¶ï¿½ï¿½Ç²ï¿½Í¬ï¿½Ä´Ê£ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½str1ï¿½ï¿½str2Ö®ï¿½ï¿½ï¿½Ç»ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
+//    ï¿½ï¿½str1ï¿½ï¿½Î»ï¿½Ãºï¿½str2ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Õ¼ï¿½ï¿½ï¿½
+//    ï¿½ï¿½ï¿½ï¿½
 //    words = ["bat", "tab", "cat"]
-//    ·µ»Ø[[0, 1], [1, 0]]
+//    ï¿½ï¿½ï¿½ï¿½[[0, 1], [1, 0]]
 //    words = ["abcd", "dcba", "lls", "s", "sssll"]
-//    ·µ»Ø[[0, 1], [1, 0], [3, 2], [2, 4]]
-    //Ã¿¸ö×Ö·û½øÀ´:
-    //1.Ö±½ÓÕÒÒ»¸ö×Ö·û´®µÄÄæÐò,È»ºó¿´ÄæÐòµÄÔÚ×ÖµäÖÐÓÐÃ»ÓÐ,Èç¹ûÓÐ,¶þÕßÔÚÒ»Æð¾ø¶ÔÊÇ»ØÎÄ
-    //2.manacherËã·¨¸ÄÐ´:ÕÒµ½ËùÓÐ±ØÐë°üº¬µÚÒ»¸ö×Ö·ûµÄ»ØÎÄ×Ó´®(´ÓÍ·¿ªÊ¼ÕÒ±ØÐë°üº¬µÚÒ»¸ö×Ö·ûµÄ»ØÎÄ×Ó´®,´Ó´¦ÀíºóµÄ×Ö·û´®Êý×é×ÅÊÖ,×î¶àÒ²¾Íµ½ÖÐµã½áÊøÁË),
-    // ºóÃæµÄÄæÐò,È»ºóÈ¥Á´±íÖÐÕÒºóÃæµÄÄæÐò,±ÈÈç121345,ÔÚÁ´±íÖÐÕÒ:±ØÐë°üº¬µÚÒ»¸ö×Ö·ûµÄ»ØÎÄ×Ó´®:1,121
-    //21345µÄÄæÐò54312
-    //345µÄÄæÐò543Èç¹ûÓÐ,¾ÍÖ¤Ã÷¿ÉÒÔ:543121345
-    //3.·´¹ýÀ´,ÈÔÈ»ÊÇmanacherËã·¨¸ÄÐ´:ÕÒµ½ËùÓÐ±ØÐë°üº¬×îºóÒ»¸ö×Ö·ûµÄ»ØÎÄ×Ó´®,È»ºóÈ¥Á´±íÖÐÕÒÇ°Ãæ²»ÊÇ»ØÎÄ×Ó´®µÄÄæÐò
+//    ï¿½ï¿½ï¿½ï¿½[[0, 1], [1, 0], [3, 2], [2, 4]]
+    //Ã¿ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½:
+    //1.Ö±ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,È»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½
+    //2.manacherï¿½ã·¨ï¿½ï¿½Ð´:ï¿½Òµï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½Ó´ï¿½(ï¿½ï¿½Í·ï¿½ï¿½Ê¼ï¿½Ò±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½Ó´ï¿½,ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ò²ï¿½Íµï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½),
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,È»ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½121345,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½Ó´ï¿½:1,121
+    //21345ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½54312
+    //345ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½543ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:543121345
+    //3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½È»ï¿½ï¿½manacherï¿½ã·¨ï¿½ï¿½Ð´:ï¿½Òµï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½Ó´ï¿½,È»ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½æ²»ï¿½Ç»ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public static List<List<Integer>> palindromePairs(String[] words) {
-        //´æ´¢wordsÖÐµÄÃ¿¸ö×Ö·û´®Óë×Ö·û´®¶ÔÓ¦ÏÂ±ê
-        HashMap<String,Integer> wordset = new HashMap<>();
+        //ï¿½æ´¢wordsï¿½Ðµï¿½Ã¿ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Â±ï¿½
+        HashMap<String, Integer> wordset = new HashMap<>();
         for (int index = 0; index < words.length; index++) {
-            wordset.put(words[index],index);
+            wordset.put(words[index], index);
         }
         return null;
     }
-    //´«ÈëindexÊÇÎªÁË²»ºÍ×ÔÉí×ö»ØÎÄ
-    public static List<List<Integer>> findAll(String word,int index,HashMap<String,Integer> words) {
+
+    //ï¿½ï¿½ï¿½ï¿½indexï¿½ï¿½Îªï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public static List<List<Integer>> findAll(String word, int index, HashMap<String, Integer> words) {
         List<List<Integer>> res = new ArrayList<>();
-        //ÏÈÕÒÕâ¸ö×Ö·û´®µÄÄæÐò
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         String reverse = reverse(word);
-        //manacherÊý×éÖÐÃ¿¸öÎ»ÖÃµÄ°ë¾¶³¤¶È
+        //manacherï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½Î»ï¿½ÃµÄ°ë¾¶ï¿½ï¿½ï¿½ï¿½
         int[] manacher = manacherrs(word);
-        //Ò»¸ö×¨ÃÅ×°½á¹ûµÄlist
+        //Ò»ï¿½ï¿½×¨ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½list
         List<List<Integer>> result = new ArrayList<>();
-        //ÏÈÔÚ×Ö·û´®Êý×éÖÐÕÒÓÐÃ»ÓÐ¸Ã×Ö·û´®µÄÄæÐò
-        Integer rest = words.get(reverse);//·´×ª×Ö·û´®ÔÚ×Ö·û´®Êý×éÖÐµÄÎ»ÖÃ
-        if (rest != null && rest != index && word.equals(reverse)) {//²»ÄÜÊÇ×Ô¼º,¶øÇÒÏàµÈµÄÊ±ºò
-            addRecord(res,index,rest);
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð¸ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        Integer rest = words.get(reverse);//ï¿½ï¿½×ªï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½Î»ï¿½ï¿½
+        if (rest != null && rest != index && word.equals(reverse)) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Èµï¿½Ê±ï¿½ï¿½
+            addRecord(res, index, rest);
         }
-        //manacher/2 µÄ³¤¶ÈÕýºÃÊÇ³õÊ¼×Ö·ûÊý×éµÄ³¤¶È
+        //manacher/2 ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç³ï¿½Ê¼ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
         int mid = manacher.length / 2;
-        //²éÇ°×º
-        for (int i = 1; i < mid; i++) {//0²»¿ÉÄÜ,ËùÒÔ´Ó1¿ªÊ¼
-            if (i - manacher[i] == -1) {//Âú×ãÕâ¸öÌõ¼þµÄÔ­Ê¼Êý×éÏÂ±ê²ÅÊÇ°üÀ¨ÁËµÚÒ»¸ö×Ö·ûµÄ»ØÎÄ×Ö·û´®
-                //ÕÒ²»ÊÇÇ°×º²¿·ÖµÄÄæÐò
-                rest = words.get(reverse.substring(0,mid - i));
+        //ï¿½ï¿½Ç°×º
+        for (int i = 1; i < mid; i++) {//0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ô´ï¿½1ï¿½ï¿½Ê¼
+            if (i - manacher[i] == -1) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ëµï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+                //ï¿½Ò²ï¿½ï¿½ï¿½Ç°×ºï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½
+                rest = words.get(reverse.substring(0, mid - i));
                 if (rest != null && i != index) {
-                    addRecord(res,i,rest);
+                    addRecord(res, i, rest);
                 }
             }
         }
-        //²éºó×º
+        //ï¿½ï¿½ï¿½×º
         for (int i = mid + 1; i < manacher.length; i++) {
-            if (i + manacher[i] == manacher.length) {//Âú×ãÕâ¸öÌõ¼þµÄÔ­Ê¼Êý×éÏÂ±ê²ÅÊÇ°üÀ¨ÁË×îºóÒ»¸ö×Ö·ûµÄ»ØÎÄ×Ö·û´®
+            if (i + manacher[i] == manacher.length) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
                 rest = words.get(reverse.substring((mid / 2) - i));
                 if (rest != null && rest != index) {
-                    addRecord(res,i,rest);
+                    addRecord(res, i, rest);
                 }
             }
         }
@@ -67,7 +68,8 @@ public class Code_02_Palindrome_Pairs {
 
         return null;
     }
-    //½«×ø±ê·ÅÈëlistÖÐ,ÔÙ½«Õâ¸ölist·Åµ½Ò»¸ö×ÜµÄlistÖÐ
+
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½listï¿½ï¿½,ï¿½Ù½ï¿½ï¿½ï¿½ï¿½listï¿½Åµï¿½Ò»ï¿½ï¿½ï¿½Üµï¿½listï¿½ï¿½
     public static void addRecord(List<List<Integer>> res, int left, int right) {
         List<Integer> list = new ArrayList<>();
         list.add(left);
@@ -75,36 +77,37 @@ public class Code_02_Palindrome_Pairs {
         res.add(list);
     }
 
-    //ÊµÏÖmanacherËã·¨:
-    //ÏÈ´¦Àímanacher×Ö·û´®:
+    //Êµï¿½ï¿½manacherï¿½ã·¨:
+    //ï¿½È´ï¿½ï¿½ï¿½manacherï¿½Ö·ï¿½ï¿½ï¿½:
     //1 2 3 -> #1#2#3#
     public static char[] manachercs(String word) {
         char[] help = word.toCharArray();
         int helpIndex = 0;
-        //¾ÍÊÇÔÚÅ¼ÊýÎ»·Å"#",ÆæÊýÎ»·Å"×Ö·û"
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¼ï¿½ï¿½Î»ï¿½ï¿½"#",ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½"ï¿½Ö·ï¿½"
         char[] chars = new char[word.length() * 2 + 1];
         for (int index = 0; index < chars.length; index++) {
             chars[index] = (index & 1) == 1 ? help[helpIndex++] : '#';
         }
         return chars;
     }
-    //ÕýÊ½ÊµÏÖmanacherËã·¨,²¢·µ»ØÒ»¸öÊý×é,Õâ¸öÊý×éÖÐ×°×ÅÃ¿¸öÎ»ÖÃÉÏµÄ»ØÎÄ°ë¾¶
+
+    //ï¿½ï¿½Ê½Êµï¿½ï¿½manacherï¿½ã·¨,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Ã¿ï¿½ï¿½Î»ï¿½ï¿½ï¿½ÏµÄ»ï¿½ï¿½Ä°ë¾¶
     public static int[] manacherrs(String word) {
-        //µÃµ½´¦ÀíºóµÄ×Ö·ûÊý×é:
+        //ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½:
         char[] mchars = manachercs(word);
-        //ÓÃÀ´×°Ã¿Ò»¸öÎ»ÖÃÉÏµÄ»ØÎÄ°ë¾¶(°üÀ¨×ÔÉí)
+        //ï¿½ï¿½ï¿½ï¿½×°Ã¿Ò»ï¿½ï¿½Î»ï¿½ï¿½ï¿½ÏµÄ»ï¿½ï¿½Ä°ë¾¶(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
         int[] pArr = new int[mchars.length];
-        int center = -1;//×î´ó»ØÎÄ°ë¾¶¶ÔÓ¦µÄ»ØÎÄÖÐÐÄ
-        int pR = -1;//×î´ó»ØÎÄÖ±¾¶µÄ³¤¶È
+        int center = -1;//ï¿½ï¿½ï¿½ï¿½ï¿½Ä°ë¾¶ï¿½ï¿½Ó¦ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        int pR = -1;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
         for (int index = 0; index < pArr.length; index++) {
-            pArr[index] = pR > index ? Math.min(pArr[center * 2 - index],pR - index) : 1;
-            //ÒÔ³õÊ¼°ë¾¶(°üÀ¨×ÔÉí)¿ªÊ¼ÏòÁ½±ßÀ©,ÏÈ¿´À©ÁËÊÇ·ñÔ½½ç,È»ºóÔÙ¿´ÄÜ²»ÄÜÀ©,ÕâÀïÊÇÏÂ±êÖµ
+            pArr[index] = pR > index ? Math.min(pArr[center * 2 - index], pR - index) : 1;
+            //ï¿½Ô³ï¿½Ê¼ï¿½ë¾¶(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½È¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ô½ï¿½ï¿½,È»ï¿½ï¿½ï¿½Ù¿ï¿½ï¿½Ü²ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½Öµ
             while (index - pArr[index] > -1 && pArr[index] + index < pArr.length) {
                 if (mchars[index - pArr[index]] == mchars[index + pArr[index]]) {
                     pArr[index]++;
-                }else break;
+                } else break;
             }
-            //À©ÍêÁËÖ®ºó¸üÐÂcenterÓëpR
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½centerï¿½ï¿½pR
             if (index + pArr[index] > pR) {
                 center = index;
                 pR = index + pArr[index];
@@ -113,16 +116,16 @@ public class Code_02_Palindrome_Pairs {
         return pArr;
     }
 
-    //ÊµÏÖÒ»¸ö×Ö·û´®µÄreverse
+    //Êµï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½reverse
     public static String reverse(String str) {
         char[] chars = str.toCharArray();
         for (int index = 0; index <= (chars.length - 1) / 2; index++) {
-            swap(chars,index,chars.length - 1 - index);
+            swap(chars, index, chars.length - 1 - index);
         }
         return String.valueOf(chars);
     }
 
-    public static void swap(char[] chars,int i,int j) {
+    public static void swap(char[] chars, int i, int j) {
         char temp = chars[i];
         chars[i] = chars[j];
         chars[j] = temp;

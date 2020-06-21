@@ -1,21 +1,21 @@
 package com.newcoder.zuo3.advanced.class05;
 
 public class Code_04_Decompress_String {
-    //дЁн╩ЁлпРоКЁЖакр╩╦Жя╧кУвж╥Ш╢╝╣д╥╫╥╗ё╛ я╧кУ╨С╣двж╥Ш╢╝хГоб:
-    //3{a}2{bc}ё╛ 3{a2{c}}ё╛ 2{abc}3{cd}efё╛ ожтз пХр╙дЦп╢р╩╦Ж╫Б
-    //я╧╣дЁлпРё╛ ╩╧т╜т╜й╪╣двж╥Ш╢╝║ё хГ: s = "3{d}2{bc}", return
+    //дЁн╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫р╩О©╫О©╫я╧О©╫О©╫О©╫ж╥О©╫О©╫О©╫О©╫д╥О©╫О©╫О©╫О©╫О©╫ я╧О©╫О©╫О©╫О©╫О©╫О©╫ж╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫:
+    //3{a}2{bc}О©╫О©╫ 3{a2{c}}О©╫О©╫ 2{abc}3{cd}efО©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫р╙О©╫О©╫п╢р╩О©╫О©╫О©╫О©╫
+    //я╧О©╫дЁО©╫О©╫О©╫ О©╫О©╫т╜т╜й╪О©╫О©╫О©╫ж╥О©╫О©╫О©╫О©╫О©╫ О©╫О©╫: s = "3{d}2{bc}", return
     //"dddbcbc". s = "3{a2{d}}", return "addaddadd". s =
-    //"2{efg}3{cd}ef", return "efgefgcdcdcdef". жь╦╢╢нйЩ©ирт
-    //х╥╠ёйгр╩╦ЖуЩуШйЩ║ё
-    //а╥╣щ╧И(всаВЁл╨м╦╦аВЁл╤╪йгм╛р╩╦Жбъ╪╜╣днйлБ)
-    //©╢╪Шг╤лв╬ммЫ╣щ╧ИсКу╩╥╫цФоК(╣щ╧ИсКу╩╠╬жйио╤╪йгр╩╩ьйб)
-    //сЖ╣╫жпю╗╨е{╬м╫ЬхК╣щ╧И,
-    // ╣щ╧И╣д╧╕дэйгкЦЁЖindex╤тс╕╨СцФ╣д╡©╥ж(ЁЩх╔╣╠г╟сЖ╣╫╣д{,кЫрт╨╞йЩй╣ож╡ейгindex + 1)╠ДЁивж╥Ш╢╝
-    //    base case:сЖ╣╫}╬ммё,
-    //вс╧ЩЁл╣д╥╣╩ьж╣с╕╦цспа╫╦Ж,р╩╦ЖйгкЦ╨ц╣двс╢╝йг╤Юиы,р╩╦Жйгвс╢╝╠╩кЦ╣╫аквэвж╥Ш╢╝жп╣ддд╦Жн╩жц
-    //╦╦╧ЩЁл╠ьпКж╙╣юуБа╫╦Жпео╒╡едэ╪лпЬмЫ╨С╫Ьпп,╥╣╩ьж╣спа╫╦Ж,сцр╩╦ЖюЮю╢╟Эв╟╬м©иртак
-    //уБ╣юлБм╛юЮпм╣д╩╧спю╗╨егСж╣
-    //╠х╫ольйБ╣д╣ь╥╫тзсз,base case╡╩тз╣щ╧И╨╞йЩ╣дм╥╡©,╤Ьйгтзн╡╡©
+    //"2{efg}3{cd}ef", return "efgefgcdcdcdef". О©╫ь╦О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+    //х╥О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+    //О©╫О©╫О©╫щ╧О©╫(О©╫О©╫О©╫О©╫О©╫л╨м╦О©╫О©╫О©╫О©╫л╤О©╫О©╫О©╫м╛р╩О©╫О©╫О©╫ъ╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫)
+    //О©╫О©╫О©╫О©╫г╤О©╫в╬О©╫О©╫О©╫О©╫щ╧О©╫О©╫О©╫у╩О©╫О©╫О©╫О©╫О©╫О©╫(О©╫щ╧О©╫О©╫О©╫у╩О©╫О©╫О©╫О©╫О©╫о╤О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫)
+    //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫{О©╫м╫О©╫О©╫О©╫щ╧О©╫,
+    // О©╫щ╧О©╫д╧О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫indexО©╫О©╫с╕О©╫О©╫О©╫О©╫д╡О©╫О©╫О©╫(О©╫О©╫х╔О©╫О©╫г╟О©╫О©╫О©╫О©╫О©╫О©╫{,О©╫О©╫О©╫т╨О©╫О©╫О©╫й╣О©╫ж╡О©╫О©╫О©╫index + 1)О©╫О©╫О©╫О©╫ж╥О©╫О©╫О©╫
+    //    base case:О©╫О©╫О©╫О©╫}О©╫О©╫мё,
+    //О©╫с╧О©╫О©╫л╣д╥О©╫О©╫О©╫ж╣с╕О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫,р╩О©╫О©╫О©╫О©╫О©╫О©╫ц╣О©╫О©╫с╢О©╫О©╫г╤О©╫О©╫О©╫,р╩О©╫О©╫О©╫О©╫О©╫с╢О©╫О©╫О©╫О©╫Ц╣╫О©╫О©╫О©╫О©╫О©╫ж╥О©╫О©╫О©╫О©╫п╣О©╫О©╫д╦О©╫н╩О©╫О©╫
+    //О©╫О©╫О©╫О©╫О©╫л╠О©╫О©╫О©╫ж╙О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫О©╫О©╫э╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫,О©╫О©╫О©╫О©╫ж╣О©╫О©╫О©╫О©╫О©╫О©╫,О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫в╟О©╫м©О©╫О©╫О©╫О©╫О©╫
+    //О©╫О©╫О©╫О©╫О©╫м╛О©╫О©╫О©╫м╣д╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ж╣
+    //О©╫х╫О©╫О©╫О©╫О©╫О©╫д╣ь╥О©╫О©╫О©╫О©╫О©╫,base caseО©╫О©╫О©╫з╣щ╧И╨╞О©╫О©╫О©╫О©╫м╥О©╫О©╫,О©╫О©╫О©╫О©╫О©╫О©╫н╡О©╫О©╫
     public static class ReturnData {
         private String string;
         private int index;
@@ -28,19 +28,19 @@ public class Code_04_Decompress_String {
 
     public static String decompress(String decompressStr) {
         char[] chars = decompressStr.toCharArray();
-        return process(chars,0).string;
+        return process(chars, 0).string;
     }
 
     public static ReturnData process(char[] chars, int index) {
         StringBuilder stringBuilder = new StringBuilder();
         int times = 0;
         while (index < chars.length && chars[index] != '}') {
-            if (chars[index] == '{' ) {
+            if (chars[index] == '{') {
                 ReturnData returnData = process(chars, index + 1);
-                stringBuilder.append(getTimesString(times,returnData.string));
+                stringBuilder.append(getTimesString(times, returnData.string));
                 times = 0;
                 index = returnData.index + 1;
-            }else {
+            } else {
                 if (chars[index] >= '0' && chars[index] <= '9') {
                     times = times * 10 + chars[index] - '0';
                 }
@@ -50,10 +50,10 @@ public class Code_04_Decompress_String {
                 index++;
             }
         }
-        return new ReturnData(stringBuilder.toString(),index);
+        return new ReturnData(stringBuilder.toString(), index);
     }
 
-    public static String getTimesString (int times, String base) {
+    public static String getTimesString(int times, String base) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < times; i++) {
             stringBuilder.append(base);
@@ -62,7 +62,7 @@ public class Code_04_Decompress_String {
     }
     //for test
 
-//    public static String decompress(String decompressStr) {
+    //    public static String decompress(String decompressStr) {
 //        char[] chs = decompressStr.toCharArray();
 //        return process(chs, 0).str;
 //    }

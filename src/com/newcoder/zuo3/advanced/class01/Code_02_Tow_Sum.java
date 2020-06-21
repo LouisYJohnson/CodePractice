@@ -12,56 +12,56 @@ public class Code_02_Tow_Sum {
 
     //方法1:使用HashMap来做:key为数字,value为数字对应的序号
     //从头遍历数组,如果遍历到得数字和在set中有target-当前数字相等的,返回位置
-     public static int[] twoSum1(int[] nums, int target) {
-         HashMap<Integer,Integer> hashMap = new HashMap<Integer, Integer>();
-         for (int i = 0; i < nums.length; i++) {
-             hashMap.put(nums[i],i);
-         }
-         for (int i = 0; i < nums.length; i++) {
-             //如果遍历到得数字和在set中有target-当前数字相等的,返回位置
-             if (hashMap.containsKey(target - nums[i])) return new int[] {i,hashMap.get(target - nums[i])};
-         }
-         return null;
-     }
+    public static int[] twoSum1(int[] nums, int target) {
+        HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+        for (int i = 0; i < nums.length; i++) {
+            hashMap.put(nums[i], i);
+        }
+        for (int i = 0; i < nums.length; i++) {
+            //如果遍历到得数字和在set中有target-当前数字相等的,返回位置
+            if (hashMap.containsKey(target - nums[i])) return new int[]{i, hashMap.get(target - nums[i])};
+        }
+        return null;
+    }
 
 
-     //方法2 将数组排序后记录数组初始位置,使用双指针找到对应数组元素(左右指针一开始指向数组两端,如果碰到左右之和小于target,左指针右移,如果碰到左右之和大于target,右指针左移)
-     // (在堆排序中整合一个数组,这个数组负责记录元素初始位置),直接将这个带着记录元素初始位置的数组扔到swap中让他参与每次的swap运算就可以了
-     public static int[] twoSum2(int[] nums, int target) {
-         //构建一个数组专门存储初始数字的位置
-         int[] indexArr = new int[nums.length];
-         for (int i = 0; i < nums.length; i++) {
-             indexArr[i] = i;
-         }
-         //这个方法之后返回的数组indexArr中就对应着排序后的数字在初始数组nums中的位置,而不是返回的已经排好序的这个nums数组
-         heapSort(nums,indexArr);
-         int l = 0;
-         int r = nums.length - 1;
-         while (l < r) {
-            if (nums[l] + nums[r] == target){
-                return new int[] {indexArr[l],indexArr[r]};
-            }else if (nums[l] + nums[r] > target){
+    //方法2 将数组排序后记录数组初始位置,使用双指针找到对应数组元素(左右指针一开始指向数组两端,如果碰到左右之和小于target,左指针右移,如果碰到左右之和大于target,右指针左移)
+    // (在堆排序中整合一个数组,这个数组负责记录元素初始位置),直接将这个带着记录元素初始位置的数组扔到swap中让他参与每次的swap运算就可以了
+    public static int[] twoSum2(int[] nums, int target) {
+        //构建一个数组专门存储初始数字的位置
+        int[] indexArr = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            indexArr[i] = i;
+        }
+        //这个方法之后返回的数组indexArr中就对应着排序后的数字在初始数组nums中的位置,而不是返回的已经排好序的这个nums数组
+        heapSort(nums, indexArr);
+        int l = 0;
+        int r = nums.length - 1;
+        while (l < r) {
+            if (nums[l] + nums[r] == target) {
+                return new int[]{indexArr[l], indexArr[r]};
+            } else if (nums[l] + nums[r] > target) {
                 r--;
-            }else {
+            } else {
                 l++;
             }
-         }
-         return null;
-     }
+        }
+        return null;
+    }
 
     //实现堆排序(大根堆):
-    public static void heapSort(int[] arr,int[] indexArr) {
-         if (arr == null || arr.length < 2) return;
+    public static void heapSort(int[] arr, int[] indexArr) {
+        if (arr == null || arr.length < 2) return;
         //拿到数组后,将数组中元素依次加入表示堆的数组中(heapInsert),组成大根堆
         for (int i = 1; i < arr.length; i++) {
-            heapInsert(arr,i,indexArr);
+            heapInsert(arr, i, indexArr);
         }
         int heapSize = arr.length;
         //每次从堆顶取出元素(即为当前最大值,方法为和数组尾部元素交换,然后将堆顶元素heapify,heapSize--)
         //这样操作后的数组就是从小到大排序的
         while (heapSize != 0) {
-            swap(arr,0,heapSize - 1,indexArr);
-            heapify(arr,0,heapSize - 1,indexArr);
+            swap(arr, 0, heapSize - 1, indexArr);
+            heapify(arr, 0, heapSize - 1, indexArr);
             heapSize--;
         }
 //        int size = arr.length;
@@ -72,16 +72,18 @@ public class Code_02_Tow_Sum {
 //        }
 
     }
+
     //heapInsert,在表示堆的数组部分的尾部加入数字,并一路找父交换
-    public static void heapInsert(int[] arr,int index,int[] indexArr) {
-         while (arr[index] > arr[(index - 1) / 2]) {
-             swap(arr,index,(index - 1) / 2,indexArr);
-             index = (index - 1) / 2;
-         }
+    public static void heapInsert(int[] arr, int index, int[] indexArr) {
+        while (arr[index] > arr[(index - 1) / 2]) {
+            swap(arr, index, (index - 1) / 2, indexArr);
+            index = (index - 1) / 2;
+        }
     }
+
     //heapify,在表示堆的数组index位置的数字发生变化(一般是头部),需要调整这个堆,数组从头开始一路和左右子比较(但是注意不能越界)
     //因为数组中只有heapSize内部的东西才是堆中的,外面的不是
-    public static void heapify(int[] arr,int index,int heapSize,int[] indexArr) {
+    public static void heapify(int[] arr, int index, int heapSize, int[] indexArr) {
         int left = 2 * index + 1;
         int right = left + 1;
         while (left < heapSize) {//不需要右边也小于heapSize,因为右边有可能并不参加交换
@@ -89,42 +91,43 @@ public class Code_02_Tow_Sum {
             int largestIndex = right < heapSize && arr[left] < arr[right] ? right : left;
             //如果当前的数字小于左右子中最大的,才交换,交换后记得更新当前index,left,right
             if (arr[index] < arr[largestIndex]) {
-                swap(arr,index,largestIndex,indexArr);
+                swap(arr, index, largestIndex, indexArr);
                 index = largestIndex;
                 left = 2 * index + 1;
                 right = left + 1;
-            }else {//否则,不用找了,直接跳出循环即可,不跳出是死循环
+            } else {//否则,不用找了,直接跳出循环即可,不跳出是死循环
                 break;
             }
 
         }
     }
+
     //交换数组中i和j位置上的值
-    public static void swap(int[] arr,int i,int j,int[] indexArr) {
-         int temp = arr[i];
-         arr[i] = arr[j];
-         arr[j] = temp;
-         temp = indexArr[i];
-         indexArr[i] = indexArr[j];
-         indexArr[j] = temp;
+    public static void swap(int[] arr, int i, int j, int[] indexArr) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        temp = indexArr[i];
+        indexArr[i] = indexArr[j];
+        indexArr[j] = temp;
     }
 
     public static void main(String[] args) {
         int[] test = {1};
         int target = 5;
         int[] result = null;
-        result = twoSum1(test,target);
-        int[] result1 = twoSum2(test,target);
+        result = twoSum1(test, target);
+        int[] result1 = twoSum2(test, target);
         printArray(result);
         printArray(result1);
 
     }
 
     public static void printArray(int[] arr) {
-         if (arr == null) {
-             System.out.println("arr has no value!");
-             return;
-         }
+        if (arr == null) {
+            System.out.println("arr has no value!");
+            return;
+        }
 
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");

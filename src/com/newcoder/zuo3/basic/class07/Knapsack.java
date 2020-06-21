@@ -7,20 +7,21 @@ public class Knapsack {
     //过bag， 返回满足这个条件下， 你能获得的最大价值。
 
     public static int maxValue1(int[] w, int[] v, int bag) {
-        return process1(0,w, v,0, bag);
+        return process1(0, w, v, 0, bag);
     }
 
     //递归版本
     //函数含义:i位置之前的都已经选好了,i到i后面的位置都是自由选取的,并且限制的条件为重量
     //到头的不会产生重量并且正好能够和v累加得到结果
-    public static int process1(int i,int[] w,int[] v,int weight, int bag) {
+    public static int process1(int i, int[] w, int[] v, int weight, int bag) {
         //base case:
         if (weight > bag) return Integer.MIN_VALUE;
         if (i == w.length) return 0;//已经到头了,后面不会有重量产生了,所以这里返回的是产生的重量0
 
-        return Math.max(process1(i+1,w,v,weight,bag),
-                v[i] + process1(i+1,w,v,weight+w[i],bag));
+        return Math.max(process1(i + 1, w, v, weight, bag),
+                v[i] + process1(i + 1, w, v, weight + w[i], bag));
     }
+
     //非递归版本
     public static int maxValue2(int[] c, int[] p, int bag) {
         int[][] dp = new int[c.length + 1][bag + 1];
@@ -38,8 +39,8 @@ public class Knapsack {
     }
 
     public static void main(String[] args) {
-        int[] c = { 3, 2, 4, 7 };
-        int[] p = { 5, 6, 3, 19 };
+        int[] c = {3, 2, 4, 7};
+        int[] p = {5, 6, 3, 19};
         int bag = 11;
         System.out.println(maxValue1(c, p, bag));
         System.out.println(maxValue2(c, p, bag));

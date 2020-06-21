@@ -78,7 +78,7 @@ public class Class_05_TrieTree {
                 TrieNode node = root;
                 char[] wordCharArr = word.toCharArray();
                 int index = 0;
-                for (int i = 0; i <wordCharArr.length ; i++) {
+                for (int i = 0; i < wordCharArr.length; i++) {
                     index = wordCharArr[i] - 'a';
                     //因为字符串存在于前缀树中才能进行下一步判断
                     //所以如果当前字符串存在于前缀树中,并且遍历到的一个节点它的path为1,说明它下面必定
@@ -119,6 +119,7 @@ public class Class_05_TrieTree {
             return node.path;
         }
     }
+
     public static void main(String[] args) {
         Trie trie = new Trie();
         System.out.println(trie.search("zuo"));
