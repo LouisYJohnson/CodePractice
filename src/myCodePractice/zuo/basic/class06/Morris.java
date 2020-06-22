@@ -3,10 +3,6 @@ package myCodePractice.zuo.basic.class06;
 import java.util.Stack;
 
 public class Morris {
-    //Morris����������
-    //�������������Ľڵ�����2��
-    //����û���������Ľڵ�����1��
-    //Morris������Ϊ�ȷ��ʵ�ǰ�ڵ�,�ٷ��ʵ�ǰ�ڵ���������ٻص���ǰ�ڵ��ٷ��ʵ�ǰ�ڵ��������
     public static class Node {
         public int value;
         Node left;
@@ -17,35 +13,25 @@ public class Morris {
         }
     }
 
-    //ǰ��
     public static void morrisPre(Node head) {
         if (head == null) return;
         Node cur = head;
         Node help = null;
-        //�����ǰ�ڵ�û��������,cur������(Ψһ1�η���û���������Ľڵ�)
-        //�����ǰ�ڵ���������,�������������ҽڵ㲢������ҽڵ���Һ��ӷ��������
-        //  1.������ҽڵ���Һ���Ϊnull,����ָ��cur����cur����(��1�η���cur)
-        //  2.������ҽڵ���Һ���ָ����cur,�����Ϊָ��null����cur����(��2�η���cur)
-        //ֱ��curָ��null,����Morris����
         while (cur != null) {
-            //���cur��������
             if (cur.left != null) {
-                //�������������ҽڵ㲢�ж�
                 help = cur.left;
-                //һ��Ҫ���Ϻ����Ǹ�����,������ӵĻ�,�ҵ��ľ��Ǵ���������������ҽڵ�(��1�ν����ҽڵ���Һ�������Ϊcur��,�ڶ����Ҿͻ��)
                 while (help.right != null && help.right != cur) {
                     help = help.right;
                 }
-                //��������������ҽڵ���Һ���Ϊnull,˵����1�η���������������Ľڵ�(��ӡ)
                 if (help.right == null) {
                     help.right = cur;
                     System.out.println(cur.value);
                     cur = cur.left;
-                } else {    //����˵����ǰ�����������ҽڵ���Һ���Ϊָ����cur,˵����2�η��ʵ�������������Ľڵ�(����ӡ)
+                } else {
                     help.right = null;
                     cur = cur.right;
                 }
-            } else { //���curû��������,ֻ�����1��û���������Ľڵ�(��ӡ)
+            } else {
                 System.out.println(cur.value);
                 cur = cur.right;
             }
@@ -53,17 +39,11 @@ public class Morris {
     }
 
 
-    //����
+
     public static void morrisMid(Node head) {
         if (head == null) return;
         Node cur = head;
         Node help = null;
-        //�����ǰ�ڵ�û��������,cur����(Ψһ1�η���û���������ĵ�)
-        //�����ǰ�ڵ���������,��cur�����������ҽڵ㲢������ҽڵ���Һ��ӷ��������
-        //  1.�����������ҽڵ���Һ���ָ��null,���Һ��Ӹ�Ϊָ��cur,����cur����(��1�η������������Ľڵ�)
-        //  2.���������ҽڵ���Һ���ָ��cur,���Һ��Ӹ�Ϊָ��null,����cur����(��2�� �������������Ľڵ�)
-        //Morris������Ϊ�ȷ��ʵ�ǰ�ڵ�,�ٷ��ʵ�ǰ�ڵ��������,�ٻص���ǰ�ڵ��ٷ��ʵ�ǰ�ڵ��������
-        //ֱ��curָ��null��ʱ��ֹͣMorris����
         while (cur != null) {
             if (cur.left != null) {
                 help = cur.left;
@@ -85,11 +65,6 @@ public class Morris {
         }
     }
 
-    //����
-    //�����ǰ����,�����һ��
-    //ÿ���ڶ��η���cur��ʱ��,��cur�����������ұ߽������ӡ(�ǵ��Ƚ�mostRight.right = nullȻ����ܴ�ӡ)
-    //�������������ʱ��(curָ��null),�����������ұ߽絥����ӡ(������,��Ϊÿ�ε�2���������������Ľڵ��ʱ���Ǵ�ӡ���������ұ߽�
-    // �������ӡ������������Ľڵ�)
     public static void morrisPos(Node head) {
         if (head == null) return;
 
