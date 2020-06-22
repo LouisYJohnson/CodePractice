@@ -5,8 +5,8 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Code_03_StackAndQueueConvert {
-    //��ν��ö��нṹʵ��ջ�ṹ��
-    //��ν���ջ�ṹʵ�ֶ��нṹ��
+    //如何仅用队列结构实现栈结构？
+    //如何仅用栈结构实现队列结构？
 
     public static class TwoStacksQueue {
         private Stack<Integer> stackPush;

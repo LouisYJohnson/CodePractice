@@ -1,13 +1,11 @@
 package com.newcoder.zuo3.basic.class02_1;
 
 public class Class_02_Array_To_Stack_Queue {
-    //������ʵ�ִ�С�̶��Ķ��к�ջ
-    //��ʵ�ֶ�Ӧ��������Ϊ���
+    //用数组实现大小固定的队列和栈
+    //以实现对应的类来作为结果
     public static class ArrayStack {
-        //ջ���й���Ϊ:pop,push,peek
         private int stackSize;
         private int[] arr;
-        //index��ʾҪ�����Ļ�,�����ĸ�����
         private int index = 0;
 
         public ArrayStack(int stackSize) {
@@ -16,7 +14,6 @@ public class Class_02_Array_To_Stack_Queue {
             this.arr = new int[stackSize];
         }
 
-        //ѹջ
         public void push(int num) {
             if (index < stackSize) {
                 arr[index++] = num;
@@ -25,7 +22,6 @@ public class Class_02_Array_To_Stack_Queue {
             }
         }
 
-        //��ջ
         public int pop() {
             if (index > 0) {
                 return arr[--index];
@@ -34,7 +30,6 @@ public class Class_02_Array_To_Stack_Queue {
             }
         }
 
-        //peek
         public int peek() {
             if (index > 0) {
                 return arr[index - 1];
@@ -43,9 +38,8 @@ public class Class_02_Array_To_Stack_Queue {
 
     }
 
-    //����,����:poll,push,peek
-    //start,end�ֱ����Ҫ���ӵ���������,��Ҫ��ӵ���Ӧ�÷�������
-    //����һ��size��������Լstart��end,ֻ��start��end�Ļ�,���򲻺�д
+    //队列,功能:poll,push,peek
+    //start,end分别代表要出队的数在哪里,和要入队的数应该放在哪里
     public static class ArrayQueue {
         private int start = 0;
         private int end = 0;

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class HeapSort {
-    //Ğ¡¸ù¶Ñ
+    //å°æ ¹å †
     public static void heapSort(int[] arr) {
         if (arr == null || arr.length == 1) return;
 
@@ -20,8 +20,8 @@ public class HeapSort {
         }
     }
 
-    //½«arrÖĞiÎ»ÖÃµÄÔªËØ²åÈëµ½Ğ¡¸ù¶ÑÖĞ
-    //ÏòÉÏ
+    //å°†arrä¸­iä½ç½®çš„å…ƒç´ æ’å…¥åˆ°å°æ ¹å †ä¸­
+    //å‘ä¸Š
     public static void heapInsert(int[] arr, int i) {
         while (arr[i] < arr[(i - 1) / 2]) {
             swap(arr, i, (i - 1) / 2);
@@ -29,8 +29,8 @@ public class HeapSort {
         }
     }
 
-    //heapify²Ù×÷
-    //ÏòÏÂ
+    //heapifyæ“ä½œ
+    //å‘ä¸‹
     public static void heapify(int[] arr, int heapSize) {
         int index = 0;
 
@@ -39,29 +39,29 @@ public class HeapSort {
             int rightSon = leftSon + 1;
             int small = arr[index];
 
-            //ÒòÎªÊÇÍêÈ«¶ş²æÊ÷,ËùÒÔ·ÖÎª×óÓÒ×Ó¶¼ÓĞ,Ö»ÓĞ×ó×Ó
-            if (rightSon < heapSize && arr[leftSon] < arr[rightSon]) { //×óÓÒ×Ó¶¼ÓĞ,²¢ÇÒ×ó×ÓÔÚ¶şÕßÖĞ¸üĞ¡
-                if (arr[leftSon] < small) { //×ó×ÓÎªÈıÕßÖĞ×îĞ¡,½«×ó×ÓÉıÉÏÀ´×÷ÎªÍ·
+            //å› ä¸ºæ˜¯å®Œå…¨äºŒå‰æ ‘,æ‰€ä»¥åˆ†ä¸ºå·¦å³å­éƒ½æœ‰,åªæœ‰å·¦å­
+            if (rightSon < heapSize && arr[leftSon] < arr[rightSon]) { //å·¦å³å­éƒ½æœ‰,å¹¶ä¸”å·¦å­åœ¨äºŒè€…ä¸­æ›´å°
+                if (arr[leftSon] < small) { //å·¦å­ä¸ºä¸‰è€…ä¸­æœ€å°,å°†å·¦å­å‡ä¸Šæ¥ä½œä¸ºå¤´
                     swap(arr, index, leftSon);
                     index = leftSon;
-                } else {    //Í·×îĞ¡,²»±ä
+                } else {    //å¤´æœ€å°,ä¸å˜
                     break;
                 }
-            } else if (rightSon < heapSize && arr[rightSon] < arr[leftSon]) {   //×óÓÒ×Ó¶¼ÓĞ,ÓÒ×ÓÔÚ¶şÕßÖĞ¸üĞ¡
+            } else if (rightSon < heapSize && arr[rightSon] < arr[leftSon]) {   //å·¦å³å­éƒ½æœ‰,å³å­åœ¨äºŒè€…ä¸­æ›´å°
                 if (arr[rightSon] < small) {
                     swap(arr, index, rightSon);
                     index = rightSon;
                 } else {
                     break;
                 }
-            } else if (leftSon < heapSize) {   //Ö»ÓĞ×ó×Ó
+            } else if (leftSon < heapSize) {   //åªæœ‰å·¦å­
                 if (arr[leftSon] < small) {
                     swap(arr, index, leftSon);
                     index = leftSon;
                 } else {
                     break;
                 }
-            } else {    //×óÓÒ×Ó¶¼Ã»ÓĞ,Ìø³öÑ­»·
+            } else {    //å·¦å³å­éƒ½æ²¡æœ‰,è·³å‡ºå¾ªç¯
                 break;
             }
         }

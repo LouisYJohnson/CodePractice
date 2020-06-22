@@ -1,34 +1,31 @@
 package myCodePractice.zuo.basic.class02;
 
 public class KMP {
-    //KMP�㷨
-    //����:�����ַ���:str1,str2
-    //  ���str2�а���str1,����str1��str2�е���ʼλ��,���򷵻�-1
+    //KMP
+    //判断str1是否在str2中,如果在,返回最开始出现的坐标,如果不在,返回-1
 
-    //ʵ��:��Ҫnext����
-    //  next����
     public static int kmp(String str1, String str2) {
         if (str2.length() < str1.length() || str1 == null || str2 == null) return -1;
 
-        //��str1��next����
         char[] str1Chars = str1.toCharArray();
         int[] next = new int[str1.length()];
         next[0] = -1;
         next[1] = 0;
         int cn = 0;
 
+        //next数组
         for (int i = 2; i < next.length; i++) {
             cn = next[i - 1];
             while (cn != -1) {
                 if (str1Chars[cn] == str1Chars[i - 1]) {
                     next[i] = cn + 1;
-                    break;//�õ����,break
+                    break;//找到了,break
                 } else {
                     cn = next[cn];
                 }
             }
         }
-        //�õ�next�����,���Խ��������ַ���֮��ıȶ���
+        //找到next数组后就可以开始求结果了
         char[] str2Chars = str2.toCharArray();
         int pos1 = 0;
         int pos2 = 0;
@@ -45,7 +42,7 @@ public class KMP {
             }
         }
 
-        if (pos1 == str1.length()) { //pos1�����ߵ�ͷ��,����str1��str2�ڲ�
+        if (pos1 == str1.length()) { //必须pos1走到了结尾,才说明str1在str2中
             return pos2 - str1.length();
         }
         return -1;
@@ -74,13 +71,12 @@ public class KMP {
 //
 //
 //    public static int[] getNextArray(char[] ms) {
-//        //���ڼ���next����
 //        if (ms.length  == 1) return new int[] {-1};
 //        int[] next = new int[ms.length];
 //        next[0] = -1;
 //        next[1] = 0;
 //        int pos = 2;
-//        int cn = 0;//��ʼֵΪpos=2ʱ��ǰһ��Ԫ��pos=1��ǰ׺����
+//        int cn = 0;
 //
 //        while (pos < ms.length) {
 //            if (ms[pos-1] == ms[cn]) {
@@ -96,7 +92,6 @@ public class KMP {
 
     //for test
     public static int getIndexOf(String s, String m) {
-        //�ж�m�Ƿ���s�в�����m��s�п�ʼ���±�
         if (s == null || m == null || m.length() < 1 || m.length() > s.length()) return -1;
         char[] ss = s.toCharArray();
         char[] ms = m.toCharArray();
@@ -107,32 +102,31 @@ public class KMP {
             if (ss[si] == ms[mi]) {
                 si++;
                 mi++;
-            } else if (next[mi] == -1) {//˵����ǰ�Ѿ���0��,����0����ƥ��,siֱ����һ��
+            } else if (next[mi] == -1) {
                 si++;
             } else {
                 mi = next[mi];
             }
         }
-        //�ж��Ƿ�ɹ�ƥ��ı�׼��mi�Ƿ��ߵ��˾�ͷ
+
         return mi == ms.length ? si - mi : -1;
 
     }
 
     public static int[] getNextArray(char[] ms) {
-        //���ڼ���next����
         if (ms.length == 1) return new int[]{-1};
         int[] next = new int[ms.length];
         next[0] = -1;
         next[1] = 0;
         int pos = 2;
-        int cn = 0;//��ʼֵΪpos=2ʱ��ǰһ��Ԫ��pos=1��ǰ׺����
+        int cn = 0;
 
         while (pos < ms.length) {
             if (ms[pos - 1] == ms[cn]) {
                 next[pos++] = ++cn;
             } else if (cn > 0) {
                 cn = next[cn];
-            } else {//˵��û�п���ʹ�õ�ǰ׺��
+            } else {
                 next[pos++] = 0;
             }
         }

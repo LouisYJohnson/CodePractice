@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class LowestLexicography {
-    //����һ���ַ������͵�����strs�� �ҵ�һ��ƴ�ӷ�ʽ�� ʹ�ð�������
-    //����ƴ����֮���γɵ��ַ���������͵��ֵ���
+    //给定一个字符串类型的数组strs， 找到一种拼接方式， 使得把所有字
+    //符串拼起来之后形成的字符串具有最低的字典序。
 
-    //̰��
-    //�������Ӧ�ñ��,str1��str2ƴ��,���str1.str2<str2.str1,
-    // ��str1��ǰ��,����,str1�ź���,��Ϊ�������д����ԵĶ��ҵõ��Ľ����Ψһ��.
+    //̰贪心
+    //排序策略应该变成,str1与str2拼接,如果str1.str2<str2.str1,
+    // 则str1放前面,否则,str1放后面,因为这样是有传递性的而且得到的结果是唯一的.
 
     public static String lowestLixicongraphy(String[] strings) {
         if (strings == null) return null;
@@ -18,13 +18,9 @@ public class LowestLexicography {
         Arrays.sort(strings, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                //���str1.str2<str2.str1,��str1��ǰ��,����,str1�ź���
-                //�Ƚ����Ĺ���:���ظ���,����Ĳ�����ǰ��ķ�ǰ��(����)������(��)
-                //              ��������,����Ĳ����к���ķ�ǰ��(����)������(��)
                 return (o1 + o2).compareTo(o2 + o1);
             }
         });
-        //���ź����strings��ϳ�һ����
         StringBuffer res = new StringBuffer();
 
         for (int i = 0; i < strings.length; i++) {

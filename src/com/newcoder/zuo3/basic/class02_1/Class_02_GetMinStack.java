@@ -4,9 +4,9 @@ import java.util.Stack;
 
 
 public class Class_02_GetMinStack {
-    //ʵ��һ�������ջ�� ��ʵ��ջ�Ļ������ܵĻ����ϣ� ��ʵ�ַ���ջ����СԪ�صĲ�����
-    //ʹ������ջdata,min,һ��ջ����push��pop����һ��ֻpush��pop��ǰջ����Сֵ
-    //ÿ��data��ջʱ,������minջ��ջ�����ֱȽ�,���С��minջ������,ѹ��min,�������min�ظ�ѹ��minջ������
+    //实现一个特殊的栈， 在实现栈的基本功能的基础上， 再实现返回栈中最小元素的操作。
+    //使用两个栈data,min,一个栈正常push与pop另外一个只push与pop当前栈中最小值
+    //每次data入栈时,将数与min栈中栈顶数字比较,如果小于min栈顶数字,压入min,如果大于min重复压入min栈顶数字
     public static class MyStack {
         private Stack<Integer> stackData;
         private Stack<Integer> stackMin;
@@ -16,11 +16,11 @@ public class Class_02_GetMinStack {
             this.stackMin = new Stack<Integer>();
         }
 
-        //�����ʱ��,Ҫ��һ�������˼��,��������Ƶ�ʱ��������ջ����ô��Ӧ��,��ô����ƾ��幦�����ڲ��жϵ�ʱ���Ҫ��Ӧ��
-        //������push��ʱ��,��Ϊ����ջ���໥��ϵ��
-        //(һ��ջ��������һ��ջ�ؿ�,����һ��ջ��װ����ֵ,����һ��ջ��װ��Сֵ,��������ջ��С��ͬ)
-        //������push�����һ��ջ��������һ��ջ��Ϊ��������ʱ��������push������
-        //pop��ʱ��,��Ϊ����ջ��С��һ��,����ֻҪ�ж�һ�����˾Ϳ����׳��쳣
+        //做题的时候,要有一个整体的思想,就是在设计的时候这两个栈是怎么对应的,那么在设计具体功能与内部判断的时候就要对应上
+        //比如在push的时候,因为两个栈是相互联系的
+        //(一个栈空了另外一个栈必空,而且一个栈中装正常值,另外一个栈中装最小值,而且两个栈大小相同)
+        //所以在push中如果一个栈空了那另一个栈必为空所以这时候两个都push就是了
+        //pop的时候,因为两个栈大小都一样,所以只要判断一个空了就可以抛出异常
         //
         public void push(Integer num) {
             if (stackData.isEmpty()) {

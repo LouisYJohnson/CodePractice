@@ -1,7 +1,8 @@
 package myCodePractice.zuo.basic.class01;
 
 public class SmallSum {
-    //С������,��mergeSort��ʱ��һ�����
+    //小和问题
+    //使用归并排序的中间产物来做小和问题
     public static int smallSum(int[] arr) {
         if (arr == null || arr.length <= 1) return 0;
 

@@ -1,11 +1,11 @@
 package myCodePractice.zuo.basic.class08;
 
 public class RotateString {
-    //����һ���ַ���str�� ��һ������k�� ����str����ѭ������kλ��Ľ��
-    //�������ʹ�ö���ռ�:str+str�ٽ�ȡ
-    //������ʹ�ö��⸨������:��벿���Ұ벿�ֱַ���������������
+    //给定一个字符串str， 和一个整数k， 返回str向右循环右移k位后的结
+    //果
 
-    //ʹ�ö���ռ�ķ���
+    //如果可以使用额外空间:str+str再截取
+    //不可以使用额外辅助数组:左半部分右半部分分别逆序再整体逆序
     public static String rotateStringUsingAdditionalSpace(String str, int k) {
         if (k < 0 || str == null || str.length() == 0 || k > str.length()) return null;
         String helpStr = str + str;
@@ -21,9 +21,7 @@ public class RotateString {
         return String.valueOf(res);
     }
 
-    //��ʹ�ö���ռ�ķ���
     public static String rotateString(String str, int k) {
-        //��һ��λ�ñ任��ϸ��,�ñ���ֽ��д����ʵ����֪��զ������
         k = str.length() - k;
         if (k < 0 || str == null || str.length() == 0 || k > str.length()) return null;
         if (k == 0 || k == str.length()) return str;
@@ -35,7 +33,6 @@ public class RotateString {
         return String.valueOf(chars);
     }
 
-    //��charsλ��l��r֮���Ԫ�ؽ��з�ת
     public static void reverse(char[] chars, int l, int r) {
         int mid = l + (r - l) / 2;
         for (int i = l; i <= mid; i++) {

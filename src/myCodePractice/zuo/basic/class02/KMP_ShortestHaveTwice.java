@@ -1,30 +1,27 @@
 package myCodePractice.zuo.basic.class02;
 
 public class KMP_ShortestHaveTwice {
-    //����һ���ַ���str1�� ֻ����str1�ĺ�������ַ����str2��
-    //Ҫ��1�� str2�����������str1�� ����str1�������غϣ� ���ǲ�
-    //����ͬһ��λ�ÿ�ͷ��
-    //Ҫ��2�� str2������
-    //���շ���str2
-    //������
-    //str1 = 123�� str2 = 123123 ʱ�� ��������str1�� �Ҳ�����ͬ
-    //λ�ÿ�ͷ�� ��str2��̡�
-    //str1 = 123123�� str2 = 123123123 ʱ�� ��������str1�� �Ҳ�
-    //����ͬλ�ÿ�ͷ�� ��str2��̡�
-    //str1 = 111�� str2 = 1111 ʱ�� ��������str1�� �Ҳ�����ͬλ
-    //�ÿ�ͷ�� ��str2��̡�
+    //给定一个字符串str1， 只能往str1的后面添加字符变成str2。
+    //要求1： str2必须包含两个str1， 两个str1可以有重合， 但是不
+    //能以同一个位置开头。
+    //要求2： str2尽量短
+    //最终返回str2
+    //举例：
+    //str1 = 123， str2 = 123123 时， 包含两个str1， 且不以相同
+    //位置开头， 且str2最短。
+    //str1 = 123123， str2 = 123123123 时， 包含两个str1， 且不
+    //以相同位置开头， 且str2最短。
+    //str1 = 111， str2 = 1111 时， 包含两个str1， 且不以相同位
+    //置开头， 且str2最短。
 
-    //�����������str1��next��������һ��Ԫ��(next���鳤�ȱ�str1��1)
-    //str1�ĳ������Ԫ�صĲ�ֵ,����str1����Ҫ���伸��str1���Ⱥ����Ԫ��
-    //next����ĺ���Ϊ�ǰ׺�����׺��ƥ�䳤��(ǰ׺���׺��˳����һ����,���ǻ��Ĺ�ϵ,���Manacher�㷨�����!)
+    //其实就是求next数组,看字符串最后一个元素的后一个的信息值是多少,是几就在后面补上原字符串从几开始
+    //因为next数组上的值和当前位置上的字符无关,所以next数组的大小可以比字符数组长度大1
 
     public static String kmpShortestHaveTwice(String str1) {
         if (str1 == null || str1.length() == 0) return null;
 
         char[] str1Chars = str1.toCharArray();
-        //�������next����
         int[] next = getNextArray(str1Chars);
-        //�õ�next��������һ��Ԫ��
         int help = next[next.length - 1];
         StringBuffer res = new StringBuffer(str1);
         for (int i = help; i < str1.length(); i++) {

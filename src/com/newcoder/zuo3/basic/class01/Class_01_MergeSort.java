@@ -3,18 +3,13 @@ package com.newcoder.zuo3.basic.class01;
 import java.util.Arrays;
 
 public class Class_01_MergeSort {
-    //�鲢����
-    //˼·:һ������,�������ҷֿ�,�ֱ�����,Ȼ��鲢:׼��һ����������,��������ķ�ʽС����,
-    //���ζ�,һ����ĩβ������һ����������븨�������ٽ��������鿽����ԭ����
     public static void mergeSort(int[] arr) {
         if (arr.length < 2 || arr == null) return;
         mergeSort(arr, 0, arr.length - 1);
     }
 
-    //�ݹ�Ҫ��:�ݹ�ֹͣ����,�ݹ����,�������
-    //�ݹ鹦�ܸ������������ұ߽�,���߽��ڵĴ�С�����ź�
     public static void mergeSort(int[] arr, int l, int r) {
-        if (l == r) return;//mid == r ��ʱ��,˵���Ѿ���ͷ��
+        if (l == r) return;//mid == r
         int mid = l + (r - l) / 2;
         mergeSort(arr, l, mid);
         mergeSort(arr, mid + 1, r);
@@ -29,14 +24,12 @@ public class Class_01_MergeSort {
         while (p1 < mid + 1 && p2 <= r) {
             help[iHelp++] = arr[p1] <= arr[p2] ? arr[p1++] : arr[p2++];
         }
-        //�ߵ�����˵������һ��Խ����
         while (p1 < mid + 1) {
             help[iHelp++] = arr[p1++];
         }
         while (p2 <= r) {
             help[iHelp++] = arr[p2++];
         }
-        //��help������arr��
         for (int i = 0; i < help.length; i++) {
             arr[l++] = help[i];
         }

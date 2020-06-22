@@ -1,8 +1,7 @@
 package com.newcoder.zuo3.basic.class01;
 
 public class Class_01_BubbleSort {
-    //ð�������㷨(�����С��������):
-    //˼·:��ͷ��ʼ,ÿ��һ��,ÿ��ð�������ں���,ÿ�ε����һ�����ֲ�������һ������
+
     public static void bubbleSort(int[] arr) {
         if (arr == null || arr.length < 2) return;
 

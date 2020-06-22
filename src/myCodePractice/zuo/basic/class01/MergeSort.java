@@ -1,7 +1,7 @@
 package myCodePractice.zuo.basic.class01;
 
 public class MergeSort {
-    //¹é²¢ÅÅĞò(´ÓĞ¡µ½´ó)
+    //å½’å¹¶æ’åº(ä»å°åˆ°å¤§)
     public static void mergeSort(int[] arr, int l, int r) {
         if (l == r) return;
         int mid = l + (r - l) / 2;
@@ -21,14 +21,14 @@ public class MergeSort {
         while (iHelpLeft <= mid && iHelpRight <= r) {
             helps[iHelp++] = arr[iHelpLeft] < arr[iHelpRight] ? arr[iHelpLeft++] : arr[iHelpRight++];
         }
-        //ÓĞÃ»×ßÍêµÄ
+        //æœ‰æ²¡èµ°å®Œçš„
         while (iHelpLeft <= mid) {
             helps[iHelp++] = arr[iHelpLeft++];
         }
         while (iHelpRight <= r) {
             helps[iHelp++] = arr[iHelpRight++];
         }
-        //¿½±´»ØÔ­Êı×é
+        //æ‹·è´å›åŸæ•°ç»„
         iHelp = 0;
         for (int i = l; i <= r; i++) {
             arr[i] = helps[iHelp++];

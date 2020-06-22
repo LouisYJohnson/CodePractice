@@ -3,9 +3,7 @@ package com.newcoder.zuo3.basic.class01;
 import java.util.Arrays;
 
 public class Class_01_InsertionSort {
-    //��������(��С����)
-    //˼·:
-    //�ӵ�һ�����ֿ�ʼÿ�����ֿ�ʼ��ǰ��������������,�����ȶ�,�������ı�ǰ���С,����,һֱ�����������ǰ���Ϊֹ
+
     public static void insertionSort(int[] arr) {
         if (arr == null || arr.length < 2) return;
 

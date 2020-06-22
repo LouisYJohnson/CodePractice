@@ -3,16 +3,16 @@ package com.newcoder.zuo3.basic.class01;
 import java.util.Arrays;
 
 public class Class01_QuickSort {
-    //��������(��С����)
-    //˼·:ÿ�δ�������ȡ�����һ������Ϊɸѡ�ı�׼,�Ը���Ϊ��׼,���ΪС�ڸ�������,�ұ�Ϊ���ڸ�������,�м�Ϊ���ڸ�������
-    //�ݹ�ʵ��,�Ƚ���ǰ���鰴��ѡȡ����ֵ�ֳ�����,Ȼ���ٰ���������ֱ����ӹ�����
+    //快速排序(从小到大)
+    //思路:每次从数组中取出最后一个数作为筛选的标准,以该数为标准,左边为小于该数的数,右边为大于该数的数,中间为等于该数的数
+    //递归实现,先将当前数组按照选取的数值分成两半,然后再把左右两半分别传入子过程中
     public static void quickSort(int[] arr) {
         if (arr == null || arr.length < 2) return;
         quickSort(arr, 0, arr.length - 1);
 
     }
 
-    //�÷�������������󷵻ص������������һ������һ��������±�������һ�ε���
+    //该方法将数组排序后返回等于数组中最后一个数的一段区域的下标用于下一次迭代
     public static void quickSort(int[] arr, int min, int max) {
         if (min < max) {
             int[] p = partion(arr, min, max);
@@ -21,11 +21,6 @@ public class Class01_QuickSort {
         }
     }
 
-    //����������ʵ������,�����������±�
-    //�����һ��Ԫ����Ϊ����ָ�ı�׼,���������г������С�ڸ�Ԫ���ұߴ��ڸ�Ԫ��
-    //�м���ڸ�Ԫ��
-    //�����ص��ڸ�Ԫ���Ƕ�������±�
-    //���̾���,��ߵ�С�������ұ�cur�����ֻ�п����ǵ��ڵ�,�������Ǵ��ڵ�
     public static int[] partion(int[] arr, int min, int max) {
         int l = min - 1;
         int r = max;
@@ -39,8 +34,7 @@ public class Class01_QuickSort {
                 swap(arr, cur, --r);
             }
         }
-        //��Ϊ�ұ������Ǵ��ڸ�Ԫ�ص�,�������һ��Ԫ����Ȼ�Ǹ�Ԫ�ض����Ǵ��ڸ�Ԫ�ص�����,���Ի�����
-        //������֮��ȸ�Ԫ�ش������ĵ�һ��,�ǵ��ڸ�Ԫ�ص�
+
         swap(arr, r, max);
         return new int[]{l + 1, r};
     }

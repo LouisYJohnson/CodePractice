@@ -1,8 +1,6 @@
 package com.newcoder.zuo3.basic.class01;
 
 public class Class_01_SmallSum {
-    //С������
-    //ʹ�ù鲢������м��������С������
     public static int smallSum(int[] arr) {
         if (arr == null || arr.length < 2) return 0;
         return mergeSort(arr, 0, arr.length - 1);
@@ -32,7 +30,6 @@ public class Class_01_SmallSum {
         while (p2 <= r) {
             help[iHelp++] = arr[p2++];
         }
-        //++�и�ϸ����Ҫ����ע��,���ڷ������ݺ�Ų��ָ��,���һ��Ų��ָ��������п���Խ���,��Ҫ��iHelp�������鳤��,��Ҫ-1��
         for (int i = 0; i <= iHelp - 1; i++) {
             arr[l++] = help[i];
         }

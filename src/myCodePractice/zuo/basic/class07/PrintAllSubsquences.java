@@ -1,33 +1,28 @@
 package myCodePractice.zuo.basic.class07;
 
 public class PrintAllSubsquences {
-    //��ӡһ���ַ�����ȫ�������У� �������ַ���
-    //�������������е�����,��·���ǿ�ǰ���λ�ö��ź���,��ǰλ����ô��
+    //    打印一个字符串的全部子序列， 包括空字符串
+    //流程:当前位置要或者不要,当前位置之前的已经确定 ,当前位置之后的还没有确定
+    //大流程可以分解为两个小流程(当前位置要,不要),并且这些小流程与大流程逻辑完全一致
     public static void prinAllSubsequences(String str) {
         if (str == null) return;
         char[] chars = str.toCharArray();
 
     }
 
-    //�ݹ麯������:
-    //0-i-1λ���϶��Ѿ�ѡ����,iλ�õȴ�ȷ��,����ӡ���
+    //递归函数功能:
+    //当前位置i,0~i-1都已经选好了,i~N-1位置上随便选,并打印
     public static void process(char[] chars, int i) {
         //base case
-        //����Ѿ����˾�ͷ,�Ͳ�����ѡ��,ֱ�ӽ��õ������д�ӡ������
         if (i == chars.length) {
             System.out.println(String.valueOf(chars));
             return;
         }
 
-        //������ǰλ��i�ϵ�Ԫ��Ҫ���ǲ�Ҫ
-        //Ҫ:
         process(chars, i + 1);
-        //��Ҫ
         char temp = chars[i];
         chars[i] = 0;
         process(chars, i + 1);
-        //�����һ���������͵ı����������޸�,�����޸��ڵݹ�����е�Ӱ����ȫ�ֵ�
-        //����Ҫ�ڳ��˵ݹ�֮���ٸĻ���
         chars[i] = temp;
     }
 }

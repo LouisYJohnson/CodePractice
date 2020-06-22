@@ -8,7 +8,7 @@ public class QuickSort {
         quickSort(arr, 0, arr.length - 1);
     }
 
-    //¿ìÅÅ
+    //å¿«æ’
     public static void quickSort(int[] arr, int l, int r) {
         if (l < r) {
             int[] p = partion(arr, l, r);

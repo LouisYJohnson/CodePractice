@@ -3,7 +3,7 @@ package com.newcoder.zuo3.basic.class02_1;
 import java.util.Arrays;
 
 public class Class_02_HeapSort {
-    //´ó¸ù¶Ñ
+    //å¤§æ ¹å †
     public static void heapSort(int[] arr) {
         if (arr == null || arr.length < 2) return;
         int heapSize = arr.length;
@@ -17,7 +17,7 @@ public class Class_02_HeapSort {
         }
     }
 
-    //Ïò¶ÑÖĞ¼ÓÈëÒ»¸ö½Úµãnum,²¢½«¸Ã½Úµãµ÷ÕûÎª´ó¸ù¶Ñ,ÔÚÒ»¸öÊı×éÄÚÍê³É²Ù×÷,indexÎªÔ­¶Ñ´óĞ¡+1
+    //å‘å †ä¸­åŠ å…¥ä¸€ä¸ªèŠ‚ç‚¹num,å¹¶å°†è¯¥èŠ‚ç‚¹è°ƒæ•´ä¸ºå¤§æ ¹å †,åœ¨ä¸€ä¸ªæ•°ç»„å†…å®Œæˆæ“ä½œ,indexä¸ºåŸå †å¤§å°+1
     public static void heapInsert(int[] arr, int index) {
         while (arr[index] > arr[(index - 1) / 2]) {
             swap(arr, index, (index - 1) / 2);
@@ -25,39 +25,39 @@ public class Class_02_HeapSort {
         }
     }
 
-    //heapify²Ù×÷,¼ÙÉè¶Ñ¶¥Öµ·¢Éú±ä»¯ÁË,ÈÃËûÖØĞÂµ÷ÕûÎª´ó¸ù¶Ñ,²¢ÇÒÄÇ¸ö¸Ä±äµÄÔªËØĞ¡ÓÚ×óÓÒ×ÓÖĞµÄÒ»¸ö,
-    //Ó¦¸ÃºÍ×óÓÒ×î´óµÄ»»,¶ø²»ÊÇÖ»ÒªÓĞÒ»¸ö±ÈËû´óµÄ¾Í»»
+    //heapifyæ“ä½œ,å‡è®¾å †é¡¶å€¼å‘ç”Ÿå˜åŒ–äº†,è®©ä»–é‡æ–°è°ƒæ•´ä¸ºå¤§æ ¹å †,å¹¶ä¸”é‚£ä¸ªæ”¹å˜çš„å…ƒç´ å°äºå·¦å³å­ä¸­çš„ä¸€ä¸ª,
+    //åº”è¯¥å’Œå·¦å³æœ€å¤§çš„æ¢,è€Œä¸æ˜¯åªè¦æœ‰ä¸€ä¸ªæ¯”ä»–å¤§çš„å°±æ¢
     public static void heapify(int[] arr, int heapSize) {
         int index = 0;
         int largest = arr[index];
         while (index < heapSize) {
             int left = index * 2 + 1;
             int right = left + 1;
-            //·ÖÎª×óÓÒ¶¼ÓĞ,»òÖ»ÓĞ×ó±ßÓĞ,»òÕßÃ»ÓĞ(index = heapSize-1)
+            //åˆ†ä¸ºå·¦å³éƒ½æœ‰,æˆ–åªæœ‰å·¦è¾¹æœ‰,æˆ–è€…æ²¡æœ‰(index = heapSize-1)
             if (left < heapSize && right < heapSize && arr[left] > arr[right]) {
-                //×óÓÒ¶¼ÓĞ,×ÓÖĞ×ó±ß×î´ó
+                //å·¦å³éƒ½æœ‰,å­ä¸­å·¦è¾¹æœ€å¤§
                 largest = arr[left];
-                //¸¸Ğ¡ÓÚ×ó×Ó,½»»»Êı×ÖÓë¸üĞÂ¸¸×ø±ê,¸¸´óÓÚ×ó×Ó,Ìø³öÑ­»·
+                //çˆ¶å°äºå·¦å­,äº¤æ¢æ•°å­—ä¸æ›´æ–°çˆ¶åæ ‡,çˆ¶å¤§äºå·¦å­,è·³å‡ºå¾ªç¯
                 if (arr[index] < largest) {
                     swap(arr, index, left);
                     index = left;
                 } else break;
             } else if (left < heapSize && right < heapSize && arr[left] < arr[right]) {
-                //×óÓÒ¶¼ÓĞ,ÓÒ×Ó×î´ó
+                //å·¦å³éƒ½æœ‰,å³å­æœ€å¤§
                 largest = arr[right];
-                //¸¸Ğ¡ÓÚÓÒ×Ó,½»»»Êı×ÖÓë¸üĞÂ¸¸×ø±ê,¸¸´óÓÚÓÒ×Ó,Ìø³öÑ­»·
+                //çˆ¶å°äºå³å­,äº¤æ¢æ•°å­—ä¸æ›´æ–°çˆ¶åæ ‡,çˆ¶å¤§äºå³å­,è·³å‡ºå¾ªç¯
                 if (arr[index] < largest) {
                     swap(arr, index, right);
                     index = right;
                 } else break;
             } else if (left < heapSize) {
-                //Ö»ÓĞ×ó±ßÓĞ,×ó×Ó±È¸¸´ó
+                //åªæœ‰å·¦è¾¹æœ‰,å·¦å­æ¯”çˆ¶å¤§
                 if (arr[left] > arr[index]) {
                     largest = arr[left];
                     swap(arr, index, left);
                     index = left;
                 } else break;
-            } else break;//×óÓÒ¶¼Ã»ÓĞ,Ìø³öÑ­»·
+            } else break;//å·¦å³éƒ½æ²¡æœ‰,è·³å‡ºå¾ªç¯
 
         }
     }

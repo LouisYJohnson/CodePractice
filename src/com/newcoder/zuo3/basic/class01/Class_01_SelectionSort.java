@@ -3,8 +3,6 @@ package com.newcoder.zuo3.basic.class01;
 import java.util.Arrays;
 
 public class Class_01_SelectionSort {
-    //ѡ������:(��С����)
-    //˼·:��ǰ��������С�����Ѿ��źõ����к���ĵ�һ��,ÿ�������һλ,��Ϊǰ����Ѿ��ź���
     public static void selectionSort(int[] arr) {
         if (arr.length < 2 || arr == null) return;
 

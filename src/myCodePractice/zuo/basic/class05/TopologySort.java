@@ -4,7 +4,7 @@ package myCodePractice.zuo.basic.class05;
 import java.util.*;
 
 public class TopologySort {
-    //ÍØÆËÅÅĞò
+    //æ‹“æ‰‘æ’åº
     public static class Node {
         public int value;
         public int in;
@@ -50,7 +50,7 @@ public class TopologySort {
         ArrayList<Node> result = new ArrayList<>();
         Queue<Node> zeroInQueue = new LinkedList<>();
 
-        //±éÀúÍ¼½á¹¹,µÃµ½Í¼ÖĞËùÓĞµãµÄÈë¶È
+        //éå†å›¾ç»“æ„,å¾—åˆ°å›¾ä¸­æ‰€æœ‰ç‚¹çš„å…¥åº¦
         for (Node node : graph.nodes.values()) {
             inMap.put(node, node.in);
             if (node.in == 0) {
