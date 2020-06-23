@@ -2,6 +2,8 @@ package myCodePractice.zuo.basic.class06;
 
 import java.util.Stack;
 
+//具体的方法(注释可以去myCodePractice/zuo/basic/class02/KMP_T1SubTreeEqualsT2.java中查看,
+// 该文件使用Morris对二叉树进行打印,使用KMP对二叉树序列化的结果进行判断子串)
 public class Morris {
     public static class Node {
         public int value;

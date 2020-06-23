@@ -1,9 +1,15 @@
-package com.newcoder.zuo3.advanced.class01;
+package myCodePractice.zuo.advance.class01;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Code_04_BSTtoDoubleLinkedList {
+public class BSTtoDoubleLinkedList {
+    //把一棵搜索二叉树， 转化成有序的双向链表
+    //套路:用递归做二叉树题目:
+    //      传入头节点,左子树返回信息,右子树返回信息,将这两个信息整合,就是父过程需要的信息
+    //      base case就是遇到了叶节点该怎么办,搞定了这个就搞定了这个套路
+    //递归方法去做
+    //递归函数功能:输入一个二叉树的头节点,返回二叉树的变成双向链表的形式并返回头节点
     public static class Node {
         public int value;
         public Node left;
@@ -16,64 +22,39 @@ public class Code_04_BSTtoDoubleLinkedList {
 
     public static Node convert1(Node head) {
         if (head == null) return null;
-        return process1(head);
+
+        return process(head);
     }
 
-    public static Node process1(Node head) {
+    //递归函数功能:传入头节点,返回二叉树变成双向列表形式的头节点
+    public static Node process(Node head) {
         //base case
-        if (head == null) return null;
+        if (head == null) {
+            return null;
+        }
 
-        Node leftHead = process1(head.left);
-        Node rightHead = process1(head.right);
-        if (leftHead != null) {
-            while (leftHead.right != null) {
-                leftHead = leftHead.right;
+        Node left = process(head.left);
+        Node right = process(head.right);
+        //因为left,right是两个二叉树转化成双向链表后的仍然是原来的头节点
+        //有可能是在双向链表中间的,所以左边的要挪到最右边,右边的要挪到最左边然后和当前的head相连
+        //整合好这个信息后,就是父过程需要的信息
+
+        //走到叶节点的时候,左右返回的都是null,就不用找最左最右了
+        if (left != null) {
+            while (left.right != null) {
+                left = left.right;
             }
         }
-        if (rightHead != null) {
-            while (rightHead.left != null) {
-                rightHead = rightHead.left;
+        if (right != null) {
+            while (right.left != null) {
+                right = right.left;
             }
         }
-        head.left = null;
-        head.right = null;
-        if (leftHead != null) {
-            leftHead.right = head;
-            head.left = leftHead;
-        }
-        if (rightHead != null) {
-            rightHead.left = head;
-            head.right = rightHead;
-        }
+        head.left = left;
+        head.right = right;
+
         return head;
     }
-
-    public static Node convert3(Node head) {
-        if (head == null) return null;
-        return process2(head)[0];
-    }
-
-    public static Node[] process2(Node head) {
-        //base case
-        if (head == null) return new Node[]{null, null};
-        Node[] leftSub = process2(head.left);
-        Node[] rightSub = process2(head.right);
-        head.left = null;
-        head.right = null;
-        if (leftSub[1] != null) {
-            leftSub[1].right = head;
-            head.left = leftSub[1];
-        }
-
-        if (rightSub[0] != null) {
-            rightSub[0].left = head;
-            head.right = rightSub[0];
-        }
-        Node left = leftSub[0] == null ? head : leftSub[0];
-        Node right = rightSub[1] == null ? head : rightSub[1];
-        return new Node[]{left, right};
-    }
-
 
     //for test
     public static void printBSTInOrder(Node head) {
@@ -225,6 +206,4 @@ public class Code_04_BSTtoDoubleLinkedList {
 //        printDoubleLinkedList(head);
 
     }
-
-
 }

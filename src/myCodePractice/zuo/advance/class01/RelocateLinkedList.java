@@ -1,6 +1,7 @@
-package com.newcoder.zuo3.advanced.class01;
+package myCodePractice.zuo.advance.class01;
 
-public class Code_03_RelocateLinkedList {
+
+public class RelocateLinkedList {
     //给定一个链表list，
     //如果：
     //list = 1 调整之后1。
@@ -20,47 +21,55 @@ public class Code_03_RelocateLinkedList {
         }
     }
 
-    public static void relocate(Node head) {
-        if (head == null || head.next == null || head.next.next == null) return;
-        Node help = head;
-        int listLength = 0;
-        while (help != null) {
-            listLength++;
-            help = help.next;
+    //从中心位置将链表分为两半(奇数个节点中间节点算右边)
+    public static Node relocate(Node head) {
+        if (head == null) return null;
+
+        Node helpHead = head;
+        int listLen = 0;
+        while (helpHead != null) {
+            listLen++;
+            helpHead = helpHead.next;
         }
-        help = head;
-        Node[] nodes = new Node[listLength];
-        for (int i = 0; i < nodes.length; i++) {
-            nodes[i] = help;
-            if (help.next == null) break;
-            help = help.next;
+//        if (listLen < 4) return head;
+
+        Node[] help = new Node[listLen];
+        int index = 0;
+        helpHead = head;
+        while (helpHead != null) {
+            help[index++] = helpHead;
+            helpHead = helpHead.next;
         }
-        Node[] res = (nodes.length & 1) == 1 ? new Node[nodes.length - 1] : new Node[nodes.length];
-        for (int i = 0; i < res.length; i++) {
-            if (i < res.length / 2) {
-                res[i * 2] = nodes[i];
-            } else {
-                res[(i - (res.length / 2)) * 2 + 1] = nodes[i];
+
+        //链表长度为奇数与偶数的做法是不同的
+        //奇数在l,r共同前进,l到头的时候r还剩一个,需要单独添加
+        int mid = 0 + (listLen - 1 - 0) / 2;
+        int l = 0;
+        int r = (listLen & 1) == 1 ? mid : mid + 1;
+        index = 0;
+        Node[] res = new Node[help.length];
+        //链表长度为偶数
+        if ((listLen & 1) == 0) {
+            while (r < help.length) {
+                res[index++] = help[l++];
+                res[index++] = help[r++];
             }
+        }else { //链表长度为奇数
+            while (r < help.length - 1) {
+                res[index++] = help[l++];
+                res[index++] = help[r++];
+            }
+            res[index] = help[r];
         }
-        for (int i = 0; i < res.length - 1; i++) {
-            res[i].next = res[i + 1];
-        }
-        if ((nodes.length & 1) == 1) {
-            res[res.length - 1].next = help;
-            help.next = null;
-        }
-        head = res[0];
 
+        //将节点数组穿在一起
+        Node helpNode1 = head;
+        for (int i = 1; i < res.length; i++) {
+            helpNode1.next = res[i];
+            helpNode1 = helpNode1.next;
+        }
+        return helpNode1;
     }
-
-    public static void swap(Node[] nodes, int i, int j) {
-        Node temp = nodes[i];
-        nodes[i] = nodes[j];
-        nodes[j] = temp;
-    }
-
-
 
     //for Test
     public static void printLinkedList(Node head) {
@@ -128,4 +137,5 @@ public class Code_03_RelocateLinkedList {
         printLinkedList(head);
 
     }
+
 }
