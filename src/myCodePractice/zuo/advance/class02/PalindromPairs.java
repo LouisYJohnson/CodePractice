@@ -42,6 +42,8 @@ public class PalindromPairs {
         List<List<Integer>> res = new ArrayList<>();
         HashMap<String, Integer> stringIndexMap = getStringIndexMap(strings);
         for (int i = 0; i < strings.length; i++) {
+            //按照指定 collection 的迭代器所返回的元素顺序，将该 collection 中的所有元素添加到此列表的尾部。
+            //即将List<Integer>添加到List<List<Integer>>的最外层List中
             res.addAll(findStrAll(strings[i], i, stringIndexMap));
         }
         return res;
