@@ -1,6 +1,6 @@
-package com.newcoder.zuo3.advanced.class03;
+package myCodePractice.zuo.advance.class03;
 
-public class Code_04_JumpGame {
+public class JumpGame {
     //跳跃游戏
     //【题目】
     //给定数组arr， arr[i]==k代表可以从位置i向右跳1~k个距离。
@@ -19,47 +19,24 @@ public class Code_04_JumpGame {
     //cur为上一次跳的位置可以到达的最右边界(在这个范围内的点上一次所有候选点中,能够跳的最远的那个)
     //next为在当前位置如果要跳的话,能跳到的最右边界(候选点中每一个最远的能跳到哪个位置)
     //如果当前点已经在候选点之外,那么下一次的候选点就是到next位置的,也就是下一步跳的是所有候选点中最远的距离
-    public static int jump(int[] arr) {
-        if (arr == null || arr.length == 0) return 0;
-        int k = 0;
+    public static int jumpGame(int[] arr) {
+        if (arr == null || arr.length == 0) return -1;
+
         int cur = 0;
         int next = 0;
+        int k = 0;
 
         for (int i = 0; i < arr.length; i++) {
+            //只有在当前位置在上一次跳跃的最大边界外,这一次才跳
+            //并且这一跳能够跳的范围更新为所有候选点中最右的边界
+            //也就是说,之后的位置只要能在这一跳能够到达范围的内部cur,就不用跳了
             if (i > cur) {
-                cur = next;
                 k++;
+                cur = next;
             }
+            //每次都更新候选点中最远的距离
             next = Math.max(next, arr[i] + i);
         }
         return k;
     }
-
-    //for test
-    public static int jump1(int[] arr) {
-        if (arr == null || arr.length == 0) {
-            return 0;
-        }
-        int jump = 0;
-        int cur = 0;
-        int next = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (cur < i) {
-                jump++;
-                cur = next;
-            }
-            next = Math.max(next, i + arr[i]);
-        }
-        return jump;
-    }
-
-
-    public static void main(String[] args) {
-        int[] arr = {3, 2, 3, 1, 1, 4};
-        System.out.println(jump(arr));
-        System.out.println(jump1(arr));
-
-    }
-
-
 }

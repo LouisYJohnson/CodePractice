@@ -4,15 +4,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Code_02_SerializeAndReconstructTree {
-    //�����������л��ͷ����л�
-    //����Ŀ��
-    //����������¼���ļ��Ĺ��̽��������������л��� ͨ���ļ���
-    //���ؽ�ԭ���������Ĺ��̽����������ķ����л��� ����һ�ö�
-    //������ͷ�ڵ�head�� ����֪�������ڵ�ֵ������Ϊ32λ���͡�
-    //�����һ�ֶ��������л��ͷ����л��ķ����� ���ô���ʵ�֡�
-    //��Ҫ��
-    //1�� ʵ������������л��뷴���л�
-    //2�� ʵ�ְ���������л��뷴���л�
     public static class Node {
         public int value;
         public Node left;
@@ -23,22 +14,16 @@ public class Code_02_SerializeAndReconstructTree {
         }
     }
 
-    //1�� ʵ������������л��뷴���л�
-    //������л�����η����л�
-    //���л�:
-    //�˵ݹ麯�����������head�ڵ�����л��ַ���
     public static String serialByPre(Node head) {
         //base case
         if (head == null) return "#!";
 
         String res = String.valueOf(head.value) + "!";
-        //�ֱ����л���������,���ӵ������,ȷ���˹���֮��ֱ�Ӱ���ȷ���Ĺ���ȥ��,һ��û��!
         res += serialByPre(head.left);
         res += serialByPre(head.right);
         return res;
     }
 
-    //�����л�,��ô���л��ľ���ô�����л�
     public static Node reconByPreString(String preStr) {
         String[] strings = preStr.split("!");
         Queue<String> queue = new LinkedList<String>();
@@ -48,8 +33,6 @@ public class Code_02_SerializeAndReconstructTree {
         return reconPreOrder(queue);
     }
 
-    //�ݹ麯��:
-    //����:��һ������,���ض����е�Ԫ�ض�Ӧ�ķ����л����
     private static Node reconPreOrder(Queue<String> queue) {
         String s = queue.poll();
         if (s.equals("#")) return null;
@@ -59,13 +42,10 @@ public class Code_02_SerializeAndReconstructTree {
         return head;
     }
 
-    //2�� ʵ�ְ���������л��뷴���л�
-    //��ʵ����BFS�ĸ�д,��Ϊ�����Ƕ�����,���ÿ����Ƿ�����������,�Ͳ���Ҫset,ֻ��һ�����м���
     public static String serialByLevel(Node head) {
         if (head == null) return "#!";
         String res = String.valueOf(head.value) + "!";
         Queue<Node> queue = new LinkedList<Node>();
-        //���ڶ����м���ͷ�ڵ�,Ȼ��ÿ�δӶ�ͷ����һ��Ԫ��,��������Ԫ�ص������Ӽ������,������е�Ԫ����Ҫ����ӡ��Ԫ��
         queue.add(head);
         while (!queue.isEmpty()) {
             Node help = queue.poll();
@@ -85,7 +65,6 @@ public class Code_02_SerializeAndReconstructTree {
         return res;
     }
 
-    //������л��ľ���ô�����л�
     public static Node reconByLevelString(String levelStr) {
         String[] value = levelStr.split("!");
         int index = 0;
