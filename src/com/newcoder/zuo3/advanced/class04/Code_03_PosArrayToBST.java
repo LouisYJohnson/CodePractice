@@ -1,42 +1,35 @@
 package com.newcoder.zuo3.advanced.class04;
 
 public class Code_03_PosArrayToBST {
-    //���ݺ��������ؽ�����������
-    //����Ŀ��
-    //����һ����������arr�� ��֪����û���ظ�ֵ�� �ж�arr�Ƿ�����ǽ�
-    //��ֵ����Ϊ���͵�������������������Ľ����
-    //���ף� �����������arr��û���ظ�ֵ�� ����֪��һ�������������ĺ�
-    //���������� ͨ������arr�ع���������
-    //��������ʱ�����ڿ���ٱ߽������,�п���û���������������������������ô���Լ�����ж���û����������
-    //�ǽ���:
+    //根据后序数组重建搜索二叉树
+    //【题目】
+    //给定一个整型数组arr， 已知其中没有重复值， 判断arr是否可能是节
+    //点值类型为整型的搜索二叉树后序遍历的结果。
+    //进阶： 如果整型数组arr中没有重复值， 且已知是一棵搜索二叉树的后
+    //序遍历结果， 通过数组arr重构二叉树。
+
+    //根据后序中序先序数组结合是可以建出二叉树的,但是有重复值的话,是建不出来的
     public static boolean isPostArray(int[] arr) {
         if (arr == null || arr.length == 0) return false;
-        //�ݹ麯��,����Ϊ�����������ϴ�0��arr.length - 1��Χ�ϵ���������ǲ��Ƕ������ĺ���������
         return process(arr, 0, arr.length - 1);
     }
 
     public static boolean process(int[] arr, int start, int end) {
         //base case
         if (start == end) return true;
-        //����������������С���Ӵ�,�������Ӧ���Ƿ�Ϊ��������ͷ�ڵ������,С�Ľڵ�����ǰ��,��Ľڵ����м�
-        //small��big��ʾС�Ľڵ�����ұ߽�,���Ľڵ������߽�
-        //���������ɺ�,С�ڵ�����ұ߽����ڵ������߽��1˵���ǶԵ�,�����ֱ��ж�С�ڵ����ڵ��Ӧ������
-        //���С�ڵ㳬���˴�ڵ�,ֱ�ӷ���false
         int small = -1;
         int big = end;
         for (int i = start; i < end; i++) {
             if (arr[i] < arr[end]) {
                 small = i;
-            } else {//��Ϊ������û���ظ�����,����else��ʾ��ǰarr[i]��arr[end]��
-                //big��ֵΪ��һ�γ��ִ�ֵ����߽�,�������ִ�ֵ������,�����ִ�ֵ������
+            } else {
                 big = big == end ? i : big;
             }
         }
         if (small > big) return false;
-        if (small == -1 || end == big) {//û������������û��������
+        if (small == -1 || end == big) {
             return process(arr, start, end - 1);
         }
-        //�����������������,�ֱ��ж���������
         return process(arr, start, small) && process(arr, big, end - 1);
     }
 
@@ -50,15 +43,11 @@ public class Code_03_PosArrayToBST {
         }
     }
 
-    //����
-//    ���ף� �����������arr��û���ظ�ֵ�� ����֪��һ�������������ĺ�
-//    ���������� ͨ������arr�ع���������
     public static Node posArrayToBST(int[] posArr) {
         if (posArr == null || posArr.length == 0) return null;
         return process1(posArr, 0, posArr.length - 1);
     }
 
-    //�ݹ麯������:��һ����ʾ���������������������ʼ�����ص�,������������ж�Ӧ������������ͷ�ڵ�
     public static Node process1(int[] arr, int start, int end) {
         //base case
         if (start == end) return new Node(arr[start]);
@@ -76,13 +65,13 @@ public class Code_03_PosArrayToBST {
         }
 //        head.left = process1(arr,start,less);
 //        head.right = process1(arr,more,end - 1);
-        if (less == -1 && more != end) {//����������������
+        if (less == -1 && more != end) {
             head.left = null;
             head.right = process1(arr, more, end - 1);
-        } else if (less != -1 && more == end) {//����������������
+        } else if (less != -1 && more == end) {
             head.left = process1(arr, start, end - 1);
             head.right = null;
-        } else {//������������
+        } else {
             head.left = process1(arr, start, less);
             head.right = process1(arr, more, end - 1);
         }

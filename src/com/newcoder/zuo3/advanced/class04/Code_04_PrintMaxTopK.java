@@ -3,23 +3,10 @@ package com.newcoder.zuo3.advanced.class04;
 import java.util.Arrays;
 
 public class Code_04_PrintMaxTopK {
-    //��ӡN��������������Top K
-    //����Ŀ��
-    //��N�����Ȳ�һ�����飬 ���е����鶼������ģ� ��Ӵ�С��
-    //ӡ��N��������������ǰK������
-    //���磬 ���뺬��N��Ԫ�صĶ�ά������Դ���N��һά���顣
-    //219,405,538,845,971
-    //148,558
-    //52,99,348,691
-    //����������k=5�� ���ӡ��
-    //Top 5: 971,845,691,558,538
-    //��Ҫ��
-    //1�� ������������Ԫ�ظ���С��K�� ��Ӵ�С��ӡ���е�����
-    //2�� Ҫ��ʱ�临�Ӷ�ΪO(KlogN)��
     public static class HeapNode {
-        private int value;  //�ڵ���ֵ
-        private int arrNum; //�ڵ������ڵ�������
-        private int index;  //�ڵ��ڱ�Ŷ�Ӧ�����е�����ֵ
+        private int value;
+        private int arrNum;
+        private int index;
 
         public HeapNode(int value, int arrNum, int index) {
             this.value = value;
@@ -31,13 +18,10 @@ public class Code_04_PrintMaxTopK {
     public static void printTopK(int[][] matrix, int topK) {
         int heapSize = matrix.length;
         HeapNode[] heapNodes = new HeapNode[heapSize];
-        //ȡ������һά��������ֵ������heap��
         for (int i = 0; i < heapSize; i++) {
             heapNodes[i] = new HeapNode(matrix[i][matrix[i].length - 1], i, matrix[i].length - 1);
             heapInsert(heapNodes, i);
         }
-        //ȡǰtopK����,ÿ�ε����Ѷ�(�Ѷ��ڵ��ڲ�����(�ṹ����)Ȼ��heapify),
-        //���û��������С����,ֱ��swap������ǰ������������Ȼ��heapify��heapSize--
         while (heapSize != 0) {
             System.out.print(heapNodes[0].value + " ");
             if (heapNodes[0].index != 0) {
@@ -51,8 +35,6 @@ public class Code_04_PrintMaxTopK {
         }
     }
 
-    //�����
-    //ʵ��heap�е�heapInsert��heapify����,��Ϊϵͳ�ṩ�����ǵĶѲ���������ڵ��ϸ�ֵ,ֻ�ܼӻ��߼�,��������Ҫ�Լ�ʵ��
     public static void heapInsert(HeapNode[] heapNodes, int index) {
         while (index != 0) {
             if (heapNodes[index].value > heapNodes[(index - 1) / 2].value) {
@@ -71,7 +53,6 @@ public class Code_04_PrintMaxTopK {
         int largestIndex = index;
 
         while (leftIndex < heapSize) {
-            //�������ҳ����ֵ,������ֵ��index�ϵ�value��,�ͽ���,���򲻻�
             if (heapNodes[leftIndex].value > heapNodes[index].value) {
                 largestIndex = leftIndex;
             }
