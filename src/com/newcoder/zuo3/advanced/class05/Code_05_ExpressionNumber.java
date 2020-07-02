@@ -1,30 +1,30 @@
 package com.newcoder.zuo3.advanced.class05;
 
 public class Code_05_ExpressionNumber {
-    //���ʽ�õ�����������������
-    //����Ŀ��
-    //����һ��ֻ��0���٣� �� 1(��)�� &(�߼���)�� |���߼��� ��^(���)�����ַ���ɵ��ַ�
-    //��express�� �ٸ���һ������ֵdesired�� ����express���ж�������Ϸ�ʽ�� ���Դﵽ
-    //desired�Ľ����
-    //��������
-    //express="1^0|0|1"�� desired=false��
-    //ֻ��1^((0|0)|1)��1^(0|(0|1))����Ͽ��Եõ�false�� ����2��
-    //express="1"�� desired=false��
-    //���������Եõ�false�� ����0��
+    //表达式得到期望结果的组成种数
+    //【题目】
+    //给定一个只由0（假） 、 1(真)、 &(逻辑与)、 |（逻辑或） 和^(异或)五种字符组成的字符
+    //串express， 再给定一个布尔值desired。 返回express能有多少种组合方式， 可以达到
+    //desired的结果。
+    //【举例】
+    //express="1^0|0|1"， desired=false。
+    //只有1^((0|0)|1)和1^(0|(0|1))的组合可以得到false， 返回2。
+    //express="1"， desired=false。
+    //无组合则可以得到false， 返回0
 
-    //�ⷨ:
-    //ʽ���еĶ������ǹ̶�˳���,�������С����,����Ҫ���ж����ʽ���Ƿ���Ч
-    //Ȼ��д�ݹ�,����ݹ�Ĺ��ܾ�������ַ�������(���÷�����,�ڲ������ݹ麯��������(ͬ���߼���������),���Ƿ�������)
-    // ��Ϊtrue��false���ж��������㶼�����
-    //ʽ���еĶ������ǹ̶�˳���,�������С����,����Ҫ���ж����ʽ���Ƿ���Ч
-    //ʽ�ӱ�Ȼ��0����1��ͷ�ͽ�β,����ż��λ�ϱ���Ϊ0����1,����λ�ϱ���Ϊ�ж�����
+    //动态规划:因为要返回两个值,所以说动态规划返回两个表
+    //式子中的东西都是固定顺序的,自由组合小括号,所以要先判断这个式子是否有效
+    //然后写递归,这个递归的功能就是这个字符串里面
+    // (不用分左右,内部两个递归函数连续用(同样逻辑的子问题),
+    // 就是分左右了)的为true和false的有多少种请你都求出来
+
     public static boolean isValid(char[] exp) {
         for (int i = 0; i < exp.length; i++) {
-            if ((i & 1) == 1) { //���������,����Ϊ�ж�����
+            if ((i & 1) == 1) {
                 if (exp[i] != '&' && exp[i] != '|' && exp[i] != '^') {
                     return false;
                 }
-            } else { //�����ż��.����Ϊ0����1
+            } else {
                 if (exp[i] != '0' && exp[i] != '1') {
                     return false;
                 }
@@ -33,9 +33,6 @@ public class Code_05_ExpressionNumber {
         return true;
     }
 
-    //д�ݹ�,�ݹ麯���Ĺ�����:
-    //��һ���ַ���(�ַ������е�������ʼ�����),��������ַ����ܹ��ж�����true��false�����
-    //��Ϊ���ص����������������һ��,���Ը���װ��һ���෵��
     public static class ReturnData {
         private int trueNums;
         private int falseNums;
@@ -46,8 +43,6 @@ public class Code_05_ExpressionNumber {
         }
     }
 
-    //�ݹ麯���Ĺ�����:
-    //��һ���ַ���(�ַ������е�������ʼ�����),��������ַ����ܹ��ж�����true��false�����
     public static ReturnData process(char[] exp, int l, int r) {
         //base case
         if (l == r) {
@@ -57,38 +52,22 @@ public class Code_05_ExpressionNumber {
                 return new ReturnData(1, 0);
             }
         }
-        //��ͷ�����ַ������ÿһ���߼�����λ,�������߼�����λ���ҵ��ַ������true��false�ж�����(�ݹ�)
         int trueNums = 0;
         int falseNums = 0;
-        //�������Ϊtrue�Ŀ���Ϊa,false����Ϊb
-        //�ұ�true�Ŀ���Ϊc,false����Ϊd
-        //����м���߼��ж��ַ���&��:
-        //  ture:a*c
-        //  false:a*d+b*c+b*d
-        //����м���߼��ж��ַ���|��:
-        //  true:a*c+a*d+b*c
-        //  false:b*d
-        //����м���߼��ж��ַ���^���:
-        //  true:a*d+b*c
-        //  false:a*c+b*d
-        for (int i = l + 1; i < r; i += 2) {   //ÿ�ζ��ҵ��ַ������е��߼�����λ(��l+1��ʼ,ÿ��������)
-            //��Ϊ�ַ������ڽ���ݹ�֮ǰ��Ȼ������valid���,��������һ���ض����ܹ������߼��жϷ����ϵ�
-            //���Ϊtrue�Ŀ���Ϊa,false����Ϊb
-            //�ұ�true�Ŀ���Ϊc,false����Ϊd
-            //������process���ӹ�����,���Ҿ���l��r������0��exp.length-1��
+        for (int i = l + 1; i < r; i += 2) {
             ReturnData leftPart = process(exp, l, i - 1);
             ReturnData rightPart = process(exp, i + 1, r);
             int a = leftPart.trueNums;
             int b = leftPart.falseNums;
             int c = rightPart.trueNums;
             int d = rightPart.falseNums;
-            if (exp[i] == '&') {    //��,&
+            if (exp[i] == '&') {
                 trueNums += a * c;
                 falseNums += a * d + b * c + b * d;
-            } else if (exp[i] == '|') {  //��,|
+            } else if (exp[i] == '|') {
                 trueNums += a * c + a * d + b * c;
                 falseNums += b * d;
-            } else {     //��� ^
+            } else {
                 trueNums += a * d + b * c;
                 falseNums += a * c + b * d;
             }
@@ -112,28 +91,16 @@ public class Code_05_ExpressionNumber {
         }
     }
 
-    //�����ݹ�Ķ�̬�滮:
-    //����ķ��е㸴��,�Ʋ�����,���Ծ�һ����������������ֹ���
-    //ˮƽ����:trueMap:a,falseMap:b
-    //��ֱ����:trueMap:c,falseMap:d
-    //trueNums��Ӧ��trueMap
-    //falseNums��Ӧ��falseMap
     public static int num2(String str, boolean desire) {
         char[] chars = str.toCharArray();
         int[][] trueMap = new int[chars.length][chars.length];
         int[][] falseMap = new int[chars.length][chars.length];
-        //�������λ��
         for (int i = 0; i < trueMap.length; i += 2) {
             trueMap[i][i] = chars[i] == '1' ? 1 : 0;
             falseMap[i][i] = chars[i] == '0' ? 1 : 0;
         }
-        //�����ձ�λ��,��ķ���,���ݾ�������(ͼ��������,����ȥ�μ�����)����ֵ
-        //���������Ǵ�l==r��һ��б����,����ÿ��������Ҫ�����±����ұ߸�һ������ֱ��l==rΪֹ
-        //������ʱ��,����ÿ���ձ�λ�õ�����������Ҫ��������,Ҳ����63-97��,���Ű�ͺ���
         for (int i = chars.length - 3; i >= 0; i -= 2) {
             for (int j = i + 2; j < chars.length; j += 2) {
-                //��������ѭ�����ҵ�ÿһ����Ҫ�����λ��,���һ��forѭ������������63-97�е�����ķ���
-                //l��Ӧi,r��Ӧj
                 int trueNums = 0;
                 int falseNums = 0;
                 for (int k = i + 1; k < j; k += 2) {
@@ -141,13 +108,13 @@ public class Code_05_ExpressionNumber {
                     int b = falseMap[i][k - 1];
                     int c = trueMap[k + 1][j];
                     int d = falseMap[k + 1][j];
-                    if (chars[k] == '&') {    //��,&
+                    if (chars[k] == '&') {
                         trueNums += a * c;
                         falseNums += a * d + b * c + b * d;
-                    } else if (chars[k] == '|') {  //��,|
+                    } else if (chars[k] == '|') {
                         trueNums += a * c + a * d + b * c;
                         falseNums += b * d;
-                    } else {     //��� ^
+                    } else {
                         trueNums += a * d + b * c;
                         falseNums += a * c + b * d;
                     }
@@ -160,7 +127,7 @@ public class Code_05_ExpressionNumber {
     }
 
     //for test
-    //��̬�滮by zuo
+    //by zuo
 //    public static int num2(String express, boolean desired) {
 //        if (express == null || express.equals("")) {
 //            return 0;

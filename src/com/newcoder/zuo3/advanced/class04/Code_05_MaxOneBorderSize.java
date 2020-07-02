@@ -1,29 +1,25 @@
 package com.newcoder.zuo3.advanced.class04;
 
 public class Code_05_MaxOneBorderSize {
-    //�߽綼��1����������δ�С
-    //����Ŀ��
-    //����һ��NN�ľ���matrix�� ����������У� ֻ��0��1����ֵ�� ���ر߿�ȫ��1���������
-    //�εı߳����ȡ�
-    //���磺
+    //边界都是1的最大正方形大小
+    //【题目】
+    //给定一个NN的矩阵matrix， 在这个矩阵中， 只有0和1两种值， 返回边框全是1的最大正方
+    //形的边长长度。
+    //例如：
     //0 1 1 1 1
     //0 1 0 0 1
     //0 1 0 0 1
     //0 1 1 1 1
     //0 1 0 1 1
-    //���У� �߿�ȫ��1����������εĴ�СΪ4*4�� ���Է���4
-    //���취:�ҵ�����������,������е���������ʼ��,����ʼ�㿪ʼ�����п��ܱ߳���������
+    //其中， 边框全是1的最大正方形的大小为4*4， 所以返回4。
+
+    //笨办法:找到所有正方形,穷举所有的正方形起始点,找起始点开始的所有可能边长的正方形
     //
-    //�÷���:Ԥ��������,������������,��С��ԭ������ͬ,�ֱ�Ϊdown�����right����,
-    // �����е�ֵ��ʾ�������λ�������·������ұ��ж��ٸ�������1,���������0,��ô����0
-    //�÷���:
-    //��������������,��С��ԭ������ͬ,�ֱ�Ϊdown�����right����,
-    //�����е�ֵ��ʾ�������λ�������·������ұ��ж��ٸ�������1,���������0,��ô����0
+    //好方法:预处理数组,构建两个数组,大小和原矩阵相同,分别为down矩阵和right矩阵,
+    // 矩阵中的值表示包括这个位置在内下方或者右边有多少个连续的1,如果自身是0,那么就是0
     public static void setBorderMap(int[][] m, int[][] right, int[][] down) {
-        //down:ÿ�д�������,��m��ͬһ��λ�õ���,�����ǰλ�õ�����0,�Ǿ���0,�����1,���������down���������Ԫ��
-        for (int j = 0; j < m[0].length; j++) { //��
-            for (int i = m.length - 1; i >= 0; i--) { //��
-                //����Խ��(��������һ�л���)
+        for (int j = 0; j < m[0].length; j++) {
+            for (int i = m.length - 1; i >= 0; i--) {
                 if (i + 1 == m.length) {
                     down[i][j] = m[i][j] == 1 ? 1 : 0;
                 } else {
@@ -31,10 +27,8 @@ public class Code_05_MaxOneBorderSize {
                 }
             }
         }
-        //right:ÿ�д��ҵ���,��m��ͬһ��λ�õ���,�����ǰλ�õ�����0,�Ǿ���0,�����1,���������right�����Ҳ����
-        for (int i = 0; i < m.length; i++) {    //��
-            for (int j = m[0].length - 1; j >= 0; j--) {    //��
-                //����Խ��(�����ұ߻���)
+        for (int i = 0; i < m.length; i++) {
+            for (int j = m[0].length - 1; j >= 0; j--) {
                 if (j + 1 == m[0].length) {
                     right[i][j] = m[i][j] == 1 ? 1 : 0;
                 } else {
@@ -44,7 +38,6 @@ public class Code_05_MaxOneBorderSize {
         }
     }
 
-    //����ǳ�����,�����ܴ��ڵ����������ֻ���ǳ�������̵ı߳�
     public static int getMaxSize(int[][] m) {
         int[][] right = new int[m.length][m[0].length];
         int[][] down = new int[m.length][m[0].length];
@@ -52,7 +45,6 @@ public class Code_05_MaxOneBorderSize {
 //        printMatrix(right);
 //        System.out.println();
 //        printMatrix(down);
-        //�����߳��������ο�ʼ��,�ҵ���return true,�����һֱ������
         for (int size = Math.min(m.length, m[0].length); size > 0; size--) {
             if (hasSizeOfBorder(size, right, down)) {
                 return size;
@@ -62,7 +54,6 @@ public class Code_05_MaxOneBorderSize {
     }
 
     public static boolean hasSizeOfBorder(int size, int[][] right, int[][] down) {
-        //����right��down����,Ѱ���Ƿ�������size��Ԫ��
         for (int i = 0; i < right.length; i++) {
             for (int j = 0; j < right[0].length; j++) {
                 if (Math.min(right[i][j], down[i][j]) >= size) {
