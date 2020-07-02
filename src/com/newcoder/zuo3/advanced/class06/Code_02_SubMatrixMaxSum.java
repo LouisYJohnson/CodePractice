@@ -3,36 +3,36 @@ package com.newcoder.zuo3.advanced.class06;
 import java.util.Arrays;
 
 public class Code_02_SubMatrixMaxSum {
-    //×Ó¾ØÕóµÄ×î´óÀÛ¼ÓºÍÎÊÌâ
-    //¡¾ÌâÄ¿¡¿
-    //¸ø¶¨Ò»¸ö¾ØÕómatrix£¬ ÆäÖÐµÄÖµÓÐÕý¡¢ ÓÐ¸º¡¢ ÓÐ0£¬ ·µ»Ø×Ó¾ØÕóµÄ×î´óÀÛ¼ÓºÍ¡£
-    //ÀýÈç£¬ ¾ØÕómatrixÎª£º
+    //å­çŸ©é˜µçš„æœ€å¤§ç´¯åŠ å’Œé—®é¢˜
+    //ã€é¢˜ç›®ã€‘
+    //ç»™å®šä¸€ä¸ªçŸ©é˜µmatrixï¼Œ å…¶ä¸­çš„å€¼æœ‰æ­£ã€ æœ‰è´Ÿã€ æœ‰0ï¼Œ è¿”å›žå­çŸ©é˜µçš„æœ€å¤§ç´¯åŠ å’Œã€‚
+    //ä¾‹å¦‚ï¼Œ çŸ©é˜µmatrixä¸ºï¼š
     //-90 48 78
     //64 -40 64
     //-81 -7 66
-    //ÆäÖÐ£¬ ×î´óÀÛ¼ÓºÍµÄ×Ó¾ØÕóÎª£º
+    //å…¶ä¸­ï¼Œ æœ€å¤§ç´¯åŠ å’Œçš„å­çŸ©é˜µä¸ºï¼š
     //48 78
     //-40 64
     //-7 66
-    //ËùÒÔ·µ»ØÀÛ¼ÓºÍ209¡£
-    //ÀýÈç£¬ matrixÎª£º
+    //æ‰€ä»¥è¿”å›žç´¯åŠ å’Œ209ã€‚
+    //ä¾‹å¦‚ï¼Œ matrixä¸ºï¼š
     //-1 -1 -1
     //-1 2 2
     //-1 -1 -1
-    //ÆäÖÐ£¬ ×î´óÀÛ¼ÓºÍµÄ×Ó¾ØÕóÎª£º
+    //å…¶ä¸­ï¼Œ æœ€å¤§ç´¯åŠ å’Œçš„å­çŸ©é˜µä¸ºï¼š
     //2 2
-    //ËùÒÔ·µ»ØÀÛ¼ÓºÍ4¡£
+    //æ‰€ä»¥è¿”å›žç´¯åŠ å’Œ4ã€‚
 
-    //¿ÉÒÔ°Ñ¶àÐÐµÃÎÊÌâ×ª»¯³ÉÒ»ÐÐ
-    //Ã¿´Î¶¼°Ñ¶àÐÐÑ¹Ëõ³ÉÒ»¸öÊý×é,Õâ¸öÊý×éÇó×î´óÀÛ¼ÓºÍ,¾ÍÊÇÕâ¸ö¶àÐÐ¾ØÕó¶ÔÓ¦µÄ×Ó¾ØÕóµÃ×î´óÀÛ¼ÓºÍ
+    //å¯ä»¥æŠŠå¤šè¡Œå¾—é—®é¢˜è½¬åŒ–æˆä¸€è¡Œ
+    //æ¯æ¬¡éƒ½æŠŠå¤šè¡ŒåŽ‹ç¼©æˆä¸€ä¸ªæ•°ç»„,è¿™ä¸ªæ•°ç»„æ±‚æœ€å¤§ç´¯åŠ å’Œ,å°±æ˜¯è¿™ä¸ªå¤šè¡ŒçŸ©é˜µå¯¹åº”çš„å­çŸ©é˜µå¾—æœ€å¤§ç´¯åŠ å’Œ
     //
-    //Ã¿´ÎÕÒ 1,1 2,1 2 3,1 2 3 4
+    //æ¯æ¬¡æ‰¾ 1,1 2,1 2 3,1 2 3 4
     //2,2 3,2 3 4
     //3,3 4
     //4
-    //È»ºóÕÒ×î´óÖµ¾ÍÊÇ½á¹û
+    //ç„¶åŽæ‰¾æœ€å¤§å€¼å°±æ˜¯ç»“æžœ
     //
-    //°ÑÕÒ×Ó¾ØÕóµÄ¹ý³Ì±ä³ÉÕÒËùÓÐÁ¬ÐøÐÐ×éºÏ·½Ê½µÄ¹ý³Ì
+    //æŠŠæ‰¾å­çŸ©é˜µçš„è¿‡ç¨‹å˜æˆæ‰¾æ‰€æœ‰è¿žç»­è¡Œç»„åˆæ–¹å¼çš„è¿‡ç¨‹
     public static int maxSum(int[][] m) {
         if (m == null || m.length == 0) {
             return 0;
@@ -44,10 +44,10 @@ public class Code_02_SubMatrixMaxSum {
         int[] helpMaxValue = new int[helpMaxValueSize];
 //        int[] helpSubSum = new int[m[0].length];
         int index = 0;
-        //ÏÂÃæ×îÍâÃæÁ½²ãÇ¶Ì×Ñ­»·,ÕÒµ½ÁËËùÓÐÁ¬ÐøµÄÐÐµÄ×éºÏ(±ÈÈç¾ØÕóÓÐ4ÐÐ´ÓµÚÒ»ÐÐ¿ªÊ¼ÕÒ2,3,4,È»ºó´Ó2¿ªÊ¼ÕÒ3,4,´Ó3¿ªÊ¼ÕÒ4,×îºóÖ»ÓÐ4×Ô¼º)
-        for (int i = 0; i < m.length; i++) {            //ÐÐ
+        //ä¸‹é¢æœ€å¤–é¢ä¸¤å±‚åµŒå¥—å¾ªçŽ¯,æ‰¾åˆ°äº†æ‰€æœ‰è¿žç»­çš„è¡Œçš„ç»„åˆ(æ¯”å¦‚çŸ©é˜µæœ‰4è¡Œä»Žç¬¬ä¸€è¡Œå¼€å§‹æ‰¾2,3,4,ç„¶åŽä»Ž2å¼€å§‹æ‰¾3,4,ä»Ž3å¼€å§‹æ‰¾4,æœ€åŽåªæœ‰4è‡ªå·±)
+        for (int i = 0; i < m.length; i++) {            //è¡Œ
             int[] helpSubSum = new int[m[0].length];
-            for (int j = i; j < m.length; j++) {    //¸ÃÐÐÏÂÃæµÄËùÓÐ
+            for (int j = i; j < m.length; j++) {    //è¯¥è¡Œä¸‹é¢çš„æ‰€æœ‰
                 for (int k = 0; k < m[0].length; k++) {
                     helpSubSum[k] += m[j][k];
                 }

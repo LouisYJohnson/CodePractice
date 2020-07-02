@@ -3,23 +3,23 @@ package com.newcoder.zuo3.advanced.class06;
 import java.util.Arrays;
 
 public class Code_01_SubArrayMaxSum {
-    //×ÓÊý×éµÄ×î´óÀÛ¼ÓºÍÎÊÌâ
-    //¡¾ÌâÄ¿¡¿
-    //¸ø¶¨Ò»¸öÊý×éarr£¬ ·µ»Ø×ÓÊý×éµÄ×î´óÀÛ¼ÓºÍ¡£
-    //ÀýÈç£¬ arr=[1,-2,3,5,-2,6,-1]£¬ ËùÓÐµÄ×ÓÊý×éÖÐ£¬ [3,5,-2,6]
-    //¿ÉÒÔÀÛ¼Ó³ö×î´óµÄºÍ12£¬ ËùÒÔ·µ»Ø12¡£
-    //¡¾ÒªÇó¡¿
-    //Èç¹ûarr³¤¶ÈÎªN£¬ ÒªÇóÊ±¼ä¸´ÔÓ¶ÈÎªO(N)£¬ ¶îÍâ¿Õ¼ä¸´ÔÓ¶ÈÎª
-    //O(1)¡£
-    //¡¾²¹³äÌâÄ¿¡¿
-    //¸ø¶¨Ò»¸öÊý×éarr£¬ ·µ»ØÁ½¸ö²»ÏàÈÝ×ÓÊý×éµÄ×î´óÀÛ¼ÓºÍ¡£
+    //å­æ•°ç»„çš„æœ€å¤§ç´¯åŠ å’Œé—®é¢˜
+    //ã€é¢˜ç›®ã€‘
+    //ç»™å®šä¸€ä¸ªæ•°ç»„arrï¼Œ è¿”å›žå­æ•°ç»„çš„æœ€å¤§ç´¯åŠ å’Œã€‚
+    //ä¾‹å¦‚ï¼Œ arr=[1,-2,3,5,-2,6,-1]ï¼Œ æ‰€æœ‰çš„å­æ•°ç»„ä¸­ï¼Œ [3,5,-2,6]
+    //å¯ä»¥ç´¯åŠ å‡ºæœ€å¤§çš„å’Œ12ï¼Œ æ‰€ä»¥è¿”å›ž12ã€‚
+    //ã€è¦æ±‚ã€‘
+    //å¦‚æžœarré•¿åº¦ä¸ºNï¼Œ è¦æ±‚æ—¶é—´å¤æ‚åº¦ä¸ºO(N)ï¼Œ é¢å¤–ç©ºé—´å¤æ‚åº¦ä¸º
+    //O(1)ã€‚
+    //ã€è¡¥å……é¢˜ç›®ã€‘
+    //ç»™å®šä¸€ä¸ªæ•°ç»„arrï¼Œ è¿”å›žä¸¤ä¸ªä¸ç›¸å®¹å­æ•°ç»„çš„æœ€å¤§ç´¯åŠ å’Œã€‚
 
-    //ÒªÇóÖÐµÄÌâÄ¿:
-    //¾ÍÊÇÇóÒ»¸ö³¤¶È×î³¤,²¢ÇÒÀÛ¼ÓºÍ×î´óµÄÄÇÃ´Ò»¸ö×ÓÊý×é
-    //cur³õÊ¼ÖµÎª0,max³õÊ¼ÖµÎªÏµÍ³×îÐ¡
-    //´ÓÍ·±éÀúÊý×é,curÒÀ´ÎÀÛ¼Ó,
-    // Èç¹ûcur´óÓÚmax,Ôòmax¸üÐÂ(Èç¹ûcurÒ»Ö±Îª¸º,ÄÇ¾ÍÊÇÕÒ¸ºÊýÖÐµÄ×î´óÖµ),
-    // Èç¹ûcurÐ¡ÓÚmax,ÇÒ´óÓÚ0,²»¸üÐÂmax,Ò»µ©cur±äÎªÐ¡ÓÚ0ÁË,½«curÖØÖÃÎª0(Ïàµ±ÓÚÕâ¸ö×ÓÊý×é²»ÒªÁË)
+    //è¦æ±‚ä¸­çš„é¢˜ç›®:
+    //å°±æ˜¯æ±‚ä¸€ä¸ªé•¿åº¦æœ€é•¿,å¹¶ä¸”ç´¯åŠ å’Œæœ€å¤§çš„é‚£ä¹ˆä¸€ä¸ªå­æ•°ç»„
+    //curåˆå§‹å€¼ä¸º0,maxåˆå§‹å€¼ä¸ºç³»ç»Ÿæœ€å°
+    //ä»Žå¤´éåŽ†æ•°ç»„,curä¾æ¬¡ç´¯åŠ ,
+    // å¦‚æžœcurå¤§äºŽmax,åˆ™maxæ›´æ–°(å¦‚æžœcurä¸€ç›´ä¸ºè´Ÿ,é‚£å°±æ˜¯æ‰¾è´Ÿæ•°ä¸­çš„æœ€å¤§å€¼),
+    // å¦‚æžœcurå°äºŽmax,ä¸”å¤§äºŽ0,ä¸æ›´æ–°max,ä¸€æ—¦curå˜ä¸ºå°äºŽ0äº†,å°†curé‡ç½®ä¸º0(ç›¸å½“äºŽè¿™ä¸ªå­æ•°ç»„ä¸è¦äº†)
     public static int maxSum(int[] arr) {
         if (arr == null || arr.length == 0) return 0;
         int max = Integer.MIN_VALUE;
@@ -37,9 +37,9 @@ public class Code_01_SubArrayMaxSum {
         return max;
     }
 
-    //½ø½×:
-    //Ô¤´¦ÀíÊý×é,¾ÍÊÇ°ÑÃ¿¸öÎ»ÖÃÉÏ±ØÐëÒÔÕâ¸öÎ»ÖÃÎª½áÎ²»òÕß¿ªÊ¼µÄ×ÓÊý×é×î´óºÍÇó³öÀ´
-    //Ò²¾ÍÊÇËµ,ÒªÓÐÁ½¸ö×ÓÊý×é,·Ö±ðÊÇÒÔÕâ¸öÎ»ÖÃ¿ªÊ¼,ºÍÒÔÕâ¸öÎ»ÖÃ½áÎ²µÄ
+    //è¿›é˜¶:
+    //é¢„å¤„ç†æ•°ç»„,å°±æ˜¯æŠŠæ¯ä¸ªä½ç½®ä¸Šå¿…é¡»ä»¥è¿™ä¸ªä½ç½®ä¸ºç»“å°¾æˆ–è€…å¼€å§‹çš„å­æ•°ç»„æœ€å¤§å’Œæ±‚å‡ºæ¥
+    //ä¹Ÿå°±æ˜¯è¯´,è¦æœ‰ä¸¤ä¸ªå­æ•°ç»„,åˆ†åˆ«æ˜¯ä»¥è¿™ä¸ªä½ç½®å¼€å§‹,å’Œä»¥è¿™ä¸ªä½ç½®ç»“å°¾çš„
     public static int maxSum2(int[] arr) {
         int[] helpLeft = new int[arr.length];
         int[] helpRight = new int[arr.length];
