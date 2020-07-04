@@ -1,8 +1,8 @@
-package com.newcoder.zuo3.advanced.class06;
+package myCodePractice.zuo.advance.class06;
 
 import java.util.Stack;
 
-public class Code_04_MaximalRectangle {
+public class MaximalRectangle {
     //求最大子矩阵的大小
     //【题目】
     //给定一个整型矩阵map， 其中的值只有0和1两种， 求其中全是1
@@ -27,44 +27,45 @@ public class Code_04_MaximalRectangle {
     // 分别代表以第1,2,3行为起始的直方图,上面的值就是以该行为起始,上面有多少个连续的1
     //以第一行开始:1 0 1 1,第二行:2,1,2,2第三行:3,2,3,0),
     // 然后计算最大的基础问题中的最大面积即可,然后取三个结果中的最大值,即为所求
-    public static int maxFromBottom(int[] array) {
-        if (array == null || array.length == 0) return 0;
-        int max = 0;
-        Stack<Integer> stack = new Stack<>();
-        stack.push(0);
-        for (int i = 1; i < array.length; i++) {
-            while (!stack.isEmpty() && (array[stack.peek()] > array[i])) {
-                int help = array[stack.pop()];
-                if (!stack.isEmpty() && help == array[stack.peek()]) {
-                    while (!stack.isEmpty() && (help == array[stack.peek()])) {
-                        stack.pop();
-                    }
-                    if (stack.isEmpty()) {
-                        max = Math.max(help * i, max);
-                    } else {
-                        max = Math.max(help * (i - stack.peek() - 1), max);
-                    }
+
+    //基础问题
+    public static int getHistMaxArea(int[] arr) {
+        if (arr == null || arr.length == 0) return -1;
+
+        Stack<Integer> helpStack = new Stack<>();
+        helpStack.push(0);
+        int res = 0;
+        int tempPop = 0;
+        int tempPopLeft = 0;
+        int tempPopRight = 0;
+        //实现单调栈,要找左右距离最近的最小值,栈中要严格递增
+        //栈中装的是数组下标
+        for (int i = 1; i < arr.length; i++) {
+            //如果栈顶元素大于要入栈的元素,执行弹栈操作
+            while (!helpStack.isEmpty() && arr[helpStack.peek()] > arr[i]) {
+                tempPop = helpStack.pop();
+                //如果出现栈中叠了多个相同值(下标对应相同值),将这些叠在一起的值都清出去
+                //不清出去也行,反正最大值也会更新成最大的
+                while (!helpStack.isEmpty() && arr[helpStack.peek()] == arr[tempPop]) {
+                    helpStack.pop();
                 }
-                if (!stack.isEmpty()) {
-                    max = Math.max(help * (i - stack.peek()) - 1, max);
-                } else {
-                    max = Math.max(help * i, max);
-                }
+                tempPopRight = i;
+                //如果stack中没有数了,证明左边没有值比当前值更小,定义当前坐标值为-1(计算面积方便),否则就是当前值在栈中的下面的代表下标的值
+                tempPopLeft = helpStack.isEmpty() ? -1 : helpStack.peek();
+                res = Math.max(((tempPopRight - 1) - tempPopLeft) * arr[tempPop], res);
             }
-            stack.push(i);
+            //弹栈后,压栈
+            helpStack.push(i);
         }
-        while (!stack.isEmpty()) {
-            int help1 = array[stack.pop()];
-            while (!stack.isEmpty() && array[stack.peek()] == help1) {
-                stack.pop();
-            }
-            if (stack.isEmpty()) {
-                max = Math.max(help1 * array.length, max);
-            } else {
-                max = Math.max(help1 * (array.length - stack.peek() - 1), max);
-            }
+        //循环结束后,stack中会剩下一些没有弹出去的下标值,对这些下标值进行单独运算
+        //不清出去重复的值也行,反正最大值也会更新成最大的
+        tempPopRight = arr.length;
+        while (!helpStack.isEmpty()) {
+            tempPop = helpStack.pop();
+            tempPopLeft = helpStack.isEmpty() ? -1 : helpStack.peek();
+            res = Math.max(((tempPopRight - 1) - tempPopLeft) * arr[tempPop], res);
         }
-        return max;
+        return res;
     }
 
     public static int maxRecSize(int[][] map) {
@@ -73,9 +74,11 @@ public class Code_04_MaximalRectangle {
         int max = 0;
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
+                //必须以每行为底,来做基础问题中的直方图
+                //如果当前底上为0,那上面不管是多少,当前都是0(因为直方图断了)
                 help[j] = map[i][j] == 0 ? 0 : help[j] + map[i][j];
             }
-            max = Math.max(maxFromBottom(help), max);
+            max = Math.max(getHistMaxArea(help), max);
         }
         return max;
     }
@@ -124,5 +127,6 @@ public class Code_04_MaximalRectangle {
     public static void main(String[] args) {
         int[][] map = {{1, 0, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 0},};
         System.out.println(maxRecSize(map));
+        System.out.println(maxRecSize1(map));
     }
 }

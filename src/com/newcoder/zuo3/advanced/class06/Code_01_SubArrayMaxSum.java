@@ -37,58 +37,6 @@ public class Code_01_SubArrayMaxSum {
         return max;
     }
 
-    //进阶:
-    //预处理数组,就是把每个位置上必须以这个位置为结尾或者开始的子数组最大和求出来
-    //也就是说,要有两个子数组,分别是以这个位置开始,和以这个位置结尾的
-    public static int maxSum2(int[] arr) {
-        int[] helpLeft = new int[arr.length];
-        int[] helpRight = new int[arr.length];
-        int[] helpSum = new int[arr.length - 1];
-        for (int i = 0; i < arr.length; i++) {
-            helpLeft[i] = maxSubSum1(arr, i);
-        }
-        for (int i = arr.length - 1; i >= 0; i--) {
-            helpRight[i] = maxSubSum2(arr, i);
-        }
-        for (int i = 0; i < helpSum.length; i++) {
-            helpSum[i] = helpLeft[i] + helpRight[i + 1];
-        }
-        Arrays.sort(helpSum);
-        return helpSum[0];
-    }
-
-    public static int maxSubSum1(int[] arr, int index) {
-        int max = Integer.MIN_VALUE;
-        int cur = 0;
-
-        for (int i = 0; i <= index; i++) {
-            cur += arr[i];
-            if (cur > max) {
-                max = cur;
-            }
-            if (cur < 0) {
-                cur = 0;
-            }
-        }
-        return max;
-    }
-
-    public static int maxSubSum2(int[] arr, int index) {
-        int max = Integer.MIN_VALUE;
-        int cur = 0;
-
-        for (int i = index; i < arr.length; i++) {
-            cur += arr[i];
-            if (cur > max) {
-                max = cur;
-            }
-            if (cur < 0) {
-                cur = 0;
-            }
-        }
-        return max;
-    }
-
     //for test
     public static int maxSum1(int[] arr) {
         if (arr == null || arr.length == 0) {
@@ -115,17 +63,14 @@ public class Code_01_SubArrayMaxSum {
         int[] arr1 = {-2, -3, -5, 40, -10, -10, 100, 1};
         System.out.println(maxSum(arr1));
         System.out.println(maxSum1(arr1));
-        System.out.println(maxSum2(arr1));
 
         int[] arr2 = {-2, -3, -5, 0, 1, 2, -1};
         System.out.println(maxSum(arr2));
         System.out.println(maxSum1(arr2));
-        System.out.println(maxSum2(arr2));
 
         int[] arr3 = {-2, -3, -5, -1};
         System.out.println(maxSum(arr3));
         System.out.println(maxSum1(arr3));
-        System.out.println(maxSum2(arr3));
 
     }
 }
