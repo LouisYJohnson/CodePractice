@@ -1,6 +1,6 @@
-package com.newcoder.zuo3.advanced.class07;
+package myCodePractice.zuo.advance.class07;
 
-public class Code_03_BiggestSubBSTInTree {
+public class BiggestSubBSTInTree {
     //给定一棵二叉树的头节点head， 已知所有节点的值都不一样， 求最大
     //的搜索二叉子树的节点数量。
 
@@ -30,43 +30,57 @@ public class Code_03_BiggestSubBSTInTree {
     }
 
     public static class ReturnData {
-        private int max;
-        private int min;
-        private int size;
-        private Node head;
+        public int size;
+        public Node bigHead;
+        public int min;
+        public int max;
 
-        public ReturnData(int max, int min, int size, Node head) {
-            this.max = max;
-            this.min = min;
+        public ReturnData(int size, Node bigHead, int min, int max) {
             this.size = size;
-            this.head = head;
+            this.bigHead = bigHead;
+            this.min = min;
+            this.max = max;
         }
     }
 
+    public static int getBiggestSubBSTInTree(Node head) {
+        if (head == null) return 0;
+
+
+        return process(head).size;
+    }
+
+    //递归函数功能:
+    //  传入头节点,返回该头节点对应的最大搜索二叉树大小size,该二叉树的头节点,以及传入节点对应的整个子树中的最大值和最小值
+    //将情况分为当前节点可以连接与不能连接(将可以连接放在前面)是最好判断的,如果先判断不能连接,条件太多,反而是可以连接取个反
+    //  也就是可以连接的else更容易
     public static ReturnData process(Node head) {
         //base case
-        if (head == null) return new ReturnData(Integer.MIN_VALUE, Integer.MAX_VALUE, 0, null);
+        if (head == null) return new ReturnData(0, null, Integer.MAX_VALUE, Integer.MIN_VALUE);
 
-        Node left = head.left;
-        ReturnData leftData = process(left);
-        Node right = head.right;
-        ReturnData rightData = process(right);
+        ReturnData leftReturn = process(head.left);
+        ReturnData rightReturn = process(head.right);
+        int includeHeadSize = 0;
+        //返回的min和max一定要是包括当前节点,当前节点左子树,当前节点右子树的所有节点中最大或最小的
+        int min = Math.min(head.value, Math.min(leftReturn.min, rightReturn.min));
+        int max = Math.max(head.value, Math.max(leftReturn.max, rightReturn.max));
 
-        int includeItselfSize = 0;
-        if (leftData.head == left
-                && rightData.head == right
-                && head.value > leftData.max
-                && head.value < rightData.min) {
-            includeItselfSize = leftData.size + 1 + rightData.size;
+        //如果当前节点可以作为搜索树的Head向上提交
+        if (leftReturn.max < head.value
+                &&
+                rightReturn.min > head.value
+                &&
+                leftReturn.bigHead == head.left
+                &&
+                rightReturn.bigHead == head.right) {
+            includeHeadSize = leftReturn.size + rightReturn.size + 1;
+            return new ReturnData(includeHeadSize, head, min, max);
         }
-        int p1 = leftData.size;
-        int p2 = rightData.size;
-        int maxSize = Math.max(Math.max(p1, p2), includeItselfSize);
-        Node maxHead = p1 > p2 ? leftData.head : rightData.head;
-        if (maxSize == includeItselfSize) maxHead = head;
-        return new ReturnData(Math.max(Math.max(leftData.max, rightData.max), head.value),
-                Math.min(Math.min(leftData.min, rightData.min), head.value),
-                maxSize, maxHead);
+
+        //如果不行,选择左右子树中具有更大size的Node返回
+        int maxSizeLR = Math.max(leftReturn.size, rightReturn.size);
+        ReturnData bigReturn = leftReturn.size == maxSizeLR ? leftReturn : rightReturn;
+        return new ReturnData(bigReturn.size, bigReturn.bigHead, min, max);
     }
 
     //for test
@@ -153,6 +167,7 @@ public class Code_03_BiggestSubBSTInTree {
 
         printTree(head);
         Node bst = biggestSubBST(head);
+        System.out.println("-------------------------");
         printTree(bst);
         ReturnData returnData = process(head);
         System.out.println(returnData.size);

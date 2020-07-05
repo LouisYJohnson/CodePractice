@@ -1,6 +1,6 @@
-package com.newcoder.zuo3.advanced.class07;
+package myCodePractice.zuo.advance.class07;
 
-public class Code_01_Scramble_String {
+public class ScrambleString {
     //给定一个长度大于1的字符串， 我们可以把这个字符串分成两个非空的部分，
     //并且每个部分还能细分下去，
     //并且可以用二叉树的形式来表达， 比如
@@ -48,72 +48,27 @@ public class Code_01_Scramble_String {
     //所以标准就是:例:如果两个字符串,都分成7|5,并且左右两部分分别是搅乱串,
     // 那这两个字符串就是搅乱串,如果一个分成7|5一个分成5|7,并且5与5是搅乱串,
     // 7与7是搅乱串,则这两个字符串是搅乱串
-
-    public static boolean isScramble1(String s1, String s2) {
-        if (s1.length() != s2.length()) return false;
+    public static boolean isScrambleString(String s1, String s2) {
+        if (s1 == null || s2 == null) return false;
         if (s1.equals(s2)) return true;
-        int size = s1.length();
-        char[] chars1 = s1.toCharArray();
-        char[] chars2 = s2.toCharArray();
-        return process(chars1, chars2, 0, 0, size);
-    }
+        if (s1.length() != s2.length()) return false;
 
+        char[] s1Chars = s1.toCharArray();
+        char[] s2Chars = s2.toCharArray();
+        return process(s1Chars, s2Chars, 0, 0, s1.length());
+    }
     //递归为:在两个字符串上分别从L1,L2位置上开始,向右取size个元素,判断这两个部分是否是搅乱串
     public static boolean process(char[] chars1, char[] chars2, int l1, int l2, int size) {
         //base case
         if (size == 1) return chars1[l1] == chars2[l2];
 
         for (int part = 1; part < size; part++) {
-            //对应5|7,5|7
             if ((process(chars1, chars2, l1, l2, part) && process(chars1, chars2, l1 + part, l2 + part, size - part))
-                    ||  //对应5|7,7|5
-                    (process(chars1, chars2, l1, l2 + size - part, part) && process(chars1, chars2, l1 + part, l2, size - part))) {
+                ||
+                (process(chars1, chars2, l1, l2 + size - part, part) && process(chars1, chars2, l1 + part, l2, size - part))) {
                 return true;
             }
         }
         return false;
-    }
-
-    //for test
-    public static boolean isScramble2(String s1, String s2) {
-        if (s1.length() != s2.length()) {
-            return false;
-        }
-        if (s1.equals(s2)) {
-            return true;
-        }
-        int N = s1.length();
-        char[] chs1 = s1.toCharArray();
-        char[] chs2 = s2.toCharArray();
-        boolean[][][] dp = new boolean[N][N][N + 1];
-        for (int L1 = 0; L1 < N; L1++) {
-            for (int L2 = 0; L2 < N; L2++) {
-                dp[L1][L2][1] = chs1[L1] == chs2[L2];
-            }
-        }
-        for (int size = 2; size <= N; size++) {
-            for (int L1 = 0; L1 <= N - size; L1++) {
-                for (int L2 = 0; L2 <= N - size; L2++) {
-                    for (int p = 1; p < size; p++) {
-                        if ((dp[L1][L2][p] && dp[L1 + p][L2 + p][size - p])
-                                || (dp[L1][L2 + size - p][p] && dp[L1 + p][L2][size
-                                - p])) {
-                            dp[L1][L2][size] = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        return dp[0][0][N];
-    }
-
-    public static void main(String[] args) {
-//        String test1 = "bcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcdebcde";
-//        String test2 = "cebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebdcebd";
-        String test1 = "great";
-        String test2 = "rgeat";
-        System.out.println(isScramble1(test1, test2));
-        System.out.println(isScramble2(test1, test2));
     }
 }

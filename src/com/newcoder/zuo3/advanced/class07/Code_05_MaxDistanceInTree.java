@@ -10,15 +10,15 @@ public class Code_05_MaxDistanceInTree {
             this.value = data;
         }
     }
-    //¶þ²æÊ÷ÖÐÓÉ½ÚµãaÍùÉÏ»òÕßÍùÏÂ×ßµ½½Úµãb£¬ ×î¶ÌÂ·¾¶ÉÏ½ÚµãµÄÊýÁ¿½Ð×öaµ½bµÄ¾àÀë¡£
-    //¸ø¶¨Ò»¿Ã¶þ²æÊ÷µÄÍ·½Úµãhead£¬ ÇóÕû¿ÃÊ÷ÖÐµÄ×î´ó¾àÀë¡£
+    //äºŒå‰æ ‘ä¸­ç”±èŠ‚ç‚¹aå¾€ä¸Šæˆ–è€…å¾€ä¸‹èµ°åˆ°èŠ‚ç‚¹bï¼Œ æœ€çŸ­è·¯å¾„ä¸ŠèŠ‚ç‚¹çš„æ•°é‡å«åšaåˆ°bçš„è·ç¦»ã€‚
+    //ç»™å®šä¸€æ£µäºŒå‰æ ‘çš„å¤´èŠ‚ç‚¹headï¼Œ æ±‚æ•´æ£µæ ‘ä¸­çš„æœ€å¤§è·ç¦»ã€‚
 
-    //·ÖÎö¿ÉÄÜÐÔ:
-    //1.×î´óÂ·¾¶¿ÉÄÜÀ´×ÔÓÚ×ó×ÓÊ÷ÉÏµÄ×î´óÂ·¾¶
-    //2.Í¬Àí×î´óÂ·¾¶¿ÉÄÜÀ´×ÔÓÚ×ó×ÓÊ÷ÉÏµÄ×î´óÂ·¾¶
-    //3.×î´ó¾àÀëÎª×ó×ÓÊ÷×îÉî½Úµãµ½µ±Ç°½Úµãµ½ÓÒ×ÓÊ÷×îÉî½Úµã
+    //åˆ†æžå¯èƒ½æ€§:
+    //1.æœ€å¤§è·¯å¾„å¯èƒ½æ¥è‡ªäºŽå·¦å­æ ‘ä¸Šçš„æœ€å¤§è·¯å¾„
+    //2.åŒç†æœ€å¤§è·¯å¾„å¯èƒ½æ¥è‡ªäºŽå³å­æ ‘ä¸Šçš„æœ€å¤§è·¯å¾„
+    //3.æœ€å¤§è·ç¦»ä¸ºå·¦å­æ ‘æœ€æ·±èŠ‚ç‚¹åˆ°å½“å‰èŠ‚ç‚¹åˆ°å³å­æ ‘æœ€æ·±èŠ‚ç‚¹
 
-    //·µ»ØÊý¾ÝÖÐ,maxDistan´ú±í¸Ã½Úµã¶ÔÓ¦µÄ×ÓÊ÷ÖÐµÄ×î´ó¾àÀë,h±íÊ¾Õâ¸ö½Úµãµ½×ÓÊ÷×îµÍ¶ËµÄ×î´ó¾àÀë
+    //è¿”å›žæ•°æ®ä¸­,maxDistanceä»£è¡¨è¯¥èŠ‚ç‚¹å¯¹åº”çš„å­æ ‘ä¸­çš„æœ€å¤§è·ç¦»,hè¡¨ç¤ºè¿™ä¸ªèŠ‚ç‚¹åˆ°å­æ ‘æœ€ä½Žç«¯çš„æœ€å¤§è·ç¦»
     public static class ReturnData {
         private int maxDistance;
         private int h;
@@ -38,7 +38,7 @@ public class Code_05_MaxDistanceInTree {
         int includeHeadDistance = left.h + 1 + right.h;
         int p1 = left.maxDistance;
         int p2 = right.maxDistance;
-        //ÕûºÏ·µ»Ø¸øÉÏ²ãµÄÐÅÏ¢Îª×î³¤Â·¾¶ºÍ×îÉîÉî¶È(ÒòÎª°üÀ¨ÁË×ÔÉí,ËùÒÔÏòÉÏ´«µÝµÄÊ±ºòÊÇ×ÓÊ÷µÄ×îÉî¼ÓÉÏ×ÔÉíÒ²¾ÍÊÇ+1)
+        //æ•´åˆè¿”å›žç»™ä¸Šå±‚çš„ä¿¡æ¯ä¸ºæœ€é•¿è·¯å¾„å’Œæœ€æ·±æ·±åº¦(å› ä¸ºåŒ…æ‹¬äº†è‡ªèº«,æ‰€ä»¥å‘ä¸Šä¼ é€’çš„æ—¶å€™æ˜¯å­æ ‘çš„æœ€æ·±åŠ ä¸Šè‡ªèº«ä¹Ÿå°±æ˜¯+1)
         int resultDistance = Math.max(Math.max(p1, p2), includeHeadDistance);
         int highest = Math.max(p1, p2) + 1;
         return new ReturnData(resultDistance, highest);
