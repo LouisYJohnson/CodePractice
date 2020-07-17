@@ -31,7 +31,7 @@ public class Problem_02_LongestSumSubArrayLength {
     }
 
 
-    //for test
+    //for Combinations
     public static int maxLength1(int[] arr, int k) {
         if (arr == null || arr.length == 0) {
             return 0;

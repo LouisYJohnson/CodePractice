@@ -78,7 +78,7 @@ public class Code_01_AddMinusMultiDivideByBit {
         return res = (a < 0) ^ (b < 0) ? negNum(res) : res;
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         System.out.println(add(10, 29));
         System.out.println(minus(-10, 1));

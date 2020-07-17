@@ -76,7 +76,7 @@ public class LC131LetterCombinationsOfAPhoneNumber {
 
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         String string = "432";
         LC131LetterCombinationsOfAPhoneNumber.Solution solution = new LC131LetterCombinationsOfAPhoneNumber().new Solution();

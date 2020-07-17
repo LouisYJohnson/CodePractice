@@ -88,7 +88,7 @@ public class Code_07_Find_the_Closest_Palindrome {
         }
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         String s = "199";
         System.out.println(nearestPalindromic(s));

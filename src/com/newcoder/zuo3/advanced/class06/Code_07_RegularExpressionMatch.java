@@ -79,7 +79,7 @@ public class Code_07_RegularExpressionMatch {
         return process(str, exp, si, ei + 2);
     }
 
-    //for test
+    //for Combinations
     //动态规划,巨难无比...
     public static boolean isMatchDP(String str, String exp) {
         if (str == null || exp == null) {

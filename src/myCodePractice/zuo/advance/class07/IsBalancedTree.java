@@ -45,7 +45,7 @@ public class IsBalancedTree {
         }
     }
 
-    //for test
+    //for Combinations
     public static int getHeight(Node head, int level, boolean[] res) {
         if (head == null) {
             return level;

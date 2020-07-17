@@ -53,7 +53,7 @@ public class Problem_02_WaterProblem {
         return result;
     }
 
-    //for test
+    //for Combinations
     public static int getWater2(int[] arr) {
         if (arr == null || arr.length < 3) {
             return 0;

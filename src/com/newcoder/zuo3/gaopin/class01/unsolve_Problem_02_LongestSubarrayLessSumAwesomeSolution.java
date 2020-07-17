@@ -37,7 +37,7 @@ public class unsolve_Problem_02_LongestSubarrayLessSumAwesomeSolution {
         return res;
     }
 
-    //for test
+    //for Combinations
     public static int maxLength(int[] arr, int k) {
         int[] h = new int[arr.length + 1];
         int sum = 0;
@@ -76,7 +76,7 @@ public class unsolve_Problem_02_LongestSubarrayLessSumAwesomeSolution {
         return res;
     }
 
-    // for test
+    // for Combinations
     public static int[] generateRandomArray(int len, int maxValue) {
         int[] res = new int[len];
         for (int i = 0; i != res.length; i++) {

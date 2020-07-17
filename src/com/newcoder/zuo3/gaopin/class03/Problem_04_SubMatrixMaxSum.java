@@ -64,7 +64,7 @@ public class Problem_04_SubMatrixMaxSum {
         return max;
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         int[][] matrix = {{-90, 48, 78}, {64, -40, 64}, {-81, -7, 66}};
         System.out.println(maxSum(matrix));

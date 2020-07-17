@@ -30,7 +30,7 @@ public class Code_02_Max_Damage {
         return dp[0][threshold];
     }
 
-    //for test
+    //for Combinations
     public static void printMatrix(int[][] dp) {
         for (int i = 0; i < dp.length; i++) {
             for (int j = 0; j < dp[0].length; j++) {

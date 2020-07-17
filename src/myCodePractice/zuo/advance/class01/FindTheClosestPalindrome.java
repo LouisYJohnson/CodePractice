@@ -152,7 +152,7 @@ public class FindTheClosestPalindrome {
         return Long.valueOf(String.valueOf(processChar));
     }
 
-    //for test
+    //for Combinations
     public static String nearestPalindromic(String n) {
         Long num = Long.valueOf(n);
         Long raw = getRawPalindrome(n);
@@ -220,7 +220,7 @@ public class FindTheClosestPalindrome {
         return Long.valueOf(String.valueOf(res));
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         String s = "199";
         System.out.println(findClosestPalindromNum(s));

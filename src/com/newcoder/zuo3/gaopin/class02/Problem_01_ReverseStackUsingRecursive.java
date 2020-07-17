@@ -30,7 +30,7 @@ public class Problem_01_ReverseStackUsingRecursive {
         stack.push(temp);
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         Stack<Integer> test = new Stack<Integer>();
         test.push(1);

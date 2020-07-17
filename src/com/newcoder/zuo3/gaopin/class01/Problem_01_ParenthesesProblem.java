@@ -55,7 +55,7 @@ public class Problem_01_ParenthesesProblem {
         return result;
     }
 
-    //for test
+    //for Combinations
     //implement by zuo
     public static boolean isValid1(String str) {
         if (str == null || str.equals("")) {

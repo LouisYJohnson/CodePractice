@@ -56,7 +56,7 @@ public class BSTtoDoubleLinkedList {
         return head;
     }
 
-    //for test
+    //for Combinations
     public static void printBSTInOrder(Node head) {
         System.out.print("BST in-order: ");
         if (head != null) {

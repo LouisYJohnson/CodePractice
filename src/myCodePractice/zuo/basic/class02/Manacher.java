@@ -58,7 +58,7 @@ public class Manacher {
         return res;
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         String str1 = "abc1234321cbad";
         System.out.println(getMaxLcpsLength(str1));

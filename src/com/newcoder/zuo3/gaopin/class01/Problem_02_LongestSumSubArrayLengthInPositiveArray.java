@@ -30,7 +30,7 @@ public class Problem_02_LongestSumSubArrayLengthInPositiveArray {
         return maxLen;
     }
 
-    //for test
+    //for Combinations
     public static int[] generatePositiveArray(int size) {
         int[] result = new int[size];
         for (int i = 0; i != size; i++) {

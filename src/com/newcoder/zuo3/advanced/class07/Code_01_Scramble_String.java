@@ -74,7 +74,7 @@ public class Code_01_Scramble_String {
         return false;
     }
 
-    //for test
+    //for Combinations
     public static boolean isScramble2(String s1, String s2) {
         if (s1.length() != s2.length()) {
             return false;

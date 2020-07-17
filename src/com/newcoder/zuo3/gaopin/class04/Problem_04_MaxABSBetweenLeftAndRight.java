@@ -52,7 +52,7 @@ public class Problem_04_MaxABSBetweenLeftAndRight {
         return result;
     }
 
-    //for test
+    //for Combinations
     public static int maxABS2(int[] arr) {
         int res = Integer.MIN_VALUE;
         int maxLeft = 0;

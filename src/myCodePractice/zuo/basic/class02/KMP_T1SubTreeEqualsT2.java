@@ -198,7 +198,7 @@ public class KMP_T1SubTreeEqualsT2 {
     }
 
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         Node head1 = new Node(1);
         Node head2 = new Node(2);

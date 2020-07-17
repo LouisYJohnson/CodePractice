@@ -35,7 +35,7 @@ public class Code_04_JumpGame {
         return k;
     }
 
-    //for test
+    //for Combinations
     public static int jump1(int[] arr) {
         if (arr == null || arr.length == 0) {
             return 0;

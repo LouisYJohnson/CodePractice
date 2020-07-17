@@ -56,7 +56,7 @@ public class MinPath {
         return solveSpace[0][0];
     }
 
-    // for test
+    // for Combinations
     public static int[][] generateRandomMatrix(int rowSize, int colSize) {
         if (rowSize < 0 || colSize < 0) {
             return null;

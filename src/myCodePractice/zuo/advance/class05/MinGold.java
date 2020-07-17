@@ -100,7 +100,7 @@ public class MinGold {
     }
 
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         int[] knights1 = {2, 10, 5};
         int[] dragons1 = {3, 8, 6};

@@ -68,7 +68,7 @@ public class Code_05_MaxOneBorderSize {
         return false;
     }
 
-    //for test
+    //for Combinations
     public static int[][] generateRandom01Matrix(int rowSize, int colSize) {
         int[][] res = new int[rowSize][colSize];
         for (int i = 0; i != rowSize; i++) {

@@ -76,7 +76,7 @@ public class Code_04_PrintMaxTopK {
         heapNodes[j] = help;
     }
 
-    //for test
+    //for Combinations
     public static int[][] generateRandomMatrix(int maxRow, int maxCol,
                                                int maxValue) {
         if (maxRow < 0 || maxCol < 0) {

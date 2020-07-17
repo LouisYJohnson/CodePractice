@@ -70,7 +70,7 @@ public class UglyNumber {
         return res[index - 1];
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         int test = 11;
         System.out.println(getNUglyNum1(test));

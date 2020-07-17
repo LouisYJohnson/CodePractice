@@ -105,7 +105,7 @@ public class AllLessNumSubArray {
         return res;
     }
 
-    // for test
+    // for Combinations
     public static int[] getRandomArray(int len) {
         if (len < 0) {
             return null;
@@ -117,7 +117,7 @@ public class AllLessNumSubArray {
         return arr;
     }
 
-    // for test
+    // for Combinations
     public static void printArray(int[] arr) {
         if (arr != null) {
             for (int i = 0; i < arr.length; i++) {

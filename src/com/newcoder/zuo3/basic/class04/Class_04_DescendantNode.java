@@ -165,26 +165,26 @@ public class Class_04_DescendantNode {
 //        head.right.right = new Node(10);
 //        head.right.right.parent = head.right;
 //
-//        Node test = head.left.left;
-//        System.out.println(test.value + " next: " + getNextNode(test).value);
-//        test = head.left.left.right;
-//        System.out.println(test.value + " next: " + getNextNode(test).value);
-//        test = head.left;
-//        System.out.println(test.value + " next: " + getNextNode(test).value);
-//        test = head.left.right;
-//        System.out.println(test.value + " next: " + getNextNode(test).value);
-//        test = head.left.right.right;
-//        System.out.println(test.value + " next: " + getNextNode(test).value);
-//        test = head;
-//        System.out.println(test.value + " next: " + getNextNode(test).value);
-//        test = head.right.left.left;
-//        System.out.println(test.value + " next: " + getNextNode(test).value);
-//        test = head.right.left;
-//        System.out.println(test.value + " next: " + getNextNode(test).value);
-//        test = head.right;
-//        System.out.println(test.value + " next: " + getNextNode(test).value);
-//        test = head.right.right; // 10's next is null
-//        System.out.println(test.value + " next: " + getNextNode(test));
+//        Node Combinations = head.left.left;
+//        System.out.println(Combinations.value + " next: " + getNextNode(Combinations).value);
+//        Combinations = head.left.left.right;
+//        System.out.println(Combinations.value + " next: " + getNextNode(Combinations).value);
+//        Combinations = head.left;
+//        System.out.println(Combinations.value + " next: " + getNextNode(Combinations).value);
+//        Combinations = head.left.right;
+//        System.out.println(Combinations.value + " next: " + getNextNode(Combinations).value);
+//        Combinations = head.left.right.right;
+//        System.out.println(Combinations.value + " next: " + getNextNode(Combinations).value);
+//        Combinations = head;
+//        System.out.println(Combinations.value + " next: " + getNextNode(Combinations).value);
+//        Combinations = head.right.left.left;
+//        System.out.println(Combinations.value + " next: " + getNextNode(Combinations).value);
+//        Combinations = head.right.left;
+//        System.out.println(Combinations.value + " next: " + getNextNode(Combinations).value);
+//        Combinations = head.right;
+//        System.out.println(Combinations.value + " next: " + getNextNode(Combinations).value);
+//        Combinations = head.right.right; // 10's next is null
+//        System.out.println(Combinations.value + " next: " + getNextNode(Combinations));
 //    }
 //
 //}

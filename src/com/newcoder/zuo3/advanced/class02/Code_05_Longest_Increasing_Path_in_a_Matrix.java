@@ -31,7 +31,7 @@ public class Code_05_Longest_Increasing_Path_in_a_Matrix {
         return path;
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         int[][] arr = {
                 {9, 9, 4},

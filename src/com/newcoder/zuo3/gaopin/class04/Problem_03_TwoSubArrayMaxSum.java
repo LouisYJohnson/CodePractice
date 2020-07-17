@@ -62,7 +62,7 @@ public class Problem_03_TwoSubArrayMaxSum {
         return res;
     }
 
-    // for test
+    // for Combinations
     public static int rightAnswer(int[] arr) {
         if (arr == null || arr.length < 2) {
             return 0;
@@ -74,7 +74,7 @@ public class Problem_03_TwoSubArrayMaxSum {
         return res;
     }
 
-    // for test
+    // for Combinations
     public static int maxSum(int[] arr, int l, int r) {
         int max = Integer.MIN_VALUE;
         int cur = 0;
@@ -86,7 +86,7 @@ public class Problem_03_TwoSubArrayMaxSum {
         return max;
     }
 
-    // for test
+    // for Combinations
     public static int[] generateRandomArray() {
         int[] res = new int[(int) (Math.random() * 10) + 1];
         for (int i = 0; i < res.length; i++) {
@@ -95,7 +95,7 @@ public class Problem_03_TwoSubArrayMaxSum {
         return res;
     }
 
-    // for test
+    // for Combinations
     public static void main(String[] args) {
         int testTime = 5000000;
         boolean hasErr = false;

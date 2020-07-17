@@ -47,7 +47,7 @@ public class Code_02_IsBalancedTree {
         return new ReturnData(Math.max(headLeft.level, headRight.level), true);
     }
 
-    //for test
+    //for Combinations
     public static int getHeight(Node head, int level, boolean[] res) {
         if (head == null) {
             return level;

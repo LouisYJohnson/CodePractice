@@ -68,12 +68,12 @@ public class Class_02_HeapSort {
         arr[j] = temp;
     }
 
-    // for test
+    // for Combinations
     public static void comparator(int[] arr) {
         Arrays.sort(arr);
     }
 
-    // for test
+    // for Combinations
     public static int[] generateRandomArray(int maxSize, int maxValue) {
         int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
         for (int i = 0; i < arr.length; i++) {
@@ -82,7 +82,7 @@ public class Class_02_HeapSort {
         return arr;
     }
 
-    // for test
+    // for Combinations
     public static int[] copyArray(int[] arr) {
         if (arr == null) {
             return null;
@@ -94,7 +94,7 @@ public class Class_02_HeapSort {
         return res;
     }
 
-    // for test
+    // for Combinations
     public static boolean isEqual(int[] arr1, int[] arr2) {
         if ((arr1 == null && arr2 != null) || (arr1 != null && arr2 == null)) {
             return false;
@@ -113,7 +113,7 @@ public class Class_02_HeapSort {
         return true;
     }
 
-    // for test
+    // for Combinations
     public static void printArray(int[] arr) {
         if (arr == null) {
             return;
@@ -124,7 +124,7 @@ public class Class_02_HeapSort {
         System.out.println();
     }
 
-    // for test
+    // for Combinations
     public static void main(String[] args) {
         int testTime = 500000;
         int maxSize = 100;

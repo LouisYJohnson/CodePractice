@@ -45,7 +45,7 @@ public class MaxABSBetweenLeftAndRight {
         return res;
     }
 
-    //for test
+    //for Combinations
     public static int maxABS2(int[] arr) {
         int[] lArr = new int[arr.length];
         int[] rArr = new int[arr.length];

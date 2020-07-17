@@ -61,7 +61,7 @@ public class Code_04_Decompress_String {
         }
         return stringBuilder.toString();
     }
-    //for test
+    //for Combinations
 
     //    public static String decompress(String decompressStr) {
 //        char[] chs = decompressStr.toCharArray();

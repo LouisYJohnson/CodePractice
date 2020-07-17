@@ -136,7 +136,7 @@ public class PrintMaxTopK {
         nodes[j] =temp;
     }
 
-    //for test
+    //for Combinations
     public static int[][] generateRandomMatrix(int maxRow, int maxCol,
                                                int maxValue) {
         if (maxRow < 0 || maxCol < 0) {

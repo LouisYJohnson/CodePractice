@@ -90,7 +90,7 @@ public class KMP {
 //        return next;
 //    }
 
-    //for test
+    //for Combinations
     public static int getIndexOf(String s, String m) {
         if (s == null || m == null || m.length() < 1 || m.length() > s.length()) return -1;
         char[] ss = s.toCharArray();

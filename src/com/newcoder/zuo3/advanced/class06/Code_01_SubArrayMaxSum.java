@@ -37,7 +37,7 @@ public class Code_01_SubArrayMaxSum {
         return max;
     }
 
-    //for test
+    //for Combinations
     public static int maxSum1(int[] arr) {
         if (arr == null || arr.length == 0) {
             return 0;

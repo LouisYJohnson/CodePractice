@@ -40,7 +40,7 @@ public class MaxDamage {
                 process(cards, m, index + 1, sum));
     }
 
-    //for test
+    //for Combinations
     public static void printMatrix(int[][] dp) {
         for (int i = 0; i < dp.length; i++) {
             for (int j = 0; j < dp[0].length; j++) {

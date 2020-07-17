@@ -57,7 +57,7 @@ public class Code_01_SortedArrayToBalancedBST {
         return head;
     }
 
-    // for test -- print tree
+    // for Combinations -- print tree
     public static void printTree(Node head) {
         System.out.println("Binary Tree:");
         printInOrder(head, 0, "H", 17);

@@ -80,7 +80,7 @@ public class Code_04_MaximalRectangle {
         return max;
     }
 
-    //for test
+    //for Combinations
     //implemented by zuo:
     public static int maxRecSize1(int[][] map) {
         if (map == null || map.length == 0 || map[0].length == 0) {

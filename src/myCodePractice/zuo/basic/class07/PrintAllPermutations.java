@@ -6,7 +6,7 @@ public class PrintAllPermutations {
     //打印一个字符串的全部排列
     //前面的都排好了,当前位置选择剩下的字符放到当前位置上
     //如何选择剩下的字符放到当前位置上?使用交换最好
-    public static void prinAllPermutations(String str) {
+    public static void printAllPermutations(String str) {
         if (str == null || str.length() == 0) return;
         char[] chars = str.toCharArray();
 
@@ -63,6 +63,6 @@ public class PrintAllPermutations {
 
     public static void main(String[] args) {
         String str = "acc";
-        prinAllPermutations(str);
+        printAllPermutations(str);
     }
 }

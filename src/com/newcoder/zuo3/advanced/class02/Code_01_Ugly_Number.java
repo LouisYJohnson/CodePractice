@@ -41,7 +41,7 @@ public class Code_01_Ugly_Number {
         return help[n - 1];
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         int test = 8;
         System.out.println(uglyNumber1(test));
@@ -91,9 +91,9 @@ public class Code_01_Ugly_Number {
 //    }
 //
 //    public static void main(String[] args) {
-//        int test = 8;
-//        System.out.println(uglyNumber1(test));
-//        System.out.println(uglyNumber2(test));
+//        int Combinations = 8;
+//        System.out.println(uglyNumber1(Combinations));
+//        System.out.println(uglyNumber2(Combinations));
 //    }
 
 }

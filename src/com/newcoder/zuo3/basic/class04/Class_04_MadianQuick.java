@@ -108,7 +108,7 @@ public class Class_04_MadianQuick {
         }
     }
 
-    // for test
+    // for Combinations
     public static int[] getRandomArray(int maxLen, int maxValue) {
         int[] res = new int[(int) (Math.random() * maxLen) + 1];
         for (int i = 0; i != res.length; i++) {
@@ -117,7 +117,7 @@ public class Class_04_MadianQuick {
         return res;
     }
 
-    // for test, this method is ineffective but absolutely right
+    // for Combinations, this method is ineffective but absolutely right
     public static int getMedianOfArray(int[] arr) {
         int[] newArr = Arrays.copyOf(arr, arr.length);
         Arrays.sort(newArr);

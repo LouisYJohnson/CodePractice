@@ -50,7 +50,7 @@ public class Problem_03_CardsInLine {
         return Math.max(firstDp[0][arr.length - 1], secondDp[0][arr.length - 1]);
     }
 
-    //for test
+    //for Combinations
     public static int[] generateRondomArray() {
         int[] res = new int[(int) (Math.random() * 20) + 1];
         for (int i = 0; i < res.length; i++) {

@@ -43,7 +43,7 @@ public class unsolved_Code_05_PalindromeMinCut {
 //        return min;
     }
 
-    // for test
+    // for Combinations
     public static int minCut(String str) {
         if (str == null || str.equals("")) {
             return 0;

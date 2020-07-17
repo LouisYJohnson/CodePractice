@@ -126,7 +126,7 @@ public class Code_05_ExpressionNumber {
         return desire ? trueMap[0][chars.length - 1] : falseMap[0][chars.length - 1];
     }
 
-    //for test
+    //for Combinations
     //by zuo
 //    public static int num2(String express, boolean desired) {
 //        if (express == null || express.equals("")) {

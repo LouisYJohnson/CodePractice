@@ -18,7 +18,7 @@ public class Code_02_ProbabilityXPowerK {
 
     }
 
-    //for test
+    //for Combinations
     public static void main(String[] args) {
         double range = 0.5;
         int times = 5000000;

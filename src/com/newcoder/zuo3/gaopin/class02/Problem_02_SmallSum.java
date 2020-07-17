@@ -97,7 +97,7 @@ public class Problem_02_SmallSum {
     }
 
 
-    //for test
+    //for Combinations
     public static int getSmallSum(int[] arr) {
         if (arr == null || arr.length == 0) {
             return 0;
