@@ -35,15 +35,15 @@ public class BFS_DFS {
         }
     }
 
-    //·Ö±ğÊµÏÖBFS(¿í¶ÈÓÅÏÈ±éÀú)ÓëDFS(Éî¶ÈÓÅÏÈ±éÀú)
-    //¶şÕß¶¼ÊÇ½«Í·½ÚµãÏÈ·ÅÈë¶ÓÁĞ»òÕ»ÖĞ
-    //²»Í¬µÄÊÇBFSÊÇÔÚ½ÚµãÀë¿ªqueueµÄÊ±ºò´òÓ¡,DFSÊÇÔÚ½ÚµãÔÚsetÖĞ²»´æÔÚµÄÊ±ºò´òÓ¡
+    //åˆ†åˆ«å®ç°BFS(å®½åº¦ä¼˜å…ˆéå†)ä¸DFS(æ·±åº¦ä¼˜å…ˆéå†)
+    //äºŒè€…éƒ½æ˜¯å°†å¤´èŠ‚ç‚¹å…ˆæ”¾å…¥é˜Ÿåˆ—æˆ–æ ˆä¸­
+    //ä¸åŒçš„æ˜¯BFSæ˜¯åœ¨èŠ‚ç‚¹ç¦»å¼€queueçš„æ—¶å€™æ‰“å°,DFSæ˜¯åœ¨èŠ‚ç‚¹åœ¨setä¸­ä¸å­˜åœ¨çš„æ—¶å€™æ‰“å°
     public static void BFS(Node head) {
-        //BFSÊ¹ÓÃ¶ÓÁĞºÍHashSetÊµÏÖ
+        //BFSä½¿ç”¨é˜Ÿåˆ—å’ŒHashSetå®ç°
         if (head == null) return;
-        //ÓÃÓÚ×¢²áÒÑ¾­³öÏÖµÄNode
+        //ç”¨äºæ³¨å†Œå·²ç»å‡ºç°çš„Node
         HashSet<Node> regist = new HashSet<>();
-        //ÓÃÓÚ°´Ë³Ğò×°Òª´òÓ¡µÄÔªËØ
+        //ç”¨äºæŒ‰é¡ºåºè£…è¦æ‰“å°çš„å…ƒç´ 
         Queue<Node> queue = new LinkedList<>();
         regist.add(head);
         queue.add(head);
@@ -62,7 +62,7 @@ public class BFS_DFS {
     }
 
     public static void DFS(Node head) {
-        //DFSÊ¹ÓÃÕ»ºÍHashSetÊµÏÖ
+        //DFSä½¿ç”¨æ ˆå’ŒHashSetå®ç°
         if (head == null) return;
 
         HashSet<Node> regist = new HashSet<>();
