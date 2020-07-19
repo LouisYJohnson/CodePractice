@@ -19,7 +19,8 @@ public class MinPath {
         //如果碰到下边界或右边界,只能横着走或者竖着走
         if (i == matrix.length - 1) {//碰到下边界,只能横着走
             return matrix[i][j] + process1(matrix, i, j + 1);
-        } else if (j == matrix[0].length - 1) {//碰到右边界,只能竖着走
+        }
+        if (j == matrix[0].length - 1) {//碰到右边界,只能竖着走
             return matrix[i][j] + process1(matrix, i + 1, j);
         }
         //如果都没碰到,就是找右走或者下走的最小路径点
