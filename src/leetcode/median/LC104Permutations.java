@@ -19,7 +19,7 @@ public class LC104Permutations {
         }
 
         //递归函数功能:
-        //  输入当前是第几个数,当前数之前的都已经排完了(不包括当前数),
+        //  输入当前哪个下标上的数,当前数之前的都已经排完了(不包括当前数),
         //  存在helpList中,后面的数还没有排
         public void process(int[] num, int i, ArrayList<Integer> helpList) {
             //base case
@@ -27,7 +27,9 @@ public class LC104Permutations {
                 res.add(new ArrayList<>(helpList));
                 return;
             }
+            //这个位置上的数可以从0到num.length-1位置上的选,但是因为是排列所以顺序有所谓,从0开始取不包含自身即可
             for (int j = 0; j < num.length; j++) {
+                //重复的数不能加
                 if (!helpList.contains(num[j])) {
                     helpList.add(num[j]);
                     process(num, i + 1, helpList);
