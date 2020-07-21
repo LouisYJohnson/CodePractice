@@ -14,7 +14,7 @@ public class LC80Sqrtx {
         public int sqrt (int x) {
             // write code here
             if (x == 0) return 0;
-            //使用二分法查找这个数的平方根
+            //使用二分法查找这个数的平方根,必须用long类型,否则会越界
             long left = 0;
             long right = x;
             long mid;
