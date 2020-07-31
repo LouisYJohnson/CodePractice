@@ -31,7 +31,7 @@ public class SW11XuanZhuanShuZuDeZuXiaoShuZiIcof {
                 if (numbers[mid] > numbers[right]){ //mid在左数组
                     left = mid + 1; //+1是因为这里都大于right了,肯定不是最小值,去掉,少一次比较
                 } else if (numbers[mid] < numbers[right]) { //mid在右数组
-                    right = mid;    //不+1是因为,这里是小于right的,有可能是最小值,不能漏掉
+                    right = mid;    //不-1是因为,这里是小于right的,有可能是最小值,不能漏掉
                 }else {
                     //由于重复元素的存在，我们并不能确定numbers[pivot]究竟在最小值的左侧还是右侧，
                     // 因此我们不能莽撞地忽略某一部分的元素。我们唯一可以知道的是，

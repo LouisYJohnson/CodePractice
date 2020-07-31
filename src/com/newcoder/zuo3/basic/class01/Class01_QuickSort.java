@@ -34,7 +34,8 @@ public class Class01_QuickSort {
                 swap(arr, cur, --r);
             }
         }
-
+        //l始终指向小于arr[max]的区域的最后一个数
+        //r指向大于arr[max]的区域的最前面的数,最后将r位置和max位置换,才能变成小|等|大的样子
         swap(arr, r, max);
         return new int[]{l + 1, r};
     }

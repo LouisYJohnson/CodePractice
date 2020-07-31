@@ -6,7 +6,7 @@ public class Class_01_InsertionSort {
 
     public static void insertionSort(int[] arr) {
         if (arr == null || arr.length < 2) return;
-
+        //就像拿到扑克牌的时候,每拿到一张从后往前插队,一直到不符合插队条件为止
         for (int i = 1; i < arr.length; i++) {
             for (int j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
                 swap(arr, j, j - 1);

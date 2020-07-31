@@ -23,7 +23,8 @@ public class LC103PermutationsII {
             return res;
         }
 
-        //这里的i表示深度
+        //这里的i表示深度,0到n-1,总共的深度是n,到达n的时候说明已经到最底层了,这个n实际上是无效的
+        //所以将结果装起来后直接返回
         public void process(int[] num, int i, boolean[] helps, ArrayList<Integer> helpList) {
             //base case
             if (i == num.length) {
