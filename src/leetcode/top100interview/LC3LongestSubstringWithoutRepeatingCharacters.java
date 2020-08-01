@@ -42,6 +42,9 @@ public class LC3LongestSubstringWithoutRepeatingCharacters {
                             helpList.removeFirst();
                         }
                     }
+                    //删完了不合格的,当前位置的别忘了加进去
+                    helpList.addLast(s2Chars[right]);
+                    right++;
                 }
             }
             return res;
