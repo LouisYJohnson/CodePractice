@@ -1,4 +1,4 @@
-package oj.qianxin.aug1;
+package exams.qianxin;
 
 import java.util.ArrayList;
 import java.util.List;

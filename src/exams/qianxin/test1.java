@@ -1,4 +1,4 @@
-package oj.qianxin.aug1;
+package exams.qianxin;
 
 public class test1 {
     public static int maxValue(int[] w, int[] v, int bag) {
