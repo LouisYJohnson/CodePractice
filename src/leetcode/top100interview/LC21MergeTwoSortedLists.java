@@ -44,6 +44,7 @@ public class LC21MergeTwoSortedLists {
             ListNode helpL2 = l2;
             ListNode helpL1Next = l1.next;
             ListNode helpL2Next = l2.next;
+            //这种放法,helpList中最后一个节点的next指针一定指向null,不必最后再去设置
             while (helpL1 != null && helpL2 != null) {
                 if (helpL1.val < helpL2.val) {
                     helpList.add(helpL1);
