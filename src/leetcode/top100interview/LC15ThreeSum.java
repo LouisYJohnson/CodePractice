@@ -47,7 +47,7 @@ public class LC15ThreeSum {
                         helpList.add(nums[left]);
                         helpList.add(nums[right]);
                         res.add(helpList);
-                        //去掉所有重复的数
+                        //去掉所有满足条件并且重复的数
                         while (left < right && nums[left + 1] == nums[left]) {
                             left++;
                         }
