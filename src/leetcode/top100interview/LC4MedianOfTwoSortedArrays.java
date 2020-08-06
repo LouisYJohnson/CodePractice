@@ -25,7 +25,9 @@ public class LC4MedianOfTwoSortedArrays {
             int bStart = 0;
             for (int i = 0; i <= len / 2; i++) {
                 left = right;   //总共遍历len/2 + 1次,left存储的数据一直是在right的前一个
-                //如果总长度是奇数,那么直接返回
+                //如果总长度是奇数,那么直接返回right,否则返回二者之和/2
+                //注意,这里和求下标的中间位置不一样,下标那个输入值是下标,从0开始
+                //这里的len是长度,从1开始
                 if (aStart < nums1.length && (bStart >= nums2.length || nums1[aStart] < nums2[bStart])) {
                     right = nums1[aStart++];
                 } else {
