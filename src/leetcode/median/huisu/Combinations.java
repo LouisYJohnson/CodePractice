@@ -55,6 +55,9 @@ public class Combinations {
         //这里的start表示层数,也表示第一个数是1,可以写成2个,从0层开始,目前数字为1,总共的层数为k
         public void backtracking(int n, int k, int start, ArrayList<Integer> helpList) {
             //k就是剩余组合的个数
+            if (k < 0) {
+                return;
+            }
             if (k == 0) {
                 result.add(new ArrayList(helpList));
                 return;
