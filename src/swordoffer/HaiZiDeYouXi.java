@@ -18,7 +18,7 @@ public class HaiZiDeYouXi {
         //其中，在while循环中，每一次应该删除的index的计算：index=（index+（m-1））%list.size()，这是因为：
         //第一次删掉的位置是从0开始数m-1个位置，
         // 以后每次从删掉的下一个节点开始取，
-        // 所以每次要在indext的索引处加上m-1，
+        // 所以每次要在index的索引处加上m-1，
         // 因为是环，所以加了以后对链表长度取余。这样就可以直接计算出每次应该删除的索引位置
         public int LastRemaining_Solution(int n, int m) {
             if(n<1||m<1){
