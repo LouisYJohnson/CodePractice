@@ -36,13 +36,14 @@ public class LC322CoinChange {
             //从0到amount
             int[] dp = new int[amount + 1];
             dp[0] = 0;
-            //每个位置依赖的值是从coins中遍历一次,取到前面且不越界的最小值
+            //按照回溯中的方式,表中每个位置依赖的值是从coins中遍历一次,取到前面且不越界的最小值
             //所以从左到右填表,每次填表遍历一次coins
             for (int i = 1; i < dp.length; i++) {
                 int temp = Integer.MAX_VALUE;
                 for (int j = 0; j < coins.length; j++) {
-                    //这个判断必须在外面,如果不越界就对dp[i-coins[j]] + 1 和temp中取最小的话
-                    //dp[i-coins[j]]有可能本身就是Inter.MAX_VALUE,再+1就溢出变负数了,出现错误值
+                    //这个判断必须在外面,如果只要不越界就对dp[i-coins[j]] + 1 和temp中取最小的话而不在外面判断的话
+                    //dp[i-coins[j]]有可能本身就是Inter.MAX_VALUE,再+1就溢出变负数了,
+                    // 出现错误值(最小值为负数,错误,只允许出现非负值,无效值只能是Integer.MAX_VALUE)
                     if (i - coins[j] >= 0 && dp[i - coins[j]] < temp) {
                         temp = dp[i - coins[j]] + 1;
                     }
