@@ -25,7 +25,7 @@ public class LC79WordSearch {
     class Solution {
         //https://leetcode-cn.com/problems/word-search/solution/zai-er-wei-ping-mian-shang-shi-yong-hui-su-fa-pyth/
         public boolean exist(char[][] board, String word) {
-            //使用回溯法解题,
+            //使用回溯法解题(回溯和递归的结合),
             //思路为,四个方向,只有不越界并且下一层上的字符与我所需要的是一致的时候,才进入那一层
             for (int i = 0; i < board.length; i++) {
                 for (int j = 0; j < board[0].length; j++) {

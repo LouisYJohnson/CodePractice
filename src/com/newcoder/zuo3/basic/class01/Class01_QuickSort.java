@@ -21,12 +21,14 @@ public class Class01_QuickSort {
         }
     }
 
+    //始终保持左边为小于arr[max]中间等于arr[max]右边大于arr[max]
     public static int[] partion(int[] arr, int min, int max) {
         int l = min - 1;
         int r = max;
         int cur = min;
         while (cur < r) {
             if (arr[cur] < arr[max]) {
+                //将最小区域的下一个位置(也就是等于cur的区域上的数)和当前的cur位置交换
                 swap(arr, cur++, ++l);
             } else if (arr[cur] == arr[max]) {
                 cur++;
@@ -35,7 +37,9 @@ public class Class01_QuickSort {
             }
         }
         //l始终指向小于arr[max]的区域的最后一个数
-        //r指向大于arr[max]的区域的最前面的数,最后将r位置和max位置换,才能变成小|等|大的样子
+        //r指向大于arr[max]的区域的最前面的数,
+        //由于位于arr[max]位置上的数是用来比较的,应该放在=的区域,所以在最后还要进行一下交换
+        // 所以最后将r位置和max位置换,才能变成小|等|大的样子
         swap(arr, r, max);
         return new int[]{l + 1, r};
     }

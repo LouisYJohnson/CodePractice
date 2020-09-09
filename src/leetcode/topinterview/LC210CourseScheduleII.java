@@ -27,6 +27,10 @@ public class LC210CourseScheduleII {
     //来源：力扣（LeetCode）
     //链接：https://leetcode-cn.com/problems/course-schedule-ii
     //著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+    /**
+     * 这题的条件是输出能否上完这些课就行,而本题输出学习课程的顺序,是一道题
+     * {@link LC207CourseSchedule}
+     */
     class Solution {
         public int[] findOrder(int numCourses, int[][] prerequisites) {
             //很明显,拓扑排序

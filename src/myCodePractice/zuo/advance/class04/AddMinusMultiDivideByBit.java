@@ -109,7 +109,7 @@ public class AddMinusMultiDivideByBit {
         //使用异或运算来判断返回结果为正还是负
         return res = (a < 0) ^ (b < 0) ? negNum(res) : res;
     }
-    //将输入的数通过位运算变为负数
+    //将输入的数通过位运算变为相反数
     public static int negNum(int num) {
         num = ~num;
         num = add(num, 1);
