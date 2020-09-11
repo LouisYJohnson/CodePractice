@@ -107,8 +107,8 @@ public class LC49GroupAnagrams {
 //    }
 
 //    public static void main(String[] args) {
-//        String[] test = new String[]{"eat", "tea", " tan", "ate", "nat", "bat"};
+//        String[] tests.test = new String[]{"eat", "tea", " tan", "ate", "nat", "bat"};
 //        Solution solution = new LC49().new Solution();
-//        solution.groupAnagrams(test);
+//        solution.groupAnagrams(tests.test);
 //    }
 }
